@@ -1,25 +1,37 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$urgence-environnement-primary: mat.define-palette(mat.$indigo-palette);
-$urgence-environnement-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ue-palette: (
+  50: #e5f3ea,
+  100: #c1e2cb,
+  200: #99cfaa,
+  300: #70bd89,
+  400: #50af71,
+  500: #2da25a,
+  600: #269350,
+  700: #1d8245,
+  800: #16713a,
+  900: #095227,
+  contrast: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff
+  )
+);
 
-// The warn palette is optional (defaults to red).
+$urgence-environnement-primary: mat.define-palette($ue-palette, 900);
+$urgence-environnement-accent: mat.define-palette($ue-palette, 200, 100, 400);
+
 $urgence-environnement-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $urgence-environnement-theme: mat.define-light-theme((
   color: (
     primary: $urgence-environnement-primary,
@@ -28,8 +40,5 @@ $urgence-environnement-theme: mat.define-light-theme((
   )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($urgence-environnement-theme);
 
