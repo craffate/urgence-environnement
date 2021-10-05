@@ -1,8 +1,10 @@
-<h1>Articles</h1>
-<ul>
-  <li *ngFor="let a of articles">
-    <h3>{{ a.name }}</h3>
-    <p>{{ a.description }}</p>
-    <p>{{ a.price }}</p>
-  </li>
-</ul>
+<div fxLayout="row wrap">
+  <mat-card fxFlex="initial" *ngFor="let a of articles">
+    <mat-card-header>
+      <mat-card-title>{{ a.name }}</mat-card-title>
+      <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{ a.description }}</mat-card-content>
+    <mat-card-footer>{{ a.price }} euros</mat-card-footer>
+  </mat-card>
+</div>
