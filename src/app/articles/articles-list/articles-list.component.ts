@@ -5,11 +5,11 @@ import { Article } from './article';
 import { ARTICLES } from './mock-articles';
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.css']
+  selector: 'app-articles-list',
+  templateUrl: './articles-list.component.html',
+  styleUrls: ['./articles-list.component.css']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesListComponent implements OnInit {
 
   constructor() { }
 

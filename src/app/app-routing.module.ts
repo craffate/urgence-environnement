@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ArticlesComponent } from './articles/articles.component';
+import { ArticlesModule } from './articles/articles.module';
 
 const routes: Routes = [
-  { path: 'articles', component: ArticlesComponent }
+  {
+  path: 'articles',
+  loadChildren: () => import('./articles/articles.module').then(m => m.ArticlesModule)
+  }
 ];
 
 @NgModule({
