@@ -1,5 +1,5 @@
 <div fxLayout="row wrap">
-  <mat-card fxFlex="initial" *ngFor="let a of articles">
+  <mat-card fxFlex="initial" *ngFor="let a of articles$ | async">
     <mat-card-header>
       <mat-card-title>{{ a.name }}</mat-card-title>
       <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>

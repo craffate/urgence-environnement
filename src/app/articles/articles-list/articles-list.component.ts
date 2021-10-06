@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Article } from '../article';
 
@@ -11,16 +14,21 @@ import { ArticlesService } from '../articles.service';
 })
 export class ArticlesListComponent implements OnInit {
 
-  articles: Article[] = [];
+  articles$!: Observable<Article[]>;
+  selectedId: number = 0;
 
-  constructor(private articlesService: ArticlesService) { }
+  constructor(
+    private articlesService: ArticlesService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.getArticles();
-  }
-
-  getArticles() {
-    this.articles = this.articlesService.getArticles();
+    this.articles$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        this.selectedId = parseInt(params.get('id')!, 10);
+        return this.articlesService.getArticles();
+      })
+    );
   }
 
 }
