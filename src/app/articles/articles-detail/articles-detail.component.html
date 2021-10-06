@@ -1,0 +1,6 @@
+<div *ngIf="article$ | async as article">
+  <h1>{{ article.name }}</h1>
+  <h3>{{ article.subtitle }}</h3>
+  <p>{{ article.description }}</p>
+  <p>{{ article.price }} euros</p>
+</div>
