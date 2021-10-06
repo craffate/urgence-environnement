@@ -2,5 +2,5 @@
   <h1>{{ article.name }}</h1>
   <h3>{{ article.subtitle }}</h3>
   <p>{{ article.description }}</p>
-  <p>{{ article.price }} euros</p>
+  <p>{{ article.price | currency: 'EUR':'symbol':'1.2' }}</p>
 </div>
