@@ -1,29 +1,28 @@
-<table mat-table [dataSource]="articles$" class="mat-elevation-z8">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let a"> {{ a.id }} </td>
+<table mat-table multiTemplateDataRows
+       [dataSource]="articles$"
+       class="mat-elevation-z8">
+  <ng-container
+      *ngFor="let col of columnsToDisplay"
+      matColumnDef="{{ col }}">
+    <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
+    <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
   </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let a"> {{ a.name }} </td>
+  <!-- Expanded details -->
+  <ng-container
+      matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let el" [attr.colspan]="columnsToDisplay.length">
+      <div class="article-detail"
+           [@detailExpand]="el == expandedArticle ? 'expanded' : 'collapsed'">
+      </div>
+    </td>
   </ng-container>
 
-  <ng-container matColumnDef="subtitle">
-    <th mat-header-cell *matHeaderCellDef>Subtitle</th>
-    <td mat-cell *matCellDef="let a"> {{ a.subtitle }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Description</th>
-    <td mat-cell *matCellDef="let a"> {{ a.description }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef>Price</th>
-    <td mat-cell *matCellDef="let a"> {{ a.price | currency:'EUR':'symbol':'1.2' }} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="['id', 'name', 'subtitle', 'description', 'price']"></tr>
-  <tr mat-row [routerLink]="['/articles', row.id]" *matRowDef="let row; columns: ['id', 'name', 'subtitle', 'description', 'price'];"></tr>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let el; columns: columnsToDisplay;"
+      class="article-row"
+      [class.example-expanded-row]="expandedArticle === el"
+      (click)="expandedArticle = expandedArticle === el ? null : el">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 </table>
