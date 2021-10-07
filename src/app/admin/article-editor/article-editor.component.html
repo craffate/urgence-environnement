@@ -1,0 +1,24 @@
+<div class="form" *ngIf="article$ | async as article">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput id="name" type="text" formControlName="name" [value]="article.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Subtitle</mat-label>
+      <input matInput id="subtitle" type="text" formControlName="subtitle" [value]="article.subtitle">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [mat-autosize]="true" id="description" type="text" formControlName="description" [value]="article.description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput id="price" type="number" formControlName="price" [value]="article.price">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

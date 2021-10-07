@@ -32,11 +32,7 @@ export class AdminDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articles$ = this.getArticles();
-  }
-
-  getArticles(): Observable<Article[]> {
-    return this.articlesService.getArticles();
+    this.articles$ = this.articlesService.getArticles();
   }
 
 }
