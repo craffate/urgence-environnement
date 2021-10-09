@@ -19,6 +19,6 @@
       <input matInput id="price" type="number" formControlName="price" [value]="article.price">
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button (ngSubmit)="onSubmit()" color="primary" type="submit">Submit</button>
   </form>
 </div>

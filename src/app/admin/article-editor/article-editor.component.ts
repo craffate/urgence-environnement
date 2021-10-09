@@ -6,6 +6,7 @@ import { Article } from '../../articles/article';
 import { ArticlesService } from '../../articles/articles.service';
 
 import { FormGroup, FormControl } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-article-editor',
@@ -26,21 +27,22 @@ export class ArticleEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.article$ = this.articlesService.getArticle(this.articleId);
-    this.articlesService.getArticle(this.articleId).subscribe(article => {
-      this.formGroup = new FormGroup({
-        name: new FormControl(article.name),
-        subtitle: new FormControl(article.subtitle),
-        description: new FormControl(article.description),
-        price: new FormControl(article.price)
-      });
-    });
+    this.article$ = this.articlesService.getArticle(this.articleId).pipe(
+      switchMap((article: Article) => {
+        this.formGroup = new FormGroup({
+          id: new FormControl(article.id),
+          name: new FormControl(article.name),
+          subtitle: new FormControl(article.subtitle),
+          description: new FormControl(article.description),
+          price: new FormControl(article.price)
+        });
+        return this.articlesService.getArticle(this.articleId);
+      })
+    );
   }
 
   onSubmit(): void {
-    /*
-    ** TODO: Submit form
-    */
+    this.articlesService.postArticle(this.formGroup.value).subscribe();
   }
 
 }
