@@ -14,11 +14,11 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  signin(email: string, password: string) {
-    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signin`, {email, password})
+  signin(username: string, password: string) {
+    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signin`, {username, password})
   }
 
-  signup(email: string, password: string, role: number) {
-    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {email, password, role})
+  signup(username: string, password: string, role: number) {
+    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {username, password, role})
   }
 }
