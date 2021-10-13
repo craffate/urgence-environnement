@@ -1,0 +1,15 @@
+<div class="form">
+  <form [formGroup]="formGroup" (ngSubmit)="signin()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput id="email" type="email" formControlName="email">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput id="password" type="password" formControlName="password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (ngSubmit)="signin()" color="primary" type="submit">Sign in</button>
+  </form>
+</div>

@@ -1,3 +1,4 @@
 export enum ApiPaths {
-  Articles = "/articles"
+  Articles = "/articles",
+  Auth = "/auth"
 }
