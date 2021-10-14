@@ -21,4 +21,8 @@ export class AuthService {
   signUp(username: string, password: string, role: number) {
     return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {username, password, role});
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }
