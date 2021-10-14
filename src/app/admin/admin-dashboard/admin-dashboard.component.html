@@ -1,5 +1,5 @@
 <table mat-table multiTemplateDataRows
-       [dataSource]="articles$"
+       [dataSource]="articles"
        class="mat-elevation-z8">
   <ng-container
       *ngFor="let col of columnsToDisplay"
@@ -8,22 +8,14 @@
     <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
   </ng-container>
 
-  <!-- Expanded details -->
-  <ng-container
-      matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let el" [attr.colspan]="columnsToDisplay.length">
-      <div class="article-detail"
-           [@detailExpand]="el == expandedArticle ? 'expanded' : 'collapsed'">
-        <app-article-editor [articleId]="el.id"></app-article-editor>
-      </div>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> actions </th>
+    <td mat-cell *matCellDef="let el">
+      <button mat-raised-button (click)="openDialog(el)" color="primary" type="button">Edit</button>
+      <button mat-raised-button (click)="deleteArticle()" color="warn" type="button">Delete</button>
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let el; columns: columnsToDisplay;"
-      class="article-row"
-      [class.example-expanded-row]="expandedArticle === el"
-      (click)="expandedArticle = expandedArticle === el ? null : el">
-  </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+  <tr mat-header-row *matHeaderRowDef="['name', 'subtitle', 'description', 'price', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['name', 'subtitle', 'description', 'price', 'actions']" class="detail-row"></tr>
 </table>

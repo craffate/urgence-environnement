@@ -1,24 +1,28 @@
-<div class="form" *ngIf="article$ | async as article">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<h1 mat-dialog-title>Editing {{ article.name }}</h1>
+<div class="form">
+  <mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput id="name" type="text" formControlName="name" [value]="article.name">
+      <input matInput type="text" [(ngModel)]="newArticle.name">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Subtitle</mat-label>
-      <input matInput id="subtitle" type="text" formControlName="subtitle" [value]="article.subtitle">
+      <input matInput type="text" [(ngModel)]="newArticle.subtitle">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <textarea matInput [mat-autosize]="true" id="description" type="text" formControlName="description" [value]="article.description"></textarea>
+      <textarea matInput [mat-autosize]="true" [(ngModel)]="newArticle.description"></textarea>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Price</mat-label>
-      <input matInput id="price" type="number" formControlName="price" [value]="article.price">
+      <input matInput type="number" [(ngModel)]="newArticle.price">
     </mat-form-field>
     <br>
-    <button mat-raised-button (ngSubmit)="onSubmit()" color="primary" type="submit">Submit</button>
-  </form>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()" color="primary" [mat-dialog-close]="newArticle" cdkFocusInitial>Submit</button>
+      <button mat-raised-button (click)="onNoClick()" color="warn" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
 </div>

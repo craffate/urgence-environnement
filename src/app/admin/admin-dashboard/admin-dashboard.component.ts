@@ -1,38 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Article } from '../../articles/article';
 import { ArticlesService } from '../../articles/articles.service';
+import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
 
-  articles$!: Observable<Article[]>;
+  articles!: Article[];
 
   columnsToDisplay: string[] = ['name', 'subtitle', 'description', 'price']
 
-  expandedArticle: Article | null = null;
-
   constructor(
-    private articlesService: ArticlesService
+    private articlesService: ArticlesService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.articles$ = this.articlesService.getArticles();
+    this.articlesService.getArticles().subscribe((res) => this.articles = res);
+  }
+
+  editArticle(): void {
+
+  }
+
+  deleteArticle(): void {
+
+  }
+
+  openDialog(article: Article): void {
+    const dialogRef = this.dialog.open(ArticleEditorComponent, {
+      data: article
+    });
+
+    dialogRef.afterClosed().subscribe((result: Article) => {
+      this.articlesService.putArticle(result).subscribe();
+    });
   }
 
 }

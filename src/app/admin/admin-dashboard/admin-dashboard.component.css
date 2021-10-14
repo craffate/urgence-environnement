@@ -1,24 +1,3 @@
 table {
   width: 100%;
 }
-
-tr.detail-row {
-  height: 0;
-}
-
-tr.article-row:not(.expanded-row):hover {
-  background: whitesmoke;
-}
-
-tr.article-row:not(.expanded-row):active {
-  background: #efefef;
-}
-
-.article-row td {
-  border-bottom-width: 0;
-}
-
-.article-detail {
-  overflow: hidden;
-  display: flex;
-}
