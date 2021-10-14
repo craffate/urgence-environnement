@@ -42,7 +42,7 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.articlesService.postArticle(this.formGroup.value).subscribe();
+    this.articlesService.putArticle(this.formGroup.value).subscribe();
   }
 
 }

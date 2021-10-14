@@ -23,11 +23,11 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`);
   }
 
-  getArticle(articleId: number) {
+  getArticle(articleId: number): Observable<Article> {
     return this.httpClient.get<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
 
-  postArticle(article: Article) {
-    return this.httpClient.post<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${article.id}`, article);
+  putArticle(article: Article): Observable<Article> {
+    return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${article.id}`, article);
   }
 }
