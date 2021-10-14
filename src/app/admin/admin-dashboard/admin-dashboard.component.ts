@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Article } from '../../articles/article';
 import { ArticlesService } from '../../articles/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
+import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -26,21 +27,25 @@ export class AdminDashboardComponent implements OnInit {
     this.articlesService.getArticles().subscribe((res) => this.articles = res);
   }
 
-  editArticle(): void {
-
-  }
-
-  deleteArticle(): void {
-
-  }
-
-  openDialog(article: Article): void {
+  editArticle(article: Article): void {
     const dialogRef = this.dialog.open(ArticleEditorComponent, {
       data: article
     });
 
     dialogRef.afterClosed().subscribe((result: Article) => {
       this.articlesService.putArticle(result).subscribe();
+    });
+  }
+
+  deleteArticle(article: Article): void {
+    const dialogRef = this.dialog.open(ArticleDeleteComponent, {
+      data: article
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result === true) {
+        this.articlesService.deleteArticle(article.id).subscribe();
+      }
     });
   }
 

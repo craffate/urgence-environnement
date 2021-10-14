@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Do you want to delete {{ article.name }}?</h1>
+<div class="form">
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="false">No</button>
+  </mat-dialog-actions>
+</div>

@@ -30,4 +30,8 @@ export class ArticlesService {
   putArticle(article: Article): Observable<Article> {
     return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${article.id}`, article);
   }
+
+  deleteArticle(articleId: number): Observable<Article> {
+    return this.httpClient.delete<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
+  }
 }

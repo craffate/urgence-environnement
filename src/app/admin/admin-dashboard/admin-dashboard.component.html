@@ -11,8 +11,8 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> actions </th>
     <td mat-cell *matCellDef="let el">
-      <button mat-raised-button (click)="openDialog(el)" color="primary" type="button">Edit</button>
-      <button mat-raised-button (click)="deleteArticle()" color="warn" type="button">Delete</button>
+      <button mat-raised-button (click)="editArticle(el)" color="primary" type="button">Edit</button>
+      <button mat-raised-button (click)="deleteArticle(el)" color="warn" type="button">Delete</button>
     </td>
   </ng-container>
 

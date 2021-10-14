@@ -12,12 +12,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
+import { ArticleDeleteComponent } from './article-delete/article-delete.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
-    ArticleEditorComponent
+    ArticleEditorComponent,
+    ArticleDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { ArticleEditorComponent } from './article-editor/article-editor.componen
     AdminRoutingModule
   ],
   entryComponents: [
-    ArticleEditorComponent
+    ArticleEditorComponent,
+    ArticleDeleteComponent
   ]
 })
 export class AdminModule { }
