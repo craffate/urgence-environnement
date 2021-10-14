@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signin(): void {
-    this.authService.signin(this.formGroup.value.email, this.formGroup.value.password)
+  signIn(): void {
+    this.authService.signIn(this.formGroup.value.email, this.formGroup.value.password)
     .subscribe((): void => {
       this.router.navigateByUrl('/');
     });

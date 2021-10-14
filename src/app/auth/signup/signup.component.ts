@@ -27,8 +27,8 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signup(): void {
-    this.authService.signup(this.formGroup.value.email, this.formGroup.value.password, this.formGroup.value.role)
+  signUp(): void {
+    this.authService.signUp(this.formGroup.value.email, this.formGroup.value.password, this.formGroup.value.role)
     .subscribe((): void => {
       this.router.navigateByUrl('/');
     });

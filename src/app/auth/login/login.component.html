@@ -1,5 +1,5 @@
 <div class="form">
-  <form [formGroup]="formGroup" (ngSubmit)="signin()">
+  <form [formGroup]="formGroup" (ngSubmit)="signIn()">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input matInput id="email" type="email" formControlName="email">
@@ -10,6 +10,6 @@
       <input matInput id="password" type="password" formControlName="password">
     </mat-form-field>
     <br>
-    <button mat-raised-button (ngSubmit)="signin()" color="primary" type="submit">Sign in</button>
+    <button mat-raised-button (ngSubmit)="signIn()" color="primary" type="submit">Sign in</button>
   </form>
 </div>
