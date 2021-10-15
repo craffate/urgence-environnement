@@ -13,13 +13,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
 import { ArticleDeleteComponent } from './article-delete/article-delete.component';
+import { ArticleAddComponent } from './article-add/article-add.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     ArticleEditorComponent,
-    ArticleDeleteComponent
+    ArticleDeleteComponent,
+    ArticleAddComponent
   ],
   imports: [
     CommonModule,

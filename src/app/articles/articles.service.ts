@@ -34,4 +34,8 @@ export class ArticlesService {
   deleteArticle(articleId: number): Observable<Article> {
     return this.httpClient.delete<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
+
+  postArticle(article: Article): Observable<Article[]> {
+    return this.httpClient.post<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`, article);
+  }
 }

@@ -6,6 +6,7 @@ import { Article } from '../../articles/article';
 import { ArticlesService } from '../../articles/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
+import { ArticleAddComponent } from '../article-add/article-add.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -46,6 +47,14 @@ export class AdminDashboardComponent implements OnInit {
       if (result === true) {
         this.articlesService.deleteArticle(article.id).subscribe();
       }
+    });
+  }
+
+  addArticle(): void {
+    const dialogRef = this.dialog.open(ArticleAddComponent);
+
+    dialogRef.afterClosed().subscribe((result: Article) => {
+      this.articlesService.postArticle(result).subscribe();
     });
   }
 

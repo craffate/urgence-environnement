@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Creating new article</h1>
+<div class="form">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [(ngModel)]="article.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Subtitle</mat-label>
+      <input matInput type="text" [(ngModel)]="article.subtitle">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [mat-autosize]="true" [(ngModel)]="article.description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" [(ngModel)]="article.price">
+    </mat-form-field>
+    <br>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" [mat-dialog-close]="article" cdkFocusInitial>Submit</button>
+      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>
