@@ -42,4 +42,8 @@ export class ArticlesService {
   postImage(articleId: number, image: FormData): Observable<FormData> {
     return this.httpClient.post<FormData>(`${environment.apiUrl}${ApiPaths.Images}/${articleId}`, image);
   }
+
+  getImages(articleId: number): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${environment.apiUrl}${ApiPaths.Images}/${articleId}`);
+  }
 }
