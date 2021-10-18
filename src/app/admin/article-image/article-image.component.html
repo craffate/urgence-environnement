@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Showing {{ article.name }} images</h1>
+<div class="form">
+  <mat-dialog-content>
+      <input type="file" (change)="fileChosen($event)">
+      <br>
+      <button mat-raised-button (click)="addImage()">Add image</button>
+  </mat-dialog-content>
+</div>

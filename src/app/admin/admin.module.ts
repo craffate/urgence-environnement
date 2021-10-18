@@ -14,6 +14,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
 import { ArticleDeleteComponent } from './article-delete/article-delete.component';
 import { ArticleAddComponent } from './article-add/article-add.component';
+import { ArticleImageComponent } from './article-image/article-image.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ArticleAddComponent } from './article-add/article-add.component';
     AdminDashboardComponent,
     ArticleEditorComponent,
     ArticleDeleteComponent,
-    ArticleAddComponent
+    ArticleAddComponent,
+    ArticleImageComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { ArticleAddComponent } from './article-add/article-add.component';
   ],
   entryComponents: [
     ArticleEditorComponent,
-    ArticleDeleteComponent
+    ArticleDeleteComponent,
+    ArticleImageComponent
   ]
 })
 export class AdminModule { }

@@ -7,6 +7,7 @@ import { ArticlesService } from '../../articles/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';
+import { ArticleImageComponent } from '../article-image/article-image.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -55,6 +56,16 @@ export class AdminDashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Article) => {
       this.articlesService.postArticle(result).subscribe();
+    });
+  }
+
+  showArticleImages(article: Article): void {
+    const dialogRef = this.dialog.open(ArticleImageComponent, {
+      data: article
+    });
+
+    dialogRef.afterClosed().subscribe((fd: FormData) => {
+      this.articlesService.postImage(article.id, fd).subscribe();
     });
   }
 
