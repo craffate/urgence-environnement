@@ -46,4 +46,8 @@ export class ArticlesService {
   getImages(articleId: number): Observable<string[]> {
     return this.httpClient.get<string[]>(`${environment.apiUrl}${ApiPaths.Images}/${articleId}`);
   }
+
+  deleteImage(imageId: number): Observable<string> {
+    return this.httpClient.delete<string>(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`);
+  }
 }
