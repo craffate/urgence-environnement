@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { Article } from '../../articles/article';
 import { Category } from '../../articles/category';
@@ -15,12 +17,13 @@ import { ArticleImageComponent } from '../article-image/article-image.component'
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
   categories!: Category[];
-  articles!: Article[];
+  dataSource: MatTableDataSource<Article> = new MatTableDataSource<Article>([]);
+  columnsToDisplay: string[] = ['name', 'subtitle', 'description', 'price', 'category_id'];
 
-  columnsToDisplay: string[] = ['name', 'subtitle', 'description', 'price', 'category_id']
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private articlesService: ArticlesService,
@@ -28,8 +31,12 @@ export class AdminDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articlesService.getArticles().subscribe((res) => this.articles = res);
+    this.articlesService.getArticles().subscribe((res) => this.dataSource.data = res);
     this.articlesService.getCategories().subscribe((res) => this.categories = res);
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   editArticle(article: Article): void {

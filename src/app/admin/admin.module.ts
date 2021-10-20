@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatIconModule } from '@angular/material/icon';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -37,6 +38,7 @@ import { ArticleImageComponent } from './article-image/article-image.component';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatPaginatorModule,
     MatIconModule,
     AdminRoutingModule
   ],
