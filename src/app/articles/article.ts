@@ -4,4 +4,5 @@ export interface Article {
   subtitle: string;
   description: string;
   price: number;
+  category_id: number;
 };

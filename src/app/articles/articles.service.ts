@@ -9,6 +9,7 @@ import { Article } from './article';
 
 import { environment } from '../../environments/environment';
 import { ApiPaths } from '../../api-paths';
+import { Category } from './category';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class ArticlesService {
 
   getArticle(articleId: number): Observable<Article> {
     return this.httpClient.get<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${environment.apiUrl}${ApiPaths.Categories}`)
   }
 
   putArticle(article: Article): Observable<Article> {

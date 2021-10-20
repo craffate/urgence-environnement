@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Article } from '../../articles/article';
+import { Category } from '../../articles/category';
 import { ArticlesService } from '../../articles/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
@@ -16,9 +17,10 @@ import { ArticleImageComponent } from '../article-image/article-image.component'
 })
 export class AdminDashboardComponent implements OnInit {
 
+  categories!: Category[];
   articles!: Article[];
 
-  columnsToDisplay: string[] = ['name', 'subtitle', 'description', 'price']
+  columnsToDisplay: string[] = ['name', 'subtitle', 'description', 'price', 'category_id']
 
   constructor(
     private articlesService: ArticlesService,
@@ -27,11 +29,12 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.articlesService.getArticles().subscribe((res) => this.articles = res);
+    this.articlesService.getCategories().subscribe((res) => this.categories = res);
   }
 
   editArticle(article: Article): void {
     const dialogRef = this.dialog.open(ArticleEditorComponent, {
-      data: article
+      data: { article: article, categories: this.categories }
     });
 
     dialogRef.afterClosed().subscribe((result: Article) => {
@@ -52,7 +55,9 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   addArticle(): void {
-    const dialogRef = this.dialog.open(ArticleAddComponent);
+    const dialogRef = this.dialog.open(ArticleAddComponent, {
+      data: this.categories
+    });
 
     dialogRef.afterClosed().subscribe((result: Article) => {
       this.articlesService.postArticle(result).subscribe();

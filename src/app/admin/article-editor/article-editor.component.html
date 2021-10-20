@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Editing {{ article.name }}</h1>
+<h1 mat-dialog-title>Editing {{ data.article.name }}</h1>
 <div class="form">
   <mat-dialog-content>
     <mat-form-field appearance="fill">
@@ -19,10 +19,18 @@
       <mat-label>Price</mat-label>
       <input matInput step="0.01" type="number" [(ngModel)]="newArticle.price">
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="newArticle.category_id">
+        <mat-option *ngFor="let cat of data.categories" [value]="cat.id">
+          {{ cat.id }}: {{ cat.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <br>
     <mat-dialog-actions>
-      <button mat-raised-button (click)="onNoClick()" color="primary" [mat-dialog-close]="newArticle" cdkFocusInitial>Submit</button>
-      <button mat-raised-button (click)="onNoClick()" color="warn" mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="newArticle" cdkFocusInitial>Submit</button>
+      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
   </mat-dialog-content>
 </div>
