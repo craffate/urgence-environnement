@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 
-import { Article } from '../../articles/article';
+import { Article } from '@interfaces/article';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 
-import { ArticlesService } from 'src/app/articles/articles.service';
+import { ArticlesService } from '@services/articles.service';
 
 @Component({
   selector: 'app-article-image',

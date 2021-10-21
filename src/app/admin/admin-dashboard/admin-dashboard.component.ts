@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Article } from '../../articles/article';
-import { Category } from '../../articles/category';
-import { ArticlesService } from '../../articles/articles.service';
+import { Article } from '@interfaces/article';
+import { Category } from '@interfaces/category';
+import { ArticlesService } from '@services/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';

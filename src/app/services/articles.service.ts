@@ -5,11 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Article } from './article';
-
-import { environment } from '../../environments/environment';
-import { ApiPaths } from '../../api-paths';
-import { Category } from './category';
+import { environment } from '@environments/environment';
+import { ApiPaths } from '@src/api-paths';
+import { Category } from '@interfaces/category';
+import { Article } from '@interfaces/article';
 
 @Injectable({
   providedIn: 'root'

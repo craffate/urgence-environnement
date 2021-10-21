@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
-import { ApiPaths } from '../../api-paths';
+import { environment } from '@environments/environment';
+import { ApiPaths } from '@src/api-paths';
 
-import { User } from './user';
+import { User } from '@interfaces/user';
 
 @Injectable({
   providedIn: 'root'

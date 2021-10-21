@@ -4,9 +4,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { delay, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Article } from '../article';
+import { Article } from '@interfaces/article';
 
-import { ArticlesService } from '../articles.service';
+import { ArticlesService } from '@services/articles.service';
 
 @Component({
   selector: 'app-articles-detail',
