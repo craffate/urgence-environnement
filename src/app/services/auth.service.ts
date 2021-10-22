@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 import { environment } from '@environments/environment';
 import { ApiPaths } from '@src/api-paths';
@@ -14,12 +15,12 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  signIn(username: string, password: string) {
-    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signin`, {username, password});
+  signIn(user: User) {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signin`, user, { responseType: 'text' });
   }
 
-  signUp(username: string, password: string, role: number) {
-    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {username, password, role});
+  signUp(user: User) {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signup`, user, { responseType: 'text' });
   }
-  
+
 }

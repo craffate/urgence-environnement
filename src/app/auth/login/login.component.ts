@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router
     ) {
     this.formGroup = new FormGroup({
-      email: new FormControl(''),
+      username: new FormControl(''),
       password: new FormControl('')
     });
   }
@@ -27,8 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    this.authService.signIn(this.formGroup.value.email, this.formGroup.value.password)
-    .subscribe((): void => {
+    this.authService.signIn(this.formGroup.value)
+    .subscribe((res): void => {
       this.router.navigateByUrl('/');
     });
   }

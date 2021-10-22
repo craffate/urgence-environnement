@@ -18,9 +18,8 @@ export class SignupComponent implements OnInit {
     private router: Router
     ) {
     this.formGroup = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
-      role: new FormControl(1)
+      username: new FormControl(''),
+      password: new FormControl('')
     });
   }
 
@@ -28,8 +27,8 @@ export class SignupComponent implements OnInit {
   }
 
   signUp(): void {
-    this.authService.signUp(this.formGroup.value.email, this.formGroup.value.password, this.formGroup.value.role)
-    .subscribe((): void => {
+    this.authService.signUp(this.formGroup.value)
+    .subscribe((res) => {
       this.router.navigateByUrl('/');
     });
   }
