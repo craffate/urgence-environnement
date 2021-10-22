@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
-import { TokenInterceptor } from './token.interceptor';
 
 
 @NgModule({
@@ -22,13 +21,6 @@ import { TokenInterceptor } from './token.interceptor';
     MatToolbarModule,
     MatTabsModule,
     AppRoutingModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })

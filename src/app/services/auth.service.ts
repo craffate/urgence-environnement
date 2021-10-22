@@ -15,14 +15,11 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   signIn(username: string, password: string) {
-    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signin`, {username, password}, { observe: 'response' });
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signin`, {username, password});
   }
 
   signUp(username: string, password: string, role: number) {
-    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {username, password, role});
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signup`, {username, password, role});
   }
-
-  getToken() {
-    return localStorage.getItem('token');
-  }
+  
 }

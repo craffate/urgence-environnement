@@ -28,9 +28,8 @@ export class LoginComponent implements OnInit {
 
   signIn(): void {
     this.authService.signIn(this.formGroup.value.email, this.formGroup.value.password)
-    .subscribe((res) => {
-      localStorage.setItem('token', res.headers.get('Authorization')?.split(' ')[1]!);
-      this.router.navigate(['/']);
+    .subscribe((): void => {
+      this.router.navigateByUrl('/');
     });
   }
 
