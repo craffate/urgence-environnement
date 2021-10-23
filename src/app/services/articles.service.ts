@@ -31,6 +31,10 @@ export class ArticlesService {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}${ApiPaths.Categories}`)
   }
 
+  getCategory(categorySlug: string): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Categories}/${categorySlug}`)
+  }
+
   putArticle(article: Article): Observable<Article> {
     return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${article.id}`, article);
   }

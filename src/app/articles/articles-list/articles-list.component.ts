@@ -15,7 +15,6 @@ import { ArticlesService } from '@services/articles.service';
 export class ArticlesListComponent implements OnInit {
 
   articles$!: Observable<Article[]>;
-  selectedId: number = 0;
 
   constructor(
     private articlesService: ArticlesService,
@@ -25,8 +24,7 @@ export class ArticlesListComponent implements OnInit {
   ngOnInit(): void {
     this.articles$ = this.route.paramMap.pipe(
       switchMap(params => {
-        this.selectedId = parseInt(params.get('id')!, 10);
-        return this.articlesService.getArticles();
+        return this.articlesService.getCategory(params.get('category')!);
       })
     );
   }
