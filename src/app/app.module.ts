@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
 
 @NgModule({
@@ -20,8 +22,12 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatTabsModule,
+    MatSnackBarModule,
     AppRoutingModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+  ]
 })
 export class AppModule { }
