@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   signIn(user: User) {
-    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signin`, user, { responseType: 'text' });
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signin`, user, { responseType: 'text', withCredentials: true });
   }
 
   signUp(user: User) {
