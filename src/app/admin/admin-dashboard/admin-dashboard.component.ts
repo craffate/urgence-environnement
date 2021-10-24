@@ -11,6 +11,8 @@ import { ArticleEditorComponent } from '../article-editor/article-editor.compone
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';
 import { ArticleImageComponent } from '../article-image/article-image.component';
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -44,8 +46,9 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
       data: { article: article, categories: this.categories }
     });
 
-    dialogRef.afterClosed().subscribe((result: Article) => {
-      this.articlesService.putArticle(result).subscribe();
+    dialogRef.afterClosed().subscribe((article: Article) => {
+      console.log(article);
+      this.articlesService.updateArticle(article.id, article).subscribe();
     });
   }
 
@@ -66,8 +69,9 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
       data: this.categories
     });
 
-    dialogRef.afterClosed().subscribe((result: Article) => {
-      this.articlesService.postArticle(result).subscribe();
+    dialogRef.afterClosed().subscribe((article: Article) => {
+      console.log(article);
+      this.articlesService.createArticle(article).subscribe();
     });
   }
 

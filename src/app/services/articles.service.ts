@@ -35,16 +35,16 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Categories}/${categorySlug}`)
   }
 
-  putArticle(article: Article): Observable<Article> {
-    return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${article.id}`, article);
+  updateArticle(articleId: number, article: Article): Observable<Object> {
+    return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`, article);
   }
 
   deleteArticle(articleId: number): Observable<Article> {
     return this.httpClient.delete<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
 
-  postArticle(article: Article): Observable<Article[]> {
-    return this.httpClient.post<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`, article);
+  createArticle(article: Article): Observable<Object> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}/${article.categoryId}`, article);
   }
 
   postImage(articleId: number, image: FormData): Observable<FormData> {

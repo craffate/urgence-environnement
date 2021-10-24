@@ -4,6 +4,7 @@ import { Article } from '@interfaces/article';
 import { Category } from '@interfaces/category';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-article-editor',
@@ -12,13 +13,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ArticleEditorComponent implements OnInit {
 
-  newArticle: Article;
+  formGroup: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<ArticleEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { article: Article, categories: Category[] }
   ) {
-    this.newArticle = { ...data.article };
+    this.formGroup = new FormGroup({
+      id: new FormControl(data.article.id),
+      sku: new FormControl(data.article.sku),
+      name: new FormControl(data.article.name),
+      subtitle: new FormControl(data.article.subtitle),
+      description: new FormControl(data.article.description),
+      price: new FormControl(data.article.price),
+      categoryId: new FormControl(data.article.categoryId)
+    });
   }
 
   ngOnInit(): void {
@@ -27,8 +36,8 @@ export class ArticleEditorComponent implements OnInit {
   onSubmit(): void {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close(this.newArticle);
+  close() {
+    this.dialogRef.close(this.formGroup.value);
   }
 
 }

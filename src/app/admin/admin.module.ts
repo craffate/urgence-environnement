@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material/table';
@@ -30,6 +31,7 @@ import { ArticleImageComponent } from './article-image/article-image.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
     MatTableModule,
