@@ -20,7 +20,6 @@ export class ArticlesDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private articlesService: ArticlesService
   ) { }
 

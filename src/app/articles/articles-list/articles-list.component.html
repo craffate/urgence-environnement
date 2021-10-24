@@ -1,6 +1,6 @@
 <div fxLayout="row wrap">
   <div fxFlex="initial" *ngFor="let a of articles$ | async">
-    <mat-card [routerLink]="['/articles', a.id]">
+    <mat-card [routerLink]="[a.id]">
       <mat-card-header>
         <mat-card-title>{{ a.name }}</mat-card-title>
         <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>

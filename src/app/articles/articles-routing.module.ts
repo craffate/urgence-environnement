@@ -12,10 +12,11 @@ const routes: Routes = [
   },
   {
     path: ':category',
-    component: ArticlesListComponent,
-    children: [
-      { path: ':id', component: ArticlesDetailComponent }
-    ]
+    component: ArticlesListComponent
+  },
+  {
+    path: ':category/:id',
+    component: ArticlesDetailComponent
   }
 ];
 
