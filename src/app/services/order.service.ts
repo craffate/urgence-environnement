@@ -22,4 +22,20 @@ export class OrderService {
   getOrder(orderId: number): Observable<Order> {
     return this.httpClient.get<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
   }
+
+  getByUserId(userId: number): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(`${environment.apiUrl}${ApiPaths.Orders}?userid=${userId}`);
+  }
+
+  createOrder(order: Order): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}${ApiPaths.Orders}`, order);
+  }
+
+  deleteOrder(orderId: number): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
+  }
+
+  updateOrder(orderId: number, order: Order): Observable<Order> {
+    return this.httpClient.post<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`, order);
+  }
 }

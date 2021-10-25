@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '@interfaces/user';
+import { Order } from '@interfaces/order';
 import { environment } from '@src/environments/environment';
 import { ApiPaths } from '@src/api-paths';
 import { Session } from '@interfaces/session';
