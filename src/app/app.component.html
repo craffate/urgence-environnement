@@ -1,11 +1,15 @@
-<mat-toolbar color="primary">
-  <span>{{ title }}</span>
-  <nav mat-tab-nav-bar>
-    <a mat-tab-link routerLink="/">Accueil</a>
-    <a mat-tab-link routerLink="/articles">Articles</a>
-    <a mat-tab-link routerLink="/admin">Admin</a>
-  </nav>
+<mat-toolbar fxLayout="row" color="primary">
+  <h1>{{ title }}</h1>
+  <a mat-button routerLink="/">Accueil</a>
+  <a mat-button routerLink="/articles">Articles</a>
+  <span fxFlex></span>
+  <div *ngIf="isAuth else login">
+    <a mat-button routerLink="/profile">Profile</a>
+    <a mat-button (click)="signOut()">Logout</a>
+  </div>
 </mat-toolbar>
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
+
+<ng-template #login>
+  <a mat-button routerLink="/auth/">Login</a>
+</ng-template>

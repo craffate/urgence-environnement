@@ -23,4 +23,8 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signup`, user, { responseType: 'text' });
   }
 
+  signOut() {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Auth}/signout`, { responseType: 'text', withCredentials: true });
+  }
+
 }

@@ -5,11 +5,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpErrorInterceptor } from './http-error.interceptor';
+
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -20,14 +24,17 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatToolbarModule,
-    MatTabsModule,
+    MatButtonModule,
     MatSnackBarModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    AuthService,
+    CookieService
   ]
 })
 export class AppModule { }
