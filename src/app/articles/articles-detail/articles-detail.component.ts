@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
+import { CartService } from '@src/app/services/cart.service';
 
 @Component({
   selector: 'app-articles-detail',
@@ -20,7 +21,8 @@ export class ArticlesDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private articlesService: ArticlesService
+    private articlesService: ArticlesService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +30,10 @@ export class ArticlesDetailComponent implements OnInit {
 
     this.article$ = this.articlesService.getArticle(id);
     this.articleImages$ = this.articlesService.getImages(id);
+  }
+
+  addToCart(article: Article) {
+    this.cartService.addToCart(article);
   }
 
 }
