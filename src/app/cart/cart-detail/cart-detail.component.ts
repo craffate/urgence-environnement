@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '@interfaces/article';
 import { CartService } from '@services/cart.service';
-import { Observable } from 'rxjs';
+import { OrderService } from '@src/app/services/order.service';
 
 @Component({
   selector: 'app-cart-detail',
@@ -10,14 +10,21 @@ import { Observable } from 'rxjs';
 })
 export class CartDetailComponent implements OnInit {
 
-  cart$!: Observable<Article[]>;
+  cart!: Article[];
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
-    this.cart$ = this.cartService.getCart();
+    this.cartService.getCart().subscribe((res) => {
+      this.cart = res;
+    });
+  }
+
+  createOrder(articles: Article[]) {
+    this.orderService.createOrder(articles).subscribe();
   }
 
 }

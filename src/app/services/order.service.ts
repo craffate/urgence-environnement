@@ -5,6 +5,7 @@ import { Order } from '@interfaces/order';
 import { ApiPaths } from '@src/api-paths';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
+import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class OrderService {
     return this.httpClient.get<Order[]>(`${environment.apiUrl}${ApiPaths.Orders}?userid=${userId}`);
   }
 
-  createOrder(order: Order): Observable<any> {
-    return this.httpClient.post<any>(`${environment.apiUrl}${ApiPaths.Orders}`, order);
+  createOrder(articles: Article[]): Observable<Order> {
+    return this.httpClient.put<Order>(`${environment.apiUrl}${ApiPaths.Orders}`, articles);
   }
 
   deleteOrder(orderId: number): Observable<any> {
@@ -36,6 +37,6 @@ export class OrderService {
   }
 
   updateOrder(orderId: number, order: Order): Observable<Order> {
-    return this.httpClient.post<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`, order);
+    return this.httpClient.put<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`, order);
   }
 }

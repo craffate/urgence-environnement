@@ -5,6 +5,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     CartRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
   ]
 })
 export class CartModule { }

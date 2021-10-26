@@ -1,6 +1,6 @@
 <h1>My cart</h1>
 <table mat-table
-     [dataSource]="cart$"
+     [dataSource]="cart"
      class="mat-elevation-z8">
   <ng-container matColumnDef="sku">
     <th mat-header-cell *matHeaderCellDef>SKU</th>
@@ -18,3 +18,4 @@
   <tr mat-header-row *matHeaderRowDef="['sku', 'name', 'price']"></tr>
   <tr mat-row *matRowDef="let row; columns: ['sku', 'name', 'price']"></tr>
 </table>
+<button mat-raised-button color="primary" type="button" (click)="createOrder(cart)">Pay</button>
