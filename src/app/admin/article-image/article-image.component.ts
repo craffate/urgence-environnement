@@ -30,7 +30,7 @@ export class ArticleImageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.imageService.getImages()
+    this.imageService.getImages(this.article.id)
     .subscribe((res) => {
       this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
     });
