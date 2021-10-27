@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -14,11 +14,13 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth.service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { AuthService } from './services/auth.service';
   ],
   bootstrap: [AppComponent],
   providers: [
+    Title,
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     AuthService,
     CookieService

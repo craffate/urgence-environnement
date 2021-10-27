@@ -1,16 +1,2 @@
-<mat-toolbar fxLayout="row" color="primary">
-  <h1>{{ title }}</h1>
-  <a mat-button routerLink="/">Accueil</a>
-  <a mat-button routerLink="/articles">Articles</a>
-  <a mat-button routerLink="/cart">Cart</a>
-  <span fxFlex></span>
-  <div *ngIf="isAuth else login">
-    <a mat-button routerLink="/profile">Profile</a>
-    <a mat-button (click)="signOut()">Logout</a>
-  </div>
-</mat-toolbar>
+<app-toolbar [title]="title"></app-toolbar>
 <router-outlet></router-outlet>
-
-<ng-template #login>
-  <a mat-button routerLink="/auth/">Login</a>
-</ng-template>
