@@ -1,8 +1,8 @@
 export interface Article {
   id: number;
-  sku: string;
+  sku?: string;
   name: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   price: number;
   categoryId: number;
