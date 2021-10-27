@@ -38,6 +38,7 @@ export class ArticleImageComponent implements OnInit, AfterViewInit {
 
   fileChosen(event: any): void {
     this.fd.set("image", event.target.files[0]);
+    this.fd.set("articleId", `${this.article.id}`)
   }
 
   close(): void {
