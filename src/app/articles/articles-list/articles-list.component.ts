@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 import { Article } from '@interfaces/article';
 
@@ -22,11 +21,7 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articles$ = this.route.paramMap.pipe(
-      switchMap(params => {
-        return this.articlesService.getCategory(params.get('category')!);
-      })
-    );
+    this.articles$ = this.articlesService.getArticles();
   }
 
 }

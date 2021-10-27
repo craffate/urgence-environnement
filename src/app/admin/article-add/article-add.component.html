@@ -25,14 +25,6 @@
         <mat-label>Price</mat-label>
         <input matInput step="0.01" type="number" formControlName="price">
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Category</mat-label>
-        <mat-select formControlName="categoryId">
-          <mat-option *ngFor="let cat of categories" [value]="cat.id">
-            {{ cat.id }}: {{ cat.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
       <br>
       <mat-dialog-actions>
         <button mat-raised-button color="primary" (ngSubmit)="close()" cdkFocusInitial>Submit</button>

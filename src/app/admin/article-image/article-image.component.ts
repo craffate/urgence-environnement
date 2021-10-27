@@ -3,7 +3,6 @@ import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { Article } from '@interfaces/article';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
 
 import { ArticlesService } from '@services/articles.service';
 
@@ -28,7 +27,7 @@ export class ArticleImageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.articlesService.getImages(this.article.id).subscribe((res) => this.images = res);
+    //this.articlesService.getImages(this.article.id).subscribe((res) => this.images = res);
   }
 
   fileChosen(event: any): void {

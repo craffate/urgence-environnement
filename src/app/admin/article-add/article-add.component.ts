@@ -1,11 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 
-import { Article } from '@interfaces/article';
-import { Category } from '@interfaces/category';
-
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-article-add',
@@ -18,15 +15,13 @@ export class ArticleAddComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ArticleAddComponent>,
-    @Inject(MAT_DIALOG_DATA) public categories: Category[]
   ) {
     this.formGroup = new FormGroup({
       sku: new FormControl(''),
       name: new FormControl(''),
       subtitle: new FormControl(''),
       description: new FormControl(''),
-      price: new FormControl(0.0),
-      categoryId: new FormControl(0)
+      price: new FormControl(0.0)
     });
   }
 

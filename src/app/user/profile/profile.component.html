@@ -1,7 +1,8 @@
 <h1>My profile</h1>
-<div *ngIf="session$ | async as s">
+<div *ngIf="user$ | async as usr">
   <h3>My info</h3>
-  <p>Username: {{ s.username }}</p>
+  <p>Username: {{ usr.username }}</p>
+  <p>Role: {{ usr.role }}</p>
 </div>
 <div>
   <h3>My orders</h3>

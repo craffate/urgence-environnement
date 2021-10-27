@@ -3,7 +3,6 @@ import { UserService } from '@src/app/services/user.service';
 import { Observable } from 'rxjs';
 import { User } from '@interfaces/user';
 import { Order } from '@interfaces/order';
-import { Session } from '@interfaces/session';
 import { OrderService } from '@src/app/services/order.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { OrderService } from '@src/app/services/order.service';
 export class ProfileComponent implements OnInit {
 
   @Input() userId!: number;
-  session$!: Observable<Session>;
+  user$!: Observable<User>;
   orders$!: Observable<Order[]>;
 
   constructor(
@@ -23,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.session$ = this.userService.session();
+    this.user$ = this.userService.getUser(this.userId);
     this.orders$ = this.orderService.getOrders();
   }
 

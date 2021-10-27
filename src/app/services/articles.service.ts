@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { ApiPaths } from '@src/api-paths';
-import { Category } from '@interfaces/category';
 import { Article } from '@interfaces/article';
 
 @Injectable({
@@ -23,39 +22,20 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`);
   }
 
+  postArticle(article: Article): Observable<Article> {
+    return this.httpClient.post<Article>(`${environment.apiUrl}${ApiPaths.Articles}`, article);
+  }
+
   getArticle(articleId: number): Observable<Article> {
     return this.httpClient.get<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(`${environment.apiUrl}${ApiPaths.Categories}`)
+  patchArticle(articleId: number, article: Article): Observable<Article> {
+    return this.httpClient.patch<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`, article);
   }
 
-  getCategory(categorySlug: string): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Categories}/${categorySlug}`)
+  deleteArticle(articleId: number): Observable<any> {
+    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
 
-  updateArticle(articleId: number, article: Article): Observable<Object> {
-    return this.httpClient.put<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`, article);
-  }
-
-  deleteArticle(articleId: number): Observable<Article> {
-    return this.httpClient.delete<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
-  }
-
-  createArticle(article: Article): Observable<Object> {
-    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}/${article.categoryId}`, article);
-  }
-
-  postImage(articleId: number, image: FormData): Observable<FormData> {
-    return this.httpClient.post<FormData>(`${environment.apiUrl}${ApiPaths.Images}/${articleId}`, image);
-  }
-
-  getImages(articleId: number): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${environment.apiUrl}${ApiPaths.Images}/${articleId}`);
-  }
-
-  deleteImage(imageId: number): Observable<string> {
-    return this.httpClient.delete<string>(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`);
-  }
 }

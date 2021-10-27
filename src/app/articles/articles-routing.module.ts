@@ -3,19 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticlesDetailComponent } from './articles-detail/articles-detail.component';
-import { ArticlesCategoriesComponent } from './articles-categories/articles-categories.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ArticlesCategoriesComponent
-  },
-  {
-    path: ':category',
     component: ArticlesListComponent
   },
   {
-    path: ':category/:id',
+    path: ':id',
     component: ArticlesDetailComponent
   }
 ];

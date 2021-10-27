@@ -5,7 +5,6 @@ import { Order } from '@interfaces/order';
 import { ApiPaths } from '@src/api-paths';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
-import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +19,20 @@ export class OrderService {
     return this.httpClient.get<Order[]>(`${environment.apiUrl}${ApiPaths.Orders}`);
   }
 
+  postOrder(order: Order): Observable<Order> {
+    return this.httpClient.post<Order>(`${environment.apiUrl}${ApiPaths.Orders}`, order);
+  }
+
   getOrder(orderId: number): Observable<Order> {
     return this.httpClient.get<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
   }
 
-  getByUserId(userId: number): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(`${environment.apiUrl}${ApiPaths.Orders}?userid=${userId}`);
-  }
-
-  createOrder(articles: Article[]): Observable<Order> {
-    return this.httpClient.put<Order>(`${environment.apiUrl}${ApiPaths.Orders}`, articles);
+  patchOrder(orderId: number, order: Order): Observable<Order> {
+    return this.httpClient.patch<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`, order)
   }
 
   deleteOrder(orderId: number): Observable<any> {
-    return this.httpClient.delete<any>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
+    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
   }
 
-  updateOrder(orderId: number, order: Order): Observable<Order> {
-    return this.httpClient.put<Order>(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`, order);
-  }
 }

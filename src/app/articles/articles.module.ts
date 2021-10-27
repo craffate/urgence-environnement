@@ -9,13 +9,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ArticlesRoutingModule } from './articles-routing.module';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticlesDetailComponent } from './articles-detail/articles-detail.component';
-import { ArticlesCategoriesComponent } from './articles-categories/articles-categories.component';
 
 @NgModule({
   declarations: [
     ArticlesListComponent,
-    ArticlesDetailComponent,
-    ArticlesCategoriesComponent
+    ArticlesDetailComponent
   ],
   imports: [
     CommonModule,
