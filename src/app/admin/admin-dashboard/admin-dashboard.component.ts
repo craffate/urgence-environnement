@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Article } from '@interfaces/article';
 import { ArticlesService } from '@services/articles.service';
+import { ImageService } from '@services/image.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';
@@ -25,6 +26,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private articlesService: ArticlesService,
+    private imageService: ImageService,
     public dialog: MatDialog
   ) { }
 
@@ -74,7 +76,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((fd: FormData) => {
-      //this.articlesService.postImage(article.id, fd).subscribe();
+      this.imageService.postImage(fd).subscribe();
     });
   }
 
