@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Creating new article</h1>
+<h2 mat-dialog-title class="mat-title">Création d'un nouvel article</h2>
 <div class="form">
   <mat-dialog-content>
     <form [formGroup]="formGroup" (ngSubmit)="close()">
@@ -8,11 +8,11 @@
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
+        <mat-label>Nom</mat-label>
         <input matInput id="name" type="text" formControlName="name">
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Subtitle</mat-label>
+        <mat-label>Sous-titre</mat-label>
         <input matInput id="subtitle" type="text" formControlName="subtitle">
       </mat-form-field>
       <br>
@@ -22,7 +22,7 @@
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
-        <mat-label>Price</mat-label>
+        <mat-label>Prix</mat-label>
         <input matInput step="0.01" type="number" formControlName="price">
       </mat-form-field>
       <br>
