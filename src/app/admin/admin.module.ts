@@ -20,6 +20,8 @@ import { ArticleDeleteComponent } from './article-delete/article-delete.componen
 import { ArticleAddComponent } from './article-add/article-add.component';
 import { ArticleImageComponent } from './article-image/article-image.component';
 
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ArticleImageComponent } from './article-image/article-image.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,

@@ -1,6 +1,4 @@
-<div *ngFor="let img of articleImages$ | async">
-  <img [src]="img">
-</div>
+<app-carousel [imagesUrl]="imagesUrl"></app-carousel>
 <div *ngIf="article$ | async as article">
   <h1>{{ article.name }}</h1>
   <h3>{{ article.subtitle }}</h3>

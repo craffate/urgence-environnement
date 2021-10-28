@@ -10,6 +10,8 @@ import { ArticlesRoutingModule } from './articles-routing.module';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticlesDetailComponent } from './articles-detail/articles-detail.component';
 
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   declarations: [
     ArticlesListComponent,
@@ -17,6 +19,7 @@ import { ArticlesDetailComponent } from './articles-detail/articles-detail.compo
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FlexLayoutModule,
     MatCardModule,
     MatGridListModule,
