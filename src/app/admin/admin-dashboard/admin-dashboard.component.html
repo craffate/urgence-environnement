@@ -1,25 +1,72 @@
-<button mat-raised-button (click)="addArticle()" color="primary" type="button">Create</button>
-<table mat-table
-       [dataSource]="dataSource"
-       class="mat-elevation-z8">
-  <ng-container
-      *ngFor="let col of columnsToDisplay"
-      matColumnDef="{{ col }}">
-    <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
-    <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
-  </ng-container>
+<mat-tab-group>
+  <mat-tab label="Articles">
+    <button mat-raised-button (click)="addArticle()" color="primary" type="button">Create</button>
+    <table mat-table
+          [dataSource]="articlesDataSource"
+          class="mat-elevation-z8">
+      <ng-container
+          *ngFor="let col of ['id', 'sku', 'name', 'subtitle', 'description', 'price']"
+          matColumnDef="{{ col }}">
+        <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
+        <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
+      </ng-container>
 
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> actions </th>
-    <td mat-cell *matCellDef="let el">
-      <button mat-raised-button (click)="editArticle(el)" color="primary" type="button">Edit</button>
-      <button mat-raised-button (click)="deleteArticle(el)" color="warn" type="button">Delete</button>
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <td mat-cell *matCellDef="let el">
+          <button mat-raised-button (click)="editArticle(el)" color="primary" type="button">Éditer</button>
+          <button mat-raised-button (click)="deleteArticle(el)" color="warn" type="button">Supprimer</button>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="['sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
-</table>
-<mat-paginator [length]="100" [pageSizeOptions]="[5, 10, 25, 50, 100]"
-showFirstLastButtons>
-</mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+    showFirstLastButtons>
+    </mat-paginator>
+  </mat-tab>
+  <mat-tab label="Commandes">
+    <table mat-table
+          [dataSource]="ordersDataSource"
+          class="mat-elevation-z8">
+      <ng-container
+          *ngFor="let col of ['id', 'total', 'status', 'UserId', 'created_at', 'updated_at']"
+          matColumnDef="{{ col }}">
+        <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
+        <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <td mat-cell *matCellDef="let el">
+          <button mat-raised-button (click)="deleteOrder(el)" color="warn" type="button">Supprimer</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['id', 'total', 'status', 'UserId', 'created_at', 'updated_at',  'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'total', 'status', 'UserId', 'created_at', 'updated_at',  'actions']"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+    showFirstLastButtons>
+    </mat-paginator>
+  </mat-tab>
+  <mat-tab label="Utilisateurs">
+    <table mat-table
+          [dataSource]="usersDataSource"
+          class="mat-elevation-z8">
+      <ng-container
+          *ngFor="let col of ['id', 'username', 'role']"
+          matColumnDef="{{ col }}">
+        <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
+        <td mat-cell *matCellDef="let el"> {{ el[col] }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['id', 'username', 'role']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'username', 'role']"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+    showFirstLastButtons>
+    </mat-paginator>
+  </mat-tab>
+</mat-tab-group>

@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
@@ -20,6 +21,7 @@ import { ArticleDeleteComponent } from './article-delete/article-delete.componen
 import { ArticleAddComponent } from './article-add/article-add.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { OrderDeleteComponent } from './order-delete/order-delete.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     AdminDashboardComponent,
     ArticleEditorComponent,
     ArticleDeleteComponent,
-    ArticleAddComponent
+    ArticleAddComponent,
+    OrderDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { SharedModule } from '../shared/shared.module';
     MatDialogModule,
     MatPaginatorModule,
     MatIconModule,
+    MatTabsModule,
     AdminRoutingModule
   ],
   entryComponents: [
