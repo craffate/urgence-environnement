@@ -1,11 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 
 import { Article } from '@interfaces/article';
+import { Image } from '@interfaces/image';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ImageService } from '@services/image.service';
 import { environment } from '@environments/environment';
+import { CarouselComponent } from '@src/app/shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-article-editor',
@@ -14,8 +16,11 @@ import { environment } from '@environments/environment';
 })
 export class ArticleEditorComponent implements OnInit {
 
+  @ViewChild(CarouselComponent) carousel!: CarouselComponent;
+
   formGroup: FormGroup;
   imagesUrl!: string[];
+  images!: Image[];
   fd: FormData = new FormData();
 
   constructor(
@@ -36,6 +41,7 @@ export class ArticleEditorComponent implements OnInit {
   ngOnInit(): void {
     this.imageService.getImages(this.article.id)
     .subscribe((res) => {
+      this.images = res;
       this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
     });
   }
@@ -43,10 +49,15 @@ export class ArticleEditorComponent implements OnInit {
   fileChosen(event: any): void {
     this.fd.set("image", event.target.files[0]);
     this.fd.set("articleId", `${this.article.id}`);
+    this.sendImage();
   }
 
   sendImage() {
     this.imageService.postImage(this.fd).subscribe();
+  }
+
+  deleteImage() {
+    this.imageService.deleteImage(this.images[this.carousel.slideIndex].id).subscribe();
   }
 
   onSubmit(): void {
