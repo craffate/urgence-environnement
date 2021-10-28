@@ -28,8 +28,12 @@ export class ArticleAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  close() {
+  onSubmit(): void {
     this.dialogRef.close(this.formGroup.value);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

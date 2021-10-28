@@ -61,10 +61,11 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.dialogRef.close(this.formGroup.value);
   }
 
-  close() {
-    this.dialogRef.close(this.formGroup.value);
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
