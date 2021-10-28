@@ -4,6 +4,8 @@ import { Article } from '@interfaces/article';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ImageService } from '@services/image.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-article-editor',
@@ -13,8 +15,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ArticleEditorComponent implements OnInit {
 
   formGroup: FormGroup;
+  imagesUrl!: string[];
+  fd: FormData = new FormData();
 
   constructor(
+    private imageService: ImageService,
     public dialogRef: MatDialogRef<ArticleEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public article: Article
   ) {
@@ -29,6 +34,19 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.imageService.getImages(this.article.id)
+    .subscribe((res) => {
+      this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
+    });
+  }
+
+  fileChosen(event: any): void {
+    this.fd.set("image", event.target.files[0]);
+    this.fd.set("articleId", `${this.article.id}`);
+  }
+
+  sendImage() {
+    this.imageService.postImage(this.fd).subscribe();
   }
 
   onSubmit(): void {

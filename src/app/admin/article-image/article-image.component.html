@@ -1,9 +1,0 @@
-<h1 mat-dialog-title>Showing {{ article.name }} images</h1>
-<mat-dialog-content>
-  <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
-  <button type="button" color="primary" mat-raised-button (click)="fileInput.click()">Upload image <mat-icon>file_upload</mat-icon></button>
-  <input #fileInput hidden (change)="fileChosen($event)" type="file" id="file">
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-raised-button (click)="close()">Soumettre</button>
-</mat-dialog-actions>

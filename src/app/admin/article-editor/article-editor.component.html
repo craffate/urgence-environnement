@@ -1,35 +1,41 @@
-<h1 mat-dialog-title>Editing {{ article.name }}</h1>
-<div class="form">
-  <mat-dialog-content>
-    <form [formGroup]="formGroup" (ngSubmit)="close()">
-      <mat-form-field appearance="fill">
-        <mat-label>SKU</mat-label>
-        <input matInput id="sku" type="text" formControlName="sku">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput id="name" type="text" formControlName="name">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Subtitle</mat-label>
-        <input matInput id="subtitle" type="text" formControlName="subtitle">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput [mat-autosize]="true" formControlName="description"></textarea>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Price</mat-label>
-        <input matInput step="0.01" type="number" formControlName="price">
-      </mat-form-field>
-      <br>
-      <mat-dialog-actions>
-        <button mat-raised-button color="primary" (ngSubmit)="close()" cdkFocusInitial>Submit</button>
-        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-      </mat-dialog-actions>
-    </form>
-  </mat-dialog-content>
-</div>
+<h1 mat-dialog-title>Édition de l'article {{ article.name }}</h1>
+<mat-dialog-content>
+  <form>
+    <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
+    <button type="button" color="primary" mat-stroked-button (click)="fileInput.click()">Téléverser une image
+      <mat-icon>file_upload</mat-icon>
+    </button>
+    <input #fileInput hidden (change)="fileChosen($event)" type="file" id="file">
+  </form>
+  <br>
+  <form [formGroup]="formGroup" (ngSubmit)="close()">
+    <mat-form-field appearance="fill">
+      <mat-label>SKU</mat-label>
+      <input matInput id="sku" type="text" formControlName="sku">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput id="name" type="text" formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Subtitle</mat-label>
+      <input matInput id="subtitle" type="text" formControlName="subtitle">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [mat-autosize]="true" formControlName="description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput step="0.01" type="number" formControlName="price">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (ngSubmit)="close()" cdkFocusInitial>Valider</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+</mat-dialog-actions>

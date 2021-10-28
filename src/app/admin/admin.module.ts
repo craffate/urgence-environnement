@@ -18,7 +18,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
 import { ArticleDeleteComponent } from './article-delete/article-delete.component';
 import { ArticleAddComponent } from './article-add/article-add.component';
-import { ArticleImageComponent } from './article-image/article-image.component';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -28,8 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     AdminDashboardComponent,
     ArticleEditorComponent,
     ArticleDeleteComponent,
-    ArticleAddComponent,
-    ArticleImageComponent
+    ArticleAddComponent
   ],
   imports: [
     CommonModule,
@@ -49,8 +47,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   entryComponents: [
     ArticleEditorComponent,
-    ArticleDeleteComponent,
-    ArticleImageComponent
+    ArticleDeleteComponent
   ]
 })
 export class AdminModule { }

@@ -12,7 +12,6 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> actions </th>
     <td mat-cell *matCellDef="let el">
-      <button mat-raised-button (click)="showArticleImages(el)" color="primary" type="button">Photos</button>
       <button mat-raised-button (click)="editArticle(el)" color="primary" type="button">Edit</button>
       <button mat-raised-button (click)="deleteArticle(el)" color="warn" type="button">Delete</button>
     </td>

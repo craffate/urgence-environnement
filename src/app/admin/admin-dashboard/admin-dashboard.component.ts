@@ -10,7 +10,6 @@ import { ImageService } from '@services/image.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';
-import { ArticleImageComponent } from '../article-image/article-image.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -67,16 +66,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((article: Article) => {
       console.log(article);
       this.articlesService.postArticle(article).subscribe();
-    });
-  }
-
-  showArticleImages(article: Article): void {
-    const dialogRef = this.dialog.open(ArticleImageComponent, {
-      data: article
-    });
-
-    dialogRef.afterClosed().subscribe((fd: FormData) => {
-      this.imageService.postImage(fd).subscribe();
     });
   }
 
