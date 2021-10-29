@@ -3,16 +3,16 @@
 @include mat.core();
 
 $ue-palette: (
-  50: #e5f3ea,
-  100: #c1e2cb,
-  200: #99cfaa,
-  300: #70bd89,
-  400: #50af71,
-  500: #2da25a,
-  600: #269350,
-  700: #1d8245,
-  800: #16713a,
-  900: #095227,
+  50: #e5f2e8,
+  100: #c1dec5,
+  200: #9ac9a1,
+  300: #73b57e,
+  400: #57a764,
+  500: #3a984b,
+  600: #328a42,
+  700: #297938,
+  800: #20682e,
+  900: #124a1d,
   contrast: (
     50: #ffffff,
     100: #ffffff,
@@ -28,7 +28,7 @@ $ue-palette: (
 );
 
 $urgence-environnement-primary: mat.define-palette($ue-palette, 900);
-$urgence-environnement-accent: mat.define-palette($ue-palette, 200, 100, 400);
+$urgence-environnement-accent: mat.define-palette($ue-palette, 500, 400, 700);
 
 $urgence-environnement-warn: mat.define-palette(mat.$red-palette);
 
