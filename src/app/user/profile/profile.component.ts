@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUser(this.userId);
-    this.orders$ = this.orderService.getOrders();
+    this.user$ = this.userService.getProfile();
+    this.orders$ = this.orderService.getProfileOrders();
   }
 
 }
