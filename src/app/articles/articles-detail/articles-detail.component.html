@@ -4,4 +4,8 @@
   <h3 class="mat-small">{{ article.subtitle }}</h3>
   <p class="mat-body">{{ article.description }}</p>
   <p class="mat-body-strong">{{ article.price | currency: 'EUR':'symbol':'1.2' }}</p>
+  <button mat-raised-button (click)="addToCart(article)" color="primary" type="button">
+    <mat-icon>add_shopping_cart</mat-icon>
+    Ajouter au panier
+  </button>
 </div>

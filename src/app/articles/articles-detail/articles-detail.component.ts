@@ -7,6 +7,7 @@ import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
 import { ImageService } from '@services/image.service';
+import { CartService } from '@services/cart.service';
 import { environment } from '@environments/environment';
 
 @Component({
@@ -22,7 +23,8 @@ export class ArticlesDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private articlesService: ArticlesService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,10 @@ export class ArticlesDetailComponent implements OnInit {
     .subscribe((res) => {
       this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
     });
+  }
 
+  addToCart(article: Article) {
+    this.cartService.addToCart(article);
   }
 
 }
