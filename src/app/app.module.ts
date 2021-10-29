@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -9,12 +9,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpErrorInterceptor } from './http-error.interceptor';
 
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { GlobalErrorHandler } from './classes/global-error-handler';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   bootstrap: [AppComponent],
   providers: [
     Title,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
     AuthService,
     CookieService
   ]
