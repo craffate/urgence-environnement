@@ -7,20 +7,20 @@ import { Article } from '@interfaces/article';
 })
 export class CartService {
 
-  articles: Article[] = [];
-
   constructor() { }
 
   addToCart(article: Article) {
-    this.articles.push(article);
+    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
+    storage.push(article);
+    localStorage.setItem('cart', JSON.stringify(storage));
   }
 
   getArticles() {
-    return this.articles;
+    return JSON.parse(localStorage.getItem('cart')!);
   }
 
   clearCart() {
-    this.articles = [];
-    return this.articles;
+    localStorage.removeItem('cart');
+    return JSON.parse(localStorage.getItem('cart')!);
   }
 }
