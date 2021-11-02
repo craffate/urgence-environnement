@@ -12,9 +12,6 @@ import { User } from '@interfaces/user';
 })
 export class AuthService {
 
-  authenticated: boolean = false;
-  admin: boolean = false;
-
   constructor(
     private httpClient: HttpClient
   ) { }
