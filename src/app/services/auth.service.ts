@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return this.httpClient.get(`${environment.apiUrl}${ApiPaths.Auth}`, { responseType: 'text', withCredentials: true });
+    return this.httpClient.get(`${environment.apiUrl}${ApiPaths.Auth}`, { responseType: 'text', withCredentials: true, observe: 'response' });
   }
 
 }

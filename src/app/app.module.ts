@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
+import { AdminGuard } from './guards/admin.guard';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { GlobalErrorHandler } from './classes/global-error-handler';
     Title,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     AuthService,
+    AdminGuard,
     CookieService
   ]
 })
