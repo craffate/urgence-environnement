@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { ApiPaths } from '@src/api-paths';
@@ -18,8 +17,8 @@ export class ArticlesService {
     private httpClient: HttpClient
   ) { }
 
-  getArticles(): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`);
+  getArticles(categoryId?: number): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}${categoryId ? ('?categoryId=' + categoryId) : ''}`);
   }
 
   postArticle(article: Article): Observable<Article> {

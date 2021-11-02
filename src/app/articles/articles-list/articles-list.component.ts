@@ -21,7 +21,13 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articles$ = this.articlesService.getArticles();
+    this.route.queryParams.subscribe((params) => {
+      if (params['categoryId']) {
+        this.articles$ = this.articlesService.getArticles(params['categoryId']);
+      } else {
+        this.articles$ = this.articlesService.getArticles();
+      }
+    });
   }
 
 }
