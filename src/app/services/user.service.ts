@@ -34,8 +34,4 @@ export class UserService {
     return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Users}/${userId}`);
   }
 
-  getProfile(): Observable<User> {
-    return this.httpClient.get<User>(`${environment.apiUrl}${ApiPaths.Profile}`, { withCredentials: true });
-  }
-
 }

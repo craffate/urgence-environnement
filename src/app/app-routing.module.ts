@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'profil',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  },
-  {
     path: 'panier',
     loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   }
