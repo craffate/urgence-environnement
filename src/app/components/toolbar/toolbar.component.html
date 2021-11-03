@@ -1,6 +1,13 @@
 <mat-toolbar fxLayout="row" color="primary">
   <h1 class="mat-headline">{{ title }}</h1>
   <a mat-button routerLink="/">Accueil</a>
-  <a mat-button routerLink="/articles">Articles</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 1 }">Mobilier</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 2 }">Librairie</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 3 }">Loisir</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 4 }">Bricolage</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 5 }">Brocante</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 6 }">Objets d'occasion</a>
+  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 7 }">Divers</a>
+  <span fxFlex></span>
   <a mat-button routerLink="/panier">Panier</a>
 </mat-toolbar>
