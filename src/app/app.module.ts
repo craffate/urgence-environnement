@@ -9,7 +9,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import { AppRoutingModule } from './app-routing.module';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -17,12 +16,14 @@ import { AuthService } from './services/auth.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
 import { AdminGuard } from './guards/admin.guard';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
