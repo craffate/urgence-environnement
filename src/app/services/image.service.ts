@@ -15,7 +15,7 @@ export class ImageService {
   ) { }
 
   getImages(articleId?: number, count?: number): Observable<Image[]> {
-    return this.httpClient.get<Image[]>(`${environment.apiUrl}${ApiPaths.Images}${articleId ? ('?articleId=' + articleId) : null}${count ? ('&count=' + count) : null}`);
+    return this.httpClient.get<Image[]>(`${environment.apiUrl}${ApiPaths.Images}${articleId ? ('?articleId=' + articleId) : ''}${count ? ('&count=' + count) : ''}`);
   }
 
   postImage(image: FormData): Observable<Image> {
