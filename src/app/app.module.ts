@@ -1,6 +1,6 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
 import { AdminGuard } from './guards/admin.guard';
 import { HomeComponent } from './components/home/home.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 
 @NgModule({
@@ -40,6 +43,8 @@ import { HomeComponent } from './components/home/home.component';
   bootstrap: [AppComponent],
   providers: [
     Title,
+    { provide: LOCALE_ID, useValue: 'fr' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     AuthService,
     AdminGuard,
