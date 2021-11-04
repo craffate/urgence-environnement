@@ -5,6 +5,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartListComponent } from './cart-list/cart-list.component';
 
 import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -20,6 +21,7 @@ import { ClearCartDialogComponent } from './clear-cart-dialog/clear-cart-dialog.
   imports: [
     CommonModule,
     MatListModule,
+    MatDividerModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,

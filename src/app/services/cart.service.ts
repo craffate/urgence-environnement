@@ -34,4 +34,15 @@ export class CartService {
     localStorage.removeItem('cart');
     return JSON.parse(localStorage.getItem('cart')!);
   }
+
+  calculateTotal(): Observable<number> {
+    let ret: number = 0;
+    let storage = JSON.parse(localStorage.getItem('cart')!);
+
+    storage.forEach((element: Article) => {
+      ret += element.price
+    });
+
+    return of(ret);
+  }
 }

@@ -7,6 +7,10 @@
       Supprimer
     </button>
   </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    Total: {{ calculateTotal() | async }}
+  </mat-list-item>
 </mat-list>
 <button mat-flat-button color="warn" (click)="clearCart()">
   <mat-icon>remove_shopping_cart</mat-icon>

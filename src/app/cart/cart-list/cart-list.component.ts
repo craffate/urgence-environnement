@@ -14,6 +14,7 @@ import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog
 export class CartListComponent implements OnInit {
 
   articles$!: Observable<Article[]>;
+  total: number = 12;
   
   constructor(
     private cartService: CartService,
@@ -43,6 +44,10 @@ export class CartListComponent implements OnInit {
         this.snackBar.open('Le panier a été vidé', undefined, { duration: 3000 });
       }
     });
+  }
+
+  calculateTotal(): Observable<number> {
+    return this.cartService.calculateTotal();
   }
 
 }
