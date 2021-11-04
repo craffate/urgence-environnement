@@ -1,7 +1,7 @@
 <mat-list>
   <mat-list-item *ngFor="let a of articles$ | async">
     <div mat-line>{{ a.name }}</div>
-    <div mat-line>{{ a.price }}</div>
+    <div mat-line>{{ a.price | currency }}</div>
     <button mat-flat-button color="warn" (click)="removeFromCart(a)">
       <mat-icon>remove_circle</mat-icon>
       Supprimer
@@ -9,7 +9,7 @@
   </mat-list-item>
   <mat-divider></mat-divider>
   <mat-list-item>
-    Total: {{ calculateTotal() | async }}
+    Total: {{ (calculateTotal() | async) | currency }}
   </mat-list-item>
 </mat-list>
 <button mat-flat-button color="warn" (click)="clearCart()">

@@ -12,7 +12,7 @@
     <span fxFlex></span>
     <a mat-tab-link routerLink="/panier" (click)="activeLink = 'Panier'" [active]="activeLink == 'Panier'">
       <mat-icon>shopping_cart</mat-icon>
-      Panier ({{ getCartTotal() | async }})
+      Panier ({{ (getCartTotal() | async) | currency }})
     </a>
   </nav>
 </mat-toolbar>
