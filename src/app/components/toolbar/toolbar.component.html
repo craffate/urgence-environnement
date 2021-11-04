@@ -1,13 +1,18 @@
-<mat-toolbar fxLayout="row" color="primary">
+<mat-toolbar fxLayout="row nowrap" fxLayoutAlign="center center" color="primary">
   <h1 class="mat-headline">{{ title }}</h1>
-  <a mat-button routerLink="/">Accueil</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 1 }">Mobilier</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 2 }">Librairie</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 3 }">Loisir</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 4 }">Bricolage</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 5 }">Brocante</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 6 }">Objets d'occasion</a>
-  <a mat-button [routerLink]="[ '/articles' ]" [queryParams]="{ categoryId: 7 }">Divers</a>
-  <span fxFlex></span>
-  <a mat-button routerLink="/panier">Panier</a>
+  <nav mat-tab-nav-bar fxFlex backgroundColor="primary">
+    <a mat-tab-link routerLink="/" (click)="activeLink = 'Accueil'" [active]="activeLink == 'Accueil'">Accueil</a>
+    <a mat-tab-link *ngFor="let link of categoryLinks; let idx = index"
+    (click)="activeLink = link"
+    [active]="activeLink == link"
+    [routerLink]="[ '/articles' ]"
+    [queryParams]="{ categoryId: idx + 1 }">
+      {{ link }}
+    </a>
+    <span fxFlex></span>
+    <a mat-tab-link routerLink="/panier" (click)="activeLink = 'Panier'" [active]="activeLink == 'Panier'">
+      <mat-icon>shopping_cart</mat-icon>
+      Panier
+    </a>
+  </nav>
 </mat-toolbar>

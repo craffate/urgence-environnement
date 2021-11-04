@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,8 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   @Input() title!: string;
+  categoryLinks: string[];
+  activeLink!: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) {
+    this.categoryLinks = [ 'Mobilier', 'Librairie', 'Loisir', 'Bricolage', 'Brocante', 'Objets d\'occasion', 'Divers'];
+  }
 
   ngOnInit(): void {
   }
