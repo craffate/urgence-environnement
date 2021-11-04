@@ -45,4 +45,11 @@ export class CartService {
 
     return of(ret);
   }
+
+  searchCart(article: Article): Observable<Article> {
+    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
+    let ret: Article[] = storage.filter((ar: Article) => ar.id === article.id);
+
+    return of(ret[0]);
+  }
 }

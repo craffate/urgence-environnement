@@ -9,6 +9,7 @@ import { ArticlesService } from '@services/articles.service';
 import { ImageService } from '@services/image.service';
 import { CartService } from '@services/cart.service';
 import { environment } from '@environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-articles-detail',
@@ -22,6 +23,7 @@ export class ArticlesDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
     private articlesService: ArticlesService,
     private imageService: ImageService,
     private cartService: CartService
@@ -38,7 +40,25 @@ export class ArticlesDetailComponent implements OnInit {
   }
 
   addToCart(article: Article) {
+    let snackBarRef = this.snackBar.open(article.name + ' a été ajouté au panier', 'ANNULER', { duration: 3000 });
+
     this.cartService.addToCart(article);
+    snackBarRef.onAction().subscribe(() => {
+      this.removeFromCart(article);
+    });
+  }
+
+  removeFromCart(article: Article) {
+    let snackBarRef = this.snackBar.open(article.name + ' a été supprimé au panier', 'ANNULER', { duration: 3000 });
+
+    this.cartService.removeFromCart(article);
+    snackBarRef.onAction().subscribe(() => {
+      this.addToCart(article);
+    });
+  }
+
+  isInCart(article: Article) {
+    return this.cartService.searchCart(article);
   }
 
 }
