@@ -1,6 +1,14 @@
 <mat-list>
-  <mat-list-item *ngFor="let article of articles">
-    <div mat-line>{{ article.name }}</div>
-    <div mat-line>{{ article.price }}</div>
+  <mat-list-item *ngFor="let a of articles$ | async">
+    <div mat-line>{{ a.name }}</div>
+    <div mat-line>{{ a.price }}</div>
+    <button mat-flat-button color="warn" (click)="removeFromCart(a)">
+      <mat-icon>remove_circle</mat-icon>
+      Supprimer
+    </button>
   </mat-list-item>
 </mat-list>
+<button mat-flat-button color="warn" (click)="clearCart()">
+  <mat-icon>remove_shopping_cart</mat-icon>
+  Vider le panier
+</button>
