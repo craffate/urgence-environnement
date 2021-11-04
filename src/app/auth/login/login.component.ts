@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   signIn(): void {
     this.authService.signIn(this.formGroup.value)
     .subscribe((res): void => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/admin');
     });
   }
 

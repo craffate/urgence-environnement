@@ -25,8 +25,4 @@ export class AppComponent {
     this.titleService.setTitle(title);
   }
 
-  signOut() {
-    this.authService.signOut().subscribe();
-  }
-
 }
