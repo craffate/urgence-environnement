@@ -27,7 +27,7 @@ export class CartListComponent implements OnInit {
   }
 
   removeFromCart(article: Article): void {
-    let snackBarRef = this.snackBar.open(article.name + ' a été supprimé du panier', 'Annuler', { duration: 3000 });
+    let snackBarRef = this.snackBar.open(article.name + ' a été supprimé du panier', 'ANNULER', { duration: 3000 });
 
     this.articles$ = this.cartService.removeFromCart(article);
     snackBarRef.onAction().subscribe(() => {
