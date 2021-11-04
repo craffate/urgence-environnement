@@ -6,9 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -19,8 +22,11 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     AuthRoutingModule,
     MatFormFieldModule,
+    FlexLayoutModule,
+    MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule
   ]
 })
