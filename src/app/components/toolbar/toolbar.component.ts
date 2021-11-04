@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { CartService } from '@src/app/services/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,12 +14,16 @@ export class ToolbarComponent implements OnInit {
   activeLink!: string;
 
   constructor(
-    private router: Router
+    private cartService: CartService
   ) {
     this.categoryLinks = [ 'Mobilier', 'Librairie', 'Loisir', 'Bricolage', 'Brocante', 'Objets d\'occasion', 'Divers'];
   }
 
   ngOnInit(): void {
+  }
+
+  getCartTotal(): Observable<number> {
+    return this.cartService.calculateTotal();
   }
 
 }
