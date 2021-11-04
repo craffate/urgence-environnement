@@ -37,7 +37,7 @@ export class CartService {
 
   calculateTotal(): Observable<number> {
     let ret: number = 0;
-    let storage = JSON.parse(localStorage.getItem('cart')!);
+    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
 
     storage.forEach((element: Article) => {
       ret += element.price
