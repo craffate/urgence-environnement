@@ -6,4 +6,5 @@ export interface Article {
   description: string;
   price: number;
   categoryId: number;
+  imagesUrl?: string[];
 };

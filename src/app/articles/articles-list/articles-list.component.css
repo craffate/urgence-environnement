@@ -1,5 +1,8 @@
 mat-card {
-  width: 200px;
-  height: 200px;
+  width: 250px;
   overflow: ellipsis;
+}
+
+img {
+  max-width: 100%;
 }
