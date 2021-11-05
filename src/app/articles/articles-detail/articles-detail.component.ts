@@ -10,6 +10,7 @@ import { ImageService } from '@services/image.service';
 import { CartService } from '@services/cart.service';
 import { environment } from '@environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-articles-detail',
@@ -31,9 +32,10 @@ export class ArticlesDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
+    const httpParams = new HttpParams().append('articleId', id)
 
     this.article$ = this.articlesService.getArticle(id);
-    this.imageService.getImages(id)
+    this.imageService.getImages(httpParams)
     .subscribe((res) => {
       this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
     });

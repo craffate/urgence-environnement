@@ -40,9 +40,8 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let httpParams = new HttpParams;
+    const httpParams = new HttpParams().append('articleId', this.article.id);
 
-    httpParams.append('articleId', this.article.id);
     this.imageService.getImages(httpParams)
     .subscribe((res) => {
       this.images = res;
