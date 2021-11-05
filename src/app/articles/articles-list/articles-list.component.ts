@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
-import { ImageService } from '@services/image.service';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -17,11 +15,11 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ArticlesListComponent implements OnInit {
 
+  readonly API: string = environment.apiUrl + '/';
   articles$!: Observable<Article[]>;
 
   constructor(
     private articlesService: ArticlesService,
-    private imageService: ImageService,
     private route: ActivatedRoute
   ) { }
 
@@ -32,17 +30,7 @@ export class ArticlesListComponent implements OnInit {
       if (params['categoryId']) {
         httpParams = httpParams.append('categoryId', params['categoryId']);
       }
-      this.articles$ = this.articlesService.getArticles(httpParams).pipe(
-        map((articles) => articles.map((article => {
-          let httpParams = new HttpParams().append('articleId', article.id).append('count', 1);
-          
-          this.imageService.getImages(httpParams).subscribe((res) => {
-            article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
-          });
-          return article
-        })))
-      );
-
+      this.articles$ = this.articlesService.getArticles(httpParams);
     });
   }
 

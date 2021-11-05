@@ -1,8 +1,6 @@
 <div fxLayout="row wrap" fxLayoutAlign="start end" fxLayoutGap="16px">
   <mat-card fxFlex="none" *ngFor="let a of articles$ | async" [routerLink]="[a.id]">
-    <div *ngFor="let img of a.imagesUrl">
-      <img [src]="img">
-    </div>
+    <img *ngIf="a.Images" [src]="API + a.Images[0].path">
     <mat-card-header>
       <mat-card-title class="mat-title">{{ a.name }}</mat-card-title>
       <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>
