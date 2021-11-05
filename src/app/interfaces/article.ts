@@ -1,3 +1,5 @@
+import { Image } from '@interfaces/image';
+
 export interface Article {
   id: number;
   sku?: string;
@@ -6,5 +8,5 @@ export interface Article {
   description: string;
   price: number;
   categoryId: number;
-  imagesUrl?: string[];
+  Images?: Image[];
 };
