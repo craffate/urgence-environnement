@@ -26,22 +26,24 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let httpParams = new HttpParams();
-
     this.route.queryParams.subscribe((params) => {
+      let httpParams = new HttpParams();
+
       if (params['categoryId']) {
         httpParams = httpParams.append('categoryId', params['categoryId']);
       }
+      this.articles$ = this.articlesService.getArticles(httpParams).pipe(
+        map((articles) => articles.map((article => {
+          let httpParams = new HttpParams().append('articleId', article.id).append('count', 1);
+          
+          this.imageService.getImages(httpParams).subscribe((res) => {
+            article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
+          });
+          return article
+        })))
+      );
+
     });
-    httpParams.append('count', 1);
-    this.articles$ = this.articlesService.getArticles(httpParams).pipe(
-      map((articles) => articles.map((article => {
-        this.imageService.getImages(httpParams).subscribe((res) => {
-          article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
-        });
-        return article
-      })))
-    );
   }
 
 }
