@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+import { environment } from '@environments/environment';
 import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
-import { concatMap, map, mergeAll, mergeMap, reduce, switchMap, tap, toArray } from 'rxjs/operators';
 import { ImageService } from '@services/image.service';
-import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-articles-list',
