@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Image } from '@interfaces/image';
 import { environment } from '@src/environments/environment';
 import { ApiPaths } from '@src/api-paths';
@@ -14,8 +14,8 @@ export class ImageService {
     private httpClient: HttpClient
   ) { }
 
-  getImages(articleId?: number, count?: number): Observable<Image[]> {
-    return this.httpClient.get<Image[]>(`${environment.apiUrl}${ApiPaths.Images}${articleId ? ('?articleId=' + articleId) : ''}${count ? ('&count=' + count) : ''}`);
+  getImages(params?: HttpParams): Observable<Image[]> {
+    return this.httpClient.get<Image[]>(`${environment.apiUrl}${ApiPaths.Images}`, { params: params });
   }
 
   postImage(image: FormData): Observable<Image> {

@@ -8,6 +8,7 @@ import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
 import { ImageService } from '@services/image.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-articles-list',
@@ -25,27 +26,22 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let httpParams = new HttpParams();
+
     this.route.queryParams.subscribe((params) => {
       if (params['categoryId']) {
-        this.articles$ = this.articlesService.getArticles(params['categoryId']).pipe(
-          map((articles) => articles.map((article => {
-            this.imageService.getImages(article.id, 1).subscribe((res) => {
-              article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
-            });
-            return article
-          })))
-        );
-      } else {
-        this.articles$ = this.articlesService.getArticles().pipe(
-          map((articles) => articles.map((article => {
-            this.imageService.getImages(article.id, 1).subscribe((res) => {
-              article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
-            });
-            return article
-          })))
-        );
+        httpParams = httpParams.append('categoryId', params['categoryId']);
       }
     });
+    httpParams.append('count', 1);
+    this.articles$ = this.articlesService.getArticles(httpParams).pipe(
+      map((articles) => articles.map((article => {
+        this.imageService.getImages(httpParams).subscribe((res) => {
+          article.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`)
+        });
+        return article
+      })))
+    );
   }
 
 }

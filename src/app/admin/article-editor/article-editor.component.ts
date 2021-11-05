@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ImageService } from '@services/image.service';
 import { environment } from '@environments/environment';
 import { CarouselComponent } from '@src/app/shared/carousel/carousel.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-article-editor',
@@ -39,7 +40,10 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.imageService.getImages(this.article.id)
+    let httpParams = new HttpParams;
+
+    httpParams.append('articleId', this.article.id);
+    this.imageService.getImages(httpParams)
     .subscribe((res) => {
       this.images = res;
       this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
