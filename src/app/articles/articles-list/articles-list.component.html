@@ -1,10 +1,12 @@
-<div fxLayout="row wrap" fxLayoutAlign="start end" fxLayoutGap="16px">
-  <mat-card fxFlex="none" *ngFor="let a of articles$ | async" [routerLink]="[a.id]">
-    <img *ngIf="a.Images" [src]="API + a.Images[0].path">
-    <mat-card-header>
-      <mat-card-title class="mat-title">{{ a.name }}</mat-card-title>
-      <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-footer class="mat-body-strong">{{ a.price | currency }}</mat-card-footer>
-  </mat-card>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="start end" fxLayoutGap="16px">
+    <mat-card fxFlex="none" *ngFor="let a of articles$ | async" [routerLink]="[a.id]">
+      <img *ngIf="a.Images" [src]="API + a.Images[0].path">
+      <mat-card-header>
+        <mat-card-title class="mat-title">{{ a.name }}</mat-card-title>
+        <mat-card-subtitle>{{ a.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-footer class="mat-body-strong">{{ a.price | currency }}</mat-card-footer>
+    </mat-card>
+  </div>
 </div>

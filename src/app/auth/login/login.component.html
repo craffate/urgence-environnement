@@ -1,26 +1,28 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="mat-elevation-z1">
-    <mat-card-header>
-      <mat-card-title>Connexion</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form id="loginForm" [formGroup]="formGroup" (ngSubmit)="signIn()">
-        <mat-form-field appearance="outline">
-          <mat-label>Adresse e-mail</mat-label>
-          <input matInput id="email" type="email" formControlName="username">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Mot de passe</mat-label>
-          <input matInput id="password" type="password" formControlName="password">
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-flat-button form="loginForm" (ngSubmit)="signIn()" color="primary" type="submit">
-        <mat-icon>login</mat-icon>
-        Se connecter
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<div class="content">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="mat-elevation-z1">
+      <mat-card-header>
+        <mat-card-title>Connexion</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form id="loginForm" [formGroup]="formGroup" (ngSubmit)="signIn()">
+          <mat-form-field appearance="outline">
+            <mat-label>Adresse e-mail</mat-label>
+            <input matInput id="email" type="email" formControlName="username">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput id="password" type="password" formControlName="password">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button form="loginForm" (ngSubmit)="signIn()" color="primary" type="submit">
+          <mat-icon>login</mat-icon>
+          Se connecter
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

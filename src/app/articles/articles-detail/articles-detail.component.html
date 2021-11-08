@@ -1,13 +1,14 @@
-<app-carousel [imagesUrl]="imagesUrl"></app-carousel>
-<div class="mat-typography" *ngIf="article$ | async as article">
-  <h2 class="mat-title">{{ article.name }}</h2>
-  <h3 class="mat-small">{{ article.subtitle }}</h3>
-  <p class="mat-body">{{ article.description }}</p>
-  <p class="mat-body-strong">{{ article.price | currency }}</p>
-  <ng-container
-    [ngTemplateOutlet]='!(isInCart(article) | async) ? addToCartButton : removeFromCartButton'
-    [ngTemplateOutletContext]='{ article: article }'>
-  </ng-container>
+<div class="content">
+  <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
+  <div class="mat-typography" *ngIf="article$ | async as article">
+    <h2 class="mat-title">{{ article.name }}</h2>
+    <h3 class="mat-small">{{ article.subtitle }}</h3>
+    <p class="mat-body">{{ article.description }}</p>
+    <p class="mat-body-strong">{{ article.price | currency }}</p>
+    <ng-container [ngTemplateOutlet]='!(isInCart(article) | async) ? addToCartButton : removeFromCartButton'
+      [ngTemplateOutletContext]='{ article: article }'>
+    </ng-container>
+  </div>
 </div>
 
 <ng-template #addToCartButton let-article='article'>
