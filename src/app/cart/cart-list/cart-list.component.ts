@@ -6,18 +6,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog.component';
 
-declare var paypal: any;
-
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit {
-  @ViewChild('paypal', { static: true }) paypalElement!: ElementRef;
 
   articles$!: Observable<Article[]>;
-  
+
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
@@ -26,36 +23,16 @@ export class CartListComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.cartService.getArticles();
-    paypal.Buttons({
-      style: {
-        layout: 'vertical',
-        color: 'gold',
-        shape: 'rect',
-        label: 'paypal',
-        tagline: false
-      },
-      createOrder: async (data: any, actions: any) => {
-        return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                currency_code: 'EUR',
-                value: await this.calculateTotal().toPromise()
-              }
-            }
-          ]
-        })
-      },
-      onApprove: (data: any, actions: any) => {
-        this.snackBar.open('Transaction effectuée avec succès', undefined, { duration: 3000 });
-      },
-      onCancel: (data: any, actions: any) => {
-        this.snackBar.open('Transaction annulée', undefined, { duration: 3000 });
-      },
-      onError: (data: any, actions: any) => {
-        this.snackBar.open('Erreur de transaction', undefined, { duration: 3000 });
-      }
-    }).render(this.paypalElement.nativeElement)
+  }
+
+  transactionSnackbar(transactionStatus: number) {
+    if (transactionStatus === 0) {
+      this.snackBar.open('Transaction effectuée avec succès', undefined, { duration: 3000 });
+    } else if (transactionStatus === 1) {
+      this.snackBar.open('Transaction annulée', undefined, { duration: 3000 });
+    } else if (transactionStatus === 2) {
+      this.snackBar.open('Erreur de transaction', undefined, { duration: 3000 });
+    }
   }
 
   removeFromCart(article: Article): void {
