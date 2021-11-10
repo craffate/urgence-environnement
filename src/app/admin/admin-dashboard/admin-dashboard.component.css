@@ -1,3 +1,24 @@
 table {
   width: 100%;
 }
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.order-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.order-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.order-row td {
+  border-bottom-width: 0;
+}
+
+.order-detail {
+  overflow: hidden;
+  display: flex;
+}

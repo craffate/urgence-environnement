@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,7 +19,14 @@ import { User } from '@src/app/interfaces/user';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  styleUrls: ['./admin-dashboard.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
@@ -27,6 +35,8 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   articlesDataSource: MatTableDataSource<Article> = new MatTableDataSource<Article>([]);
   ordersDataSource: MatTableDataSource<Order> = new MatTableDataSource<Order>([]);
   usersDataSource: MatTableDataSource<User> = new MatTableDataSource<User>([]);
+
+  expandedOrderElement: Order | undefined;
 
   constructor(
     private articlesService: ArticlesService,
