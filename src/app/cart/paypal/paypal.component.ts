@@ -49,7 +49,8 @@ export class PaypalComponent implements OnInit, OnChanges {
                   address: `${res.payer.address.address_line_1 || ''} ${res.payer.address.address_line_2 || ''} ${res.payer.address.postal_code || ''} ${res.payer.address.admin_area_1 || ''} ${res.payer.address.admin_area_2 || ''}`,
                   email: res.payer.email_address,
                   phone: JSON.stringify(res.payer.phone)
-                }
+                },
+                Articles: this.articles
               }).subscribe(() => this.transactionStatus.emit(0));
             });
           },
