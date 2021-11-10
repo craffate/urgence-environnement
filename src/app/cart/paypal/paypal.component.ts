@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnChanges, OnInit, Output, SimpleChanges,
 import { loadScript } from '@paypal/paypal-js';
 import { AmountWithBreakdown, PurchaseItem } from '@paypal/paypal-js/types/apis/orders';
 import { Article } from '@src/app/interfaces/article';
+import { OrderService } from '@src/app/services/order.service';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -19,7 +20,9 @@ export class PaypalComponent implements OnInit, OnChanges {
   articles!: Article[];
   total!: number;
 
-  constructor() { }
+  constructor(
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
     loadScript(environment.paypalScriptOptions).then((paypal) => {
@@ -35,7 +38,17 @@ export class PaypalComponent implements OnInit, OnChanges {
           },
           onApprove: (data, actions) => {
             return actions.order.capture().then((res) => {
-              this.transactionStatus.emit(0);
+              this.orderService.postOrder({
+                id: 0,
+                total: this.total,
+                status: res.status,
+                payer: {
+                  name: `${res.payer.name.given_name} ${res.payer.name.surname}`,
+                  address: `${res.payer.address.address_line_1}\n${res.payer.address.address_line_2}\n${res.payer.address.postal_code} ${res.payer.address.admin_area_1} ${res.payer.address.admin_area_2}`,
+                  email: res.payer.email_address,
+                  phone: JSON.stringify(res.payer.phone.phone_number)
+                }
+              }).subscribe(() => this.transactionStatus.emit(0));
             });
           },
           onCancel: (data, actions) => {

@@ -35,8 +35,4 @@ export class OrderService {
     return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Orders}/${orderId}`);
   }
 
-  getProfileOrders(): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(`${environment.apiUrl}${ApiPaths.Profile}/orders`, { withCredentials: true });
-  }
-
 }
