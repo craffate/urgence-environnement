@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
@@ -47,6 +48,7 @@ import { OrderDeleteComponent } from './order-delete/order-delete.component';
     MatPaginatorModule,
     MatIconModule,
     MatTabsModule,
+    MatListModule,
     AdminRoutingModule
   ],
   entryComponents: [

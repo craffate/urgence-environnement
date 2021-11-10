@@ -83,8 +83,8 @@
       </ng-container>
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let el" [attr.colspan]="6">
-          <div class="order-detail" [@detailExpand]="el === expandedOrderElement ? 'expanded' : 'collapsed'">
-            <div>
+          <div fxLayout="row wrap" fxLayoutAlign="start start" class="order-detail" [@detailExpand]="el === expandedOrderElement ? 'expanded' : 'collapsed'">
+            <div fxFlex>
               <h2>Informations de facturation</h2>
               <p>
                 {{ el['Payer']['name'] }}<br>
@@ -93,12 +93,21 @@
                 {{ el['Payer']['phone'] }}
               </p>
             </div>
-            <div>
+            <div fxFlex>
               <h2>Informations de livraison</h2>
               <p>
                 {{ el['shipping_name'] }}<br>
                 {{ el['shipping_address'] }}
               </p>
+            </div>
+            <div fxFlex>
+              <h2>Articles achetés</h2>
+              <mat-list>
+                <mat-list-item *ngFor="let ar of el['Articles']">
+                  <div mat-line>{{ ar['name'] }}</div>
+                  <div mat-line>{{ ar['price'] | currency }}</div>
+                </mat-list-item>
+              </mat-list>
             </div>
           </div>
         </td>
@@ -106,8 +115,7 @@
 
       <tr mat-header-row *matHeaderRowDef="['id', 'total', 'status', 'created_at', 'updated_at',  'actions']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['id', 'total', 'status', 'created_at', 'updated_at',  'actions']"
-        class="order-row"
-        [class.expanded-row]="expandedOrderElement === row"
+        class="order-row" [class.expanded-row]="expandedOrderElement === row"
         (click)="expandedOrderElement = expandedOrderElement === row ? null : row"></tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
