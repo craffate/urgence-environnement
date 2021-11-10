@@ -42,7 +42,7 @@ export class PaypalComponent implements OnInit, OnChanges {
                 id: 0,
                 total: this.total,
                 status: res.status,
-                payer: {
+                Payer: {
                   name: `${res.payer.name.given_name} ${res.payer.name.surname}`,
                   address: `${res.payer.address.address_line_1}\n${res.payer.address.address_line_2}\n${res.payer.address.postal_code} ${res.payer.address.admin_area_1} ${res.payer.address.admin_area_2}`,
                   email: res.payer.email_address,
