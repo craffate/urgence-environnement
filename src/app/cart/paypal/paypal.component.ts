@@ -1,5 +1,4 @@
-import { DecimalPipe, formatNumber, getLocaleNumberFormat } from '@angular/common';
-import { Component, ElementRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, EventEmitter, Inject, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, EventEmitter } from '@angular/core';
 import { loadScript } from '@paypal/paypal-js';
 import { AmountWithBreakdown, PurchaseItem } from '@paypal/paypal-js/types/apis/orders';
 import { Article } from '@src/app/interfaces/article';
@@ -18,11 +17,9 @@ export class PaypalComponent implements OnInit, OnChanges {
   @Output() transactionStatus: EventEmitter<number> = new EventEmitter<number>();
 
   articles!: Article[];
-  total!: string;
+  total!: number;
 
-  constructor(
-    private decimalPipe: DecimalPipe
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     loadScript(environment.paypalScriptOptions).then((paypal) => {
@@ -58,7 +55,7 @@ export class PaypalComponent implements OnInit, OnChanges {
       this.articles$.subscribe((res) => this.articles = res);
     }
     if (changes["total$"]) {
-      this.total$.subscribe((res) => this.total = this.decimalPipe.transform(res, "1.2-2", "en-US")!);
+      this.total$.subscribe((res) => this.total = res);
     }
   }
 
@@ -77,7 +74,7 @@ export class PaypalComponent implements OnInit, OnChanges {
       value: this.total.toString(),
       currency_code: environment.paypalCurrencyCode,
       breakdown: {
-        item_total: { value: this.total, currency_code: environment.paypalCurrencyCode }
+        item_total: { value: this.total.toString(), currency_code: environment.paypalCurrencyCode }
       }
     }
   }

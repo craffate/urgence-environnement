@@ -41,6 +41,7 @@ export class CartService {
 
     storage.forEach((element: Article) => {
       ret += element.price
+      ret = parseFloat(ret.toFixed(2));
     });
 
     return of(ret);
