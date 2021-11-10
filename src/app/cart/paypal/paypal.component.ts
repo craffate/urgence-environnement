@@ -42,6 +42,8 @@ export class PaypalComponent implements OnInit, OnChanges {
                 id: 0,
                 total: this.total,
                 status: res.status,
+                shipping_name: res.purchase_units[0].shipping?.name.full_name || '',
+                shipping_address: `${res.purchase_units[0].shipping?.address.address_line_1 || ''} ${res.purchase_units[0].shipping?.address.address_line_2 || ''} ${res.purchase_units[0].shipping?.address.postal_code || ''} ${res.purchase_units[0].shipping?.address.admin_area_1 || ''} ${res.purchase_units[0].shipping?.address.admin_area_2 || ''}`,
                 Payer: {
                   name: `${res.payer.name.given_name} ${res.payer.name.surname}`,
                   address: `${res.payer.address.address_line_1 || ''} ${res.payer.address.address_line_2 || ''} ${res.payer.address.postal_code || ''} ${res.payer.address.admin_area_1 || ''} ${res.payer.address.admin_area_2 || ''}`,

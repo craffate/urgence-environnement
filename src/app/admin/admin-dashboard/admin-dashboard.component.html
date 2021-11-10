@@ -85,12 +85,19 @@
         <td mat-cell *matCellDef="let el" [attr.colspan]="6">
           <div class="order-detail" [@detailExpand]="el === expandedOrderElement ? 'expanded' : 'collapsed'">
             <div>
-              <h2>Acheteur</h2>
+              <h2>Informations de facturation</h2>
               <p>
                 {{ el['Payer']['name'] }}<br>
                 {{ el['Payer']['address'] }}<br>
                 {{ el['Payer']['email'] }}<br>
                 {{ el['Payer']['phone'] }}
+              </p>
+            </div>
+            <div>
+              <h2>Informations de livraison</h2>
+              <p>
+                {{ el['shipping_name'] }}<br>
+                {{ el['shipping_address'] }}
               </p>
             </div>
           </div>

@@ -4,5 +4,7 @@ export interface Order {
   id: number;
   total: number;
   status: string;
+  shipping_name: string;
+  shipping_address: string;
   Payer: Payer;
 }
