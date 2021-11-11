@@ -10,8 +10,6 @@ import { ArticlesService } from '@services/articles.service';
 import { ArticleEditorComponent } from '../article-editor/article-editor.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleAddComponent } from '../article-add/article-add.component';
-import { UserService } from '@src/app/services/user.service';
-import { User } from '@src/app/interfaces/user';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -30,22 +28,18 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
 
   articlesDataSource: MatTableDataSource<Article> = new MatTableDataSource<Article>([]);
-  usersDataSource: MatTableDataSource<User> = new MatTableDataSource<User>([]);
 
   constructor(
     private articlesService: ArticlesService,
-    private userService: UserService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.articlesService.getArticles().subscribe((res) => this.articlesDataSource.data = res);
-    this.userService.getUsers().subscribe((res) => this.usersDataSource.data = res);
   }
 
   ngAfterViewInit(): void {
     this.articlesDataSource.paginator = this.paginator.toArray()[0];
-    this.usersDataSource.paginator = this.paginator.toArray()[2];
   }
 
   editArticle(article: Article): void {

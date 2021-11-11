@@ -1,74 +1,49 @@
-<mat-tab-group>
-  <mat-tab label="Articles">
-    <table mat-table [dataSource]="articlesDataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let el"> {{ el['id'] }} </td>
-      </ng-container>
-      <ng-container matColumnDef="sku">
-        <th mat-header-cell *matHeaderCellDef>SKU</th>
-        <td mat-cell *matCellDef="let el"> {{ el['sku'] }} </td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let el"> {{ el['name'] }} </td>
-      </ng-container>
-      <ng-container matColumnDef="subtitle">
-        <th mat-header-cell *matHeaderCellDef>Sous-titre</th>
-        <td mat-cell *matCellDef="let el"> {{ el['subtitle'] }} </td>
-      </ng-container>
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let el"> {{ el['description'] }} </td>
-      </ng-container>
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>Prix</th>
-        <td mat-cell *matCellDef="let el"> {{ el['price'] | currency }} </td>
-      </ng-container>
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let el">
-          <button mat-flat-button (click)="editArticle(el)" color="primary" type="button">
-            <mat-icon>edit</mat-icon>
-            Éditer
-          </button>
-          <button mat-flat-button (click)="deleteArticle(el)" color="warn" type="button">
-            <mat-icon>delete</mat-icon>
-            Supprimer
-          </button>
-        </td>
-      </ng-container>
+<table mat-table [dataSource]="articlesDataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let el"> {{ el['id'] }} </td>
+  </ng-container>
+  <ng-container matColumnDef="sku">
+    <th mat-header-cell *matHeaderCellDef>SKU</th>
+    <td mat-cell *matCellDef="let el"> {{ el['sku'] }} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let el"> {{ el['name'] }} </td>
+  </ng-container>
+  <ng-container matColumnDef="subtitle">
+    <th mat-header-cell *matHeaderCellDef>Sous-titre</th>
+    <td mat-cell *matCellDef="let el"> {{ el['subtitle'] }} </td>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let el"> {{ el['description'] }} </td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Prix</th>
+    <td mat-cell *matCellDef="let el"> {{ el['price'] | currency }} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let el">
+      <button mat-flat-button (click)="editArticle(el)" color="primary" type="button">
+        <mat-icon>edit</mat-icon>
+        Éditer
+      </button>
+      <button mat-flat-button (click)="deleteArticle(el)" color="warn" type="button">
+        <mat-icon>delete</mat-icon>
+        Supprimer
+      </button>
+    </td>
+  </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']">
-      </tr>
-    </table>
-    <mat-paginator color="primary" [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
-    </mat-paginator>
-    <button mat-raised-button (click)="addArticle()" color="primary" type="button">
-      <mat-icon>add</mat-icon>
-      Créer un nouvel article
-    </button>
-  </mat-tab>
-  <mat-tab label="Utilisateurs">
-    <table mat-table [dataSource]="usersDataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let el"> {{ el['id'] }}</td>
-      </ng-container>
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef>Nom d'utilisateur</th>
-        <td mat-cell *matCellDef="let el"> {{ el['username'] }}</td>
-      </ng-container>
-      <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef>Rôle</th>
-        <td mat-cell *matCellDef="let el"> {{ el['role'] }}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="['id', 'username', 'role']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'username', 'role']"></tr>
-    </table>
-    <mat-paginator color="primary" [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
-    </mat-paginator>
-  </mat-tab>
-</mat-tab-group>
+  <tr mat-header-row *matHeaderRowDef="['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['id', 'sku', 'name', 'subtitle', 'description', 'price', 'actions']">
+  </tr>
+</table>
+<mat-paginator color="primary" [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
+</mat-paginator>
+<button mat-raised-button (click)="addArticle()" color="primary" type="button">
+  <mat-icon>add</mat-icon>
+  Créer un nouvel article
+</button>
