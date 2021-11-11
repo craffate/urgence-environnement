@@ -67,7 +67,9 @@ export class PaypalComponent implements OnInit {
         });
       },
       onApprove: (data: any, actions: any) => {
-        this.transactionStatus.emit(0);
+        actions.order.capture().then(() => {
+          this.transactionStatus.emit(0);
+        })
       },
       onCancel: (data: any, actions: any) => {
         this.transactionStatus.emit(1);
