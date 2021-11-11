@@ -2,32 +2,9 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { PayPalButtonsComponentOptions } from "@paypal/paypal-js/types/components/buttons";
-import { PayPalScriptOptions } from "@paypal/paypal-js/types/script-options";
-
-const paypalCurrencyCode: string = "EUR";
-
-const paypalScriptOptions: PayPalScriptOptions = {
-  "client-id": "sb",
-  currency: paypalCurrencyCode,
-  components: "buttons",
-  "disable-funding": "card,credit"
-}
-
-const paypalButtonsStyle: PayPalButtonsComponentOptions["style"] = {
-  layout: "vertical",
-  color: "gold",
-  shape: "rect",
-  label: "paypal",
-  tagline: false
-};
-
 export const environment = {
   production: false,
-  apiUrl: "https://localhost:3000",
-  paypalCurrencyCode: paypalCurrencyCode,
-  paypalScriptOptions: paypalScriptOptions,
-  paypalButtonsStyle: paypalButtonsStyle
+  apiUrl: "https://localhost:3000"
 };
 
 /*
