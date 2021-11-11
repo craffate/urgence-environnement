@@ -22,7 +22,6 @@ import { ArticleDeleteComponent } from './article-delete/article-delete.componen
 import { ArticleAddComponent } from './article-add/article-add.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { OrderDeleteComponent } from './order-delete/order-delete.component';
 
 
 @NgModule({
@@ -30,8 +29,7 @@ import { OrderDeleteComponent } from './order-delete/order-delete.component';
     AdminDashboardComponent,
     ArticleEditorComponent,
     ArticleDeleteComponent,
-    ArticleAddComponent,
-    OrderDeleteComponent
+    ArticleAddComponent
   ],
   imports: [
     CommonModule,
