@@ -98,7 +98,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result === true) {
-        this.orderService.deleteOrder(order.id).subscribe();
+        this.orderService.deleteOrder(order.id!).subscribe();
       }
     });
   }
