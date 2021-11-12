@@ -10,6 +10,11 @@
       {{ link }}
     </a>
     <span fxFlex></span>
+    <a *ngIf="isAuth$ | async"
+    mat-tab-link routerLink="/admin" (click)="activeLink = 'Admin'" [active]="activeLink == 'Admin'">
+      <mat-icon>admin_panel_settings</mat-icon>
+      Administration
+    </a>
     <a mat-tab-link routerLink="/panier" (click)="activeLink = 'Panier'" [active]="activeLink == 'Panier'">
       <mat-icon>shopping_cart</mat-icon>
       Panier ({{ (getCartTotal() | async) | currency }})
