@@ -1,15 +1,14 @@
-<mat-toolbar fxLayout="row nowrap" fxLayoutAlign="center center" color="primary">
+<mat-toolbar fxLayout="row nowrap" color="primary">
   <h1 class="mat-headline">{{ title }}</h1>
-  <nav mat-tab-nav-bar fxFlex backgroundColor="primary">
+  <nav mat-tab-nav-bar backgroundColor="primary">
     <a mat-tab-link routerLink="/" (click)="activeLink = 'Accueil'" [active]="activeLink == 'Accueil'">Accueil</a>
-    <a mat-tab-link *ngFor="let link of categoryLinks; let idx = index"
-    (click)="activeLink = link"
-    [active]="activeLink == link"
+    <a mat-tab-link *ngFor="let cat of categories"
+    (click)="activeLink = cat.name"
+    [active]="activeLink == cat.name"
     [routerLink]="[ '/articles' ]"
-    [queryParams]="{ category: link.toLowerCase() }">
-      {{ link }}
+    [queryParams]="{ category: cat.slug }">
+      {{ cat.name }}
     </a>
-    <span fxFlex></span>
     <a *ngIf="isAuth$ | async"
     mat-tab-link routerLink="/admin" (click)="activeLink = 'Admin'" [active]="activeLink == 'Admin'">
       <mat-icon>admin_panel_settings</mat-icon>

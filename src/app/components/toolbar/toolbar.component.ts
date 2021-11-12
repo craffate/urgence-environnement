@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ToolbarComponent implements OnInit {
 
   @Input() title!: string;
-  categoryLinks: string[];
+  readonly categories: Array<{ name: string, slug: string }>;
   activeLink!: string;
   isAuth$: Observable<boolean>;
 
@@ -19,7 +19,15 @@ export class ToolbarComponent implements OnInit {
     private cartService: CartService,
     private authService: AuthService
   ) {
-    this.categoryLinks = [ 'Mobilier', 'Librairie', 'Loisir', 'Bricolage', 'Brocante', 'Objets d\'occasion', 'Divers'];
+    this.categories = [
+      { name: 'Mobilier', slug: 'mobilier' },
+      { name: 'Librairie', slug: 'librairie' },
+      { name: 'Loisir', slug: 'loisir' },
+      { name: 'Bricolage', slug: 'bricolage' },
+      { name: 'Brocante', slug: 'brocante' },
+      { name: 'Objets d\'occasion', slug: 'occasion' },
+      { name: 'Divers', slug: 'divers' },
+    ];
     this.isAuth$ = this.authService.isAuth$;
   }
 
