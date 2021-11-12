@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '@services/cart.service';
 import { Article } from '@interfaces/article';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog.component';
@@ -13,8 +13,6 @@ import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog
 })
 export class CartListComponent implements OnInit {
 
-  articles$!: Observable<Article[]>;
-
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
@@ -22,7 +20,14 @@ export class CartListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articles$ = this.cartService.getArticles();
+  }
+
+  getArticles(): BehaviorSubject<Article[]> {
+    return this.cartService.cart$;
+  }
+
+  getCartTotal(): BehaviorSubject<number> {
+    return this.cartService.cartTotal$;
   }
 
   transactionSnackbar(transactionStatus: number) {
@@ -38,9 +43,9 @@ export class CartListComponent implements OnInit {
   removeFromCart(article: Article): void {
     let snackBarRef = this.snackBar.open(article.name + ' a été supprimé du panier', 'ANNULER', { duration: 3000 });
 
-    this.articles$ = this.cartService.removeFromCart(article);
+    this.cartService.removeFromCart(article);
     snackBarRef.onAction().subscribe(() => {
-      this.articles$ = this.cartService.addToCart(article);
+      this.cartService.addToCart(article);
     });
   }
 
@@ -49,14 +54,10 @@ export class CartListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res === true) {
-        this.articles$ = this.cartService.clearCart();
+        this.cartService.clearCart();
         this.snackBar.open('Le panier a été vidé', undefined, { duration: 3000 });
       }
     });
-  }
-
-  calculateTotal(): Observable<number> {
-    return this.cartService.calculateTotal();
   }
 
 }

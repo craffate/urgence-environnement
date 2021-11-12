@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '@src/app/services/cart.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -22,8 +22,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getCartTotal(): Observable<number> {
-    return this.cartService.calculateTotal();
+  getCartTotal(): BehaviorSubject<number> {
+    return this.cartService.cartTotal$;
   }
 
 }

@@ -1,56 +1,56 @@
 import { Injectable } from '@angular/core';
 
 import { Article } from '@interfaces/article';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor() { }
+  cart: Article[];
+  cartTotal: number;
+  cart$: BehaviorSubject<Article[]>;
+  cartTotal$: BehaviorSubject<number>;
 
-  addToCart(article: Article): Observable<Article[]> {
-    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
-
-    storage.push(article);
-    localStorage.setItem('cart', JSON.stringify(storage));
-    return of(JSON.parse(localStorage.getItem('cart')!));
+  constructor() {
+    this.cart = [];
+    this.cartTotal = 0.00;
+    this.cart$ = new BehaviorSubject<Article[]>(this.cart);
+    this.cartTotal$ = new BehaviorSubject<number>(this.cartTotal);
   }
 
-  removeFromCart(article: Article): Observable<Article[]> {
-    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
-    let cart = storage.filter((ar: Article) => ar.id !== article.id);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    return of(JSON.parse(localStorage.getItem('cart')!));
+  addToCart(article: Article): void {
+    this.cart.push(article);
+    this.calculateTotal();
+    this.cart$.next(this.cart);
   }
 
-  getArticles(): Observable<Article[]> {
-    return of(JSON.parse(localStorage.getItem('cart')!));
+  removeFromCart(article: Article): void {
+    this.cart = this.cart.filter((ar: Article) => ar.id !== article.id);
+    this.calculateTotal();
+    this.cart$.next(this.cart);
   }
 
-  clearCart() {
-    localStorage.removeItem('cart');
-    return JSON.parse(localStorage.getItem('cart')!);
+  clearCart(): void {
+    this.cart = [];
+    this.calculateTotal();
+    this.cart$.next(this.cart);
   }
 
-  calculateTotal(): Observable<number> {
-    let ret: number = 0;
-    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
+  isInCart(article: Article): boolean {
+    let ret: Article[] = this.cart.filter((ar: Article) => ar.id === article.id);
 
-    storage.forEach((element: Article) => {
-      ret += element.price
-      ret = parseFloat(ret.toFixed(2));
+    return ret.length > 0 ? true : false;
+  }
+
+  private calculateTotal(): void {
+    this.cartTotal = 0.00;
+    this.cart.forEach((element: Article) => {
+      this.cartTotal += element.price
+      this.cartTotal = parseFloat(this.cartTotal.toFixed(2));
     });
-
-    return of(ret);
+    this.cartTotal$.next(this.cartTotal);
   }
 
-  searchCart(article: Article): Observable<Article> {
-    let storage = JSON.parse(localStorage.getItem('cart')!) || [];
-    let ret: Article[] = storage.filter((ar: Article) => ar.id === article.id);
-
-    return of(ret[0]);
-  }
 }

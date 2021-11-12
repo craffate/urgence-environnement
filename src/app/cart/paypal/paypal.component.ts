@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { CartService } from '@services/cart.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 declare var paypal: any;
@@ -15,14 +15,14 @@ export class PaypalComponent implements OnInit {
   @Output() transactionStatus: EventEmitter<number> = new EventEmitter<number>();
 
   purchase_items$!: Observable<any[]>;
-  total$!: Observable<number>;
+  total$!: BehaviorSubject<number>;
 
   constructor(
     private cartService: CartService
   ) { }
 
   ngOnInit(): void {
-    this.purchase_items$ = this.cartService.getArticles().pipe(
+    this.purchase_items$ = this.cartService.cart$.pipe(
       map((articles) => {
         return articles.map((article) => {
           return {
@@ -39,7 +39,7 @@ export class PaypalComponent implements OnInit {
         })
       })
     );
-    this.total$ = this.cartService.calculateTotal();
+    this.total$ = this.cartService.cartTotal$;
     paypal.Buttons({
       createOrder: (data: any, actions: any) => {
         let purchase_items;

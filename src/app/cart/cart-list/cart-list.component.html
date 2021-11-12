@@ -1,6 +1,6 @@
 <div class="content">
   <mat-list>
-    <mat-list-item *ngFor="let a of articles$ | async">
+    <mat-list-item *ngFor="let a of getArticles() | async">
       <div mat-line>{{ a.name }}</div>
       <div mat-line>{{ a.price | currency }}</div>
       <button mat-flat-button color="warn" (click)="removeFromCart(a)">
@@ -10,7 +10,7 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-      Total: {{ (calculateTotal() | async) | currency }}
+      Total: {{ (getCartTotal() | async) | currency }}
     </mat-list-item>
   </mat-list>
   <div>

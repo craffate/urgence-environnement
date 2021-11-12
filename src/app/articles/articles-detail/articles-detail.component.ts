@@ -59,8 +59,8 @@ export class ArticlesDetailComponent implements OnInit {
     });
   }
 
-  isInCart(article: Article) {
-    return this.cartService.searchCart(article);
+  isInCart(article: Article): boolean {
+    return this.cartService.isInCart(article);
   }
 
 }
