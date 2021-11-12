@@ -1,23 +1,31 @@
-<div class="content">
-  <mat-list>
-    <mat-list-item *ngFor="let a of getArticles() | async">
-      <div mat-line>{{ a.name }}</div>
-      <div mat-line>{{ a.price | currency }}</div>
-      <button mat-flat-button color="warn" (click)="removeFromCart(a)">
-        <mat-icon>remove_circle</mat-icon>
-        Supprimer
-      </button>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      Total: {{ (getCartTotal() | async) | currency }}
-    </mat-list-item>
-  </mat-list>
-  <div>
-    <button mat-flat-button color="warn" (click)="clearCart()">
-      <mat-icon>remove_shopping_cart</mat-icon>
-      Vider le panier
-    </button>
-    <app-paypal (transactionStatus)="transactionSnackbar($event)"></app-paypal>
+<div class="content" fxLayout="row" fxLayoutAlign="center start">
+  <div *ngIf="(cartTotal$ | async); else emptyCart" fxFlex>
+    <mat-list>
+      <mat-list-item *ngFor="let a of getArticles() | async">
+        <div mat-line>{{ a.name }}</div>
+        <div mat-line>{{ a.subtitle }}</div>
+        <div mat-line>{{ a.price | currency }}</div>
+        <mat-action-list>
+          <button mat-flat-button color="warn" (click)="removeFromCart(a)">
+            <mat-icon>remove_circle</mat-icon>
+            Supprimer
+          </button>
+        </mat-action-list>
+      </mat-list-item>
+    </mat-list>
   </div>
+  <mat-card fxFlex="25%" fxFlexAlign="start">
+    <mat-card-content>
+      <p>Total: {{ (cartTotal$ | async) | currency }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <app-paypal (transactionStatus)="transactionSnackbar($event)"></app-paypal>
+    </mat-card-actions>
+  </mat-card>
 </div>
+
+<ng-template #emptyCart>
+  <div fxFlex>
+    <h2>Votre panier est vide !</h2>
+  </div>
+</ng-template>

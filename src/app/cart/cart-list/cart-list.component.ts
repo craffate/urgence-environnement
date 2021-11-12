@@ -13,11 +13,15 @@ import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog
 })
 export class CartListComponent implements OnInit {
 
+  cartTotal$: BehaviorSubject<number>;
+
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
-  ) { }
+  ) {
+    this.cartTotal$ = this.cartService.cartTotal$;
+  }
 
   ngOnInit(): void {
   }
