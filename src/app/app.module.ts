@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
@@ -48,7 +47,6 @@ registerLocaleData(localeFr, 'fr');
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     AuthService,
     AdminGuard,
-    CookieService
   ]
 })
 export class AppModule { }
