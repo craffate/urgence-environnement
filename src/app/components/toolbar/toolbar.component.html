@@ -6,7 +6,7 @@
     (click)="activeLink = link"
     [active]="activeLink == link"
     [routerLink]="[ '/articles' ]"
-    [queryParams]="{ categoryId: idx + 1 }">
+    [queryParams]="{ category: link.toLowerCase() }">
       {{ link }}
     </a>
     <span fxFlex></span>

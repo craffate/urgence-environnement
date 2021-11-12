@@ -27,8 +27,11 @@ export class ArticlesListComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       let httpParams = new HttpParams();
 
-      if (params['categoryId']) {
-        httpParams = httpParams.append('categoryId', params['categoryId']);
+      if (params['category']) {
+        httpParams = httpParams.append('category', params['category']);
+      }
+      if (params['name']) {
+        httpParams = httpParams.append('name', params['name']);
       }
       this.articles$ = this.articlesService.getArticles(httpParams);
     });
