@@ -38,4 +38,8 @@ export class ToolbarComponent implements OnInit {
     return this.cartService.cartTotal$;
   }
 
+  getCartQuantity(): BehaviorSubject<number> {
+    return this.cartService.cartQuantity$;
+  }
+
 }

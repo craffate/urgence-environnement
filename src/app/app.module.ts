@@ -9,6 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -37,6 +39,8 @@ registerLocaleData(localeFr, 'fr');
     MatTabsModule,
     MatIconModule,
     MatSnackBarModule,
+    MatButtonModule,
+    MatBadgeModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],

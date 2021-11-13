@@ -1,6 +1,6 @@
 <mat-toolbar fxLayout="row nowrap" color="primary">
   <h1 class="mat-headline">{{ title }}</h1>
-  <nav mat-tab-nav-bar backgroundColor="primary">
+  <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
     <a mat-tab-link routerLink="/" (click)="activeLink = 'Accueil'" [active]="activeLink == 'Accueil'">Accueil</a>
     <a mat-tab-link *ngFor="let cat of categories"
     (click)="activeLink = cat.name"
@@ -9,14 +9,13 @@
     [queryParams]="{ category: cat.slug }">
       {{ cat.name }}
     </a>
-    <a *ngIf="isAuth$ | async"
-    mat-tab-link routerLink="/admin" (click)="activeLink = 'Admin'" [active]="activeLink == 'Admin'">
-      <mat-icon>admin_panel_settings</mat-icon>
-      Administration
-    </a>
-    <a mat-tab-link routerLink="/panier" (click)="activeLink = 'Panier'" [active]="activeLink == 'Panier'">
-      <mat-icon>shopping_cart</mat-icon>
-      Panier ({{ (getCartTotal() | async) | currency }})
-    </a>
   </nav>
+  <a *ngIf="isAuth$ | async"
+  mat-tab-link routerLink="/admin" (click)="activeLink = 'Admin'" [active]="activeLink == 'Admin'">
+    <mat-icon>admin_panel_settings</mat-icon>
+    Administration
+  </a>
+  <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'" [matBadge]="getCartQuantity() | async" matBadgeColor="accent">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
 </mat-toolbar>
