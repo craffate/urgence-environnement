@@ -2,4 +2,4 @@
 
 html, body { height: 100%; }
 body { margin: 0 auto; }
-.content { max-width: 80vw; margin: 0 auto; }
+.content { max-width: 80vw; margin: 16px auto; }
