@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog.component';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,6 +14,7 @@ import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog
 })
 export class CartListComponent implements OnInit {
 
+  readonly API: string = environment.apiUrl + '/';
   cartTotal$: BehaviorSubject<number>;
 
   constructor(
