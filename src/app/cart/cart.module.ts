@@ -11,14 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ClearCartDialogComponent } from './clear-cart-dialog/clear-cart-dialog.component';
 import { PaypalComponent } from './paypal/paypal.component';
 
 
 @NgModule({
   declarations: [
     CartListComponent,
-    ClearCartDialogComponent,
     PaypalComponent
   ],
   imports: [

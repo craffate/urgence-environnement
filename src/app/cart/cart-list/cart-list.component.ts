@@ -4,7 +4,6 @@ import { Article } from '@interfaces/article';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { ClearCartDialogComponent } from '../clear-cart-dialog/clear-cart-dialog.component';
 import { environment } from '@environments/environment';
 
 @Component({
@@ -52,17 +51,6 @@ export class CartListComponent implements OnInit {
     this.cartService.removeFromCart(article);
     snackBarRef.onAction().subscribe(() => {
       this.cartService.addToCart(article);
-    });
-  }
-
-  clearCart(): void {
-    let dialogRef = this.dialog.open(ClearCartDialogComponent);
-
-    dialogRef.afterClosed().subscribe(res => {
-      if (res === true) {
-        this.cartService.clearCart();
-        this.snackBar.open('Le panier a été vidé', undefined, { duration: 3000 });
-      }
     });
   }
 
