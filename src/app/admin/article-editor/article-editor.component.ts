@@ -40,7 +40,7 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const httpParams = new HttpParams().append('articleId', this.article.id);
+    const httpParams = new HttpParams().append('articleId', this.article.id!);
 
     this.imageService.getImages(httpParams)
     .subscribe((res) => {
@@ -60,7 +60,7 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   deleteImage() {
-    this.imageService.deleteImage(this.images[this.carousel.slideIndex].id).subscribe();
+    this.imageService.deleteImage(this.images[this.carousel.slideIndex].id!).subscribe();
   }
 
   onSubmit(): void {

@@ -49,7 +49,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((article: Article) => {
       if (article !== undefined) {
-        this.articlesService.patchArticle(article.id, article).subscribe();
+        this.articlesService.patchArticle(article.id!, article).subscribe();
       }
     });
   }
@@ -61,7 +61,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result === true) {
-        this.articlesService.deleteArticle(article.id).subscribe();
+        this.articlesService.deleteArticle(article.id!).subscribe();
       }
     });
   }
