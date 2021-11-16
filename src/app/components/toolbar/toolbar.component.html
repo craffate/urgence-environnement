@@ -2,7 +2,7 @@
   <h1 class="mat-headline">{{ title }}</h1>
   <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
     <a mat-tab-link routerLink="/" (click)="activeLink = 'Accueil'" [active]="activeLink == 'Accueil'">Accueil</a>
-    <a mat-tab-link *ngFor="let cat of categories"
+    <a mat-tab-link *ngFor="let cat of categories$ | async"
     (click)="activeLink = cat.name"
     [active]="activeLink == cat.name"
     [routerLink]="[ '/articles' ]"
