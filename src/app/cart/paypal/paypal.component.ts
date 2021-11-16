@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { CartService } from '@services/cart.service';
+import { Article } from '@src/app/interfaces/article';
+import { ArticlesService } from '@src/app/services/articles.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,7 +20,8 @@ export class PaypalComponent implements OnInit {
   total$!: BehaviorSubject<number>;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private articlesService: ArticlesService
   ) { }
 
   ngOnInit(): void {
@@ -67,7 +70,15 @@ export class PaypalComponent implements OnInit {
         });
       },
       onApprove: (data: any, actions: any) => {
+        let cart: Article[];
+
         actions.order.capture().then(() => {
+          this.cartService.cart$.subscribe((res) => cart = res);
+          cart.forEach(article => {
+            article.quantity -= 1;
+            this.articlesService.patchArticle(article.id!, article).subscribe();
+          });
+          this.cartService.clearCart();
           this.transactionStatus.emit(0);
         })
       },
