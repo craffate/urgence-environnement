@@ -25,6 +25,20 @@
       <mat-label>Prix</mat-label>
       <input matInput step="0.01" type="number" formControlName="price">
     </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Quantité</mat-label>
+      <input matInput step="1" type="number" formControlName="quantity">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="Category">
+        <mat-option *ngFor="let cat of categories$ | async" [value]="cat">
+          {{ cat.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
