@@ -23,15 +23,15 @@ export class CategoryService {
     return this.httpClient.post<Category>(`${environment.apiUrl}${ApiPaths.Articles}`, category);
   }
 
-  getArticle(categoryId: number): Observable<Category> {
+  getCategory(categoryId: number): Observable<Category> {
     return this.httpClient.get<Category>(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`);
   }
 
-  patchArticle(categoryId: number, category: Category): Observable<Category> {
+  patchCategory(categoryId: number, category: Category): Observable<Category> {
     return this.httpClient.patch<Category>(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, category);
   }
 
-  deleteArticle(categoryId: number): Observable<any> {
+  deleteCategory(categoryId: number): Observable<any> {
     return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`);
   }
 
