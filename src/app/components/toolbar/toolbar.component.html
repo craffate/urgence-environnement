@@ -6,7 +6,7 @@
     (click)="activeLink = cat.name"
     [active]="activeLink == cat.name"
     [routerLink]="[ '/articles' ]"
-    [queryParams]="{ category: cat.slug }">
+    [queryParams]="{ category: cat.slug, page: 1 }">
       {{ cat.name }}
     </a>
   </nav>

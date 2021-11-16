@@ -17,6 +17,7 @@ export class ArticlesListComponent implements OnInit {
 
   readonly API: string = environment.apiUrl + '/';
   articles$!: Observable<Article[]>;
+  pageIndex!: number;
 
   constructor(
     private articlesService: ArticlesService,
@@ -24,6 +25,7 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.pageIndex = 1;
     this.route.queryParams.subscribe((params) => {
       let httpParams = new HttpParams();
 
@@ -33,6 +35,13 @@ export class ArticlesListComponent implements OnInit {
       if (params['name']) {
         httpParams = httpParams.append('name', params['name']);
       }
+      if (params['page']) {
+        this.pageIndex = parseInt(params['page']);
+        if (this.pageIndex < 1) {
+          this.pageIndex = 1;
+        }
+      }
+      httpParams = httpParams.append('page', this.pageIndex);
       this.articles$ = this.articlesService.getArticles(httpParams);
     });
   }
