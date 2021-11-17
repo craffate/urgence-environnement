@@ -1,21 +1,18 @@
-<mat-toolbar fxLayout="row nowrap" color="primary">
-  <h1 class="mat-headline">{{ title }}</h1>
-  <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
-    <a mat-tab-link routerLink="/" (click)="activeLink = 'Accueil'" [active]="activeLink == 'Accueil'">Accueil</a>
-    <a mat-tab-link *ngFor="let cat of categories$ | async"
-    (click)="activeLink = cat.name"
-    [active]="activeLink == cat.name"
-    [routerLink]="[ '/articles' ]"
-    [queryParams]="{ category: cat.slug, page: 1 }">
-      {{ cat.name }}
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/">
+      <h1>{{ title }}</h1>
     </a>
-  </nav>
-  <a *ngIf="isAuth$ | async"
-  mat-tab-link routerLink="/admin" (click)="activeLink = 'Admin'" [active]="activeLink == 'Admin'">
-    <mat-icon>admin_panel_settings</mat-icon>
-    Administration
-  </a>
-  <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'" [matBadge]="getCartQuantity() | async" matBadgeColor="accent">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
+    <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
+      <a mat-tab-link *ngFor="let cat of categories$ | async" (click)="activeLink = cat.name"
+        [active]="activeLink == cat.name" [routerLink]="[ '/articles' ]"
+        [queryParams]="{ category: cat.slug, page: 1 }">
+        {{ cat.name }}
+      </a>
+    </nav>
+    <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'" [matBadge]="getCartQuantity() | async"
+      matBadgeColor="accent">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
