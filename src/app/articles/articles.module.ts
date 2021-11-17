@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ArticlesRoutingModule } from './articles-routing.module';
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDividerModule,
     ArticlesRoutingModule
   ]
 })

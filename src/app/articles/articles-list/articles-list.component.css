@@ -6,3 +6,13 @@ mat-card {
 img {
   max-width: 100%;
 }
+
+mat-divider {
+  margin: 32px 0;
+}
+
+mat-card-title, mat-card-subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;;
+}
