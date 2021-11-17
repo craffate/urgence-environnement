@@ -8,8 +8,8 @@
         <p mat-line>{{ a.price | currency }}</p>
         <mat-action-list>
           <button mat-flat-button color="warn" (click)="removeFromCart(a)">
-            <mat-icon>remove_circle</mat-icon>
-            Supprimer
+            <mat-icon>remove_shopping_cart</mat-icon>
+            SUPPRIMER DU PANIER
           </button>
         </mat-action-list>
       </mat-list-item>
@@ -26,7 +26,7 @@
 </div>
 
 <ng-template #emptyCart>
-  <div class="empty" fxLayout="row" fxLayoutAlign="center center">
-    <h2 class="mat-display-1">Votre panier est vide !</h2>
+  <div class="content" fxLayout="row" fxLayoutAlign="center center">
+    <h1 class="mat-display-2">Votre panier est vide !</h1>
   </div>
 </ng-template>

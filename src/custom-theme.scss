@@ -2,7 +2,7 @@
 
 @include mat.core();
 
-$ue-palette: (
+$urgence-environnement-palette: (
   50: #e5f2e8,
   100: #c1dec5,
   200: #9ac9a1,
@@ -13,6 +13,16 @@ $ue-palette: (
   700: #297938,
   800: #20682e,
   900: #124a1d,
+  A50: #f1e1ec,
+  A100: #ddb3d0,
+  A200: #c984b1,
+  A300: #b95693,
+  A400: #af367d,
+  A500: #a81067,
+  A600: #a81067,
+  A700: #831459,
+  A800: #6e1450,
+  A900: #4a123f,
   contrast: (
     50: #000000,
     100: #000000,
@@ -23,20 +33,27 @@ $ue-palette: (
     600: #000000,
     700: #ffffff,
     800: #ffffff,
-    900: #ffffff
+    900: #ffffff,
+    A50: #000000,
+    A100: #000000,
+    A200: #000000,
+    A300: #000000,
+    A400: #000000,
+    A500: #000000,
+    A600: #000000,
+    A700: #ffffff,
+    A800: #ffffff,
+    A900: #ffffff,
   )
 );
 
-$urgence-environnement-primary: mat.define-palette($ue-palette, 900);
-$urgence-environnement-accent: mat.define-palette($ue-palette, 500, 400, 700);
-
-$urgence-environnement-warn: mat.define-palette(mat.$red-palette);
+$primary: mat.define-palette($urgence-environnement-palette, 900);
+$accent: mat.define-palette($urgence-environnement-palette, A900, A300);
 
 $urgence-environnement-theme: mat.define-light-theme((
   color: (
-    primary: $urgence-environnement-primary,
-    accent: $urgence-environnement-accent,
-    warn: $urgence-environnement-warn,
+    primary: $primary,
+    accent: $accent,
   )
 ));
 

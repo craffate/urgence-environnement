@@ -2,10 +2,10 @@
   <div *ngFor="let url of imagesUrl ; let i = index" fxLayout="row" fxLayoutAlign="center center" [fxShow]="slideIndex === i" class="slide">
     <img [src]="url">
   </div>
-  <button mat-icon-button color="primary" class="prev" (click)="changeSlide(-1)">
+  <button mat-icon-button color="accent" class="prev" (click)="changeSlide(-1)">
     <mat-icon>chevron_left</mat-icon>
   </button>
-  <button mat-icon-button color="primary" class="next" (click)="changeSlide(1)">
+  <button mat-icon-button color="accent" class="next" (click)="changeSlide(1)">
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
