@@ -7,23 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CarouselComponent implements OnInit {
 
-  slideIndex: number = 0;
   @Input() imagesUrl!: string[];
+  selectedImageIndex: number;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.selectedImageIndex = 0;
   }
 
-  changeSlide(n: number): void {
-    this.slideIndex += n;
-
-    if (this.slideIndex >= this.imagesUrl.length) {
-      this.slideIndex = 0;
-    }
-    if (this.slideIndex < 0) {
-      this.slideIndex = this.imagesUrl.length - 1;
-    }
+  ngOnInit(): void {
   }
 
 }

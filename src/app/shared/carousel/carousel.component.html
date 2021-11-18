@@ -1,11 +1,8 @@
-<div class="carousel">
-  <div *ngFor="let url of imagesUrl ; let i = index" fxLayout="row" fxLayoutAlign="center center" [fxShow]="slideIndex === i" class="slide">
-    <img [src]="url">
+<div class="carousel" fxLayout="row" fxLayoutAlign="center start">
+  <div class="carousel-picker">
+    <img *ngFor="let url of imagesUrl ; let i = index" [src]="url" (click)="selectedImageIndex = i">
   </div>
-  <button mat-icon-button color="accent" class="prev" (click)="changeSlide(-1)">
-    <mat-icon>chevron_left</mat-icon>
-  </button>
-  <button mat-icon-button color="accent" class="next" (click)="changeSlide(1)">
-    <mat-icon>chevron_right</mat-icon>
-  </button>
+  <div class="carousel-selected-image">
+    <img [src]="imagesUrl[selectedImageIndex]">
+  </div>
 </div>

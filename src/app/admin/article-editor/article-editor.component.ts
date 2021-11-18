@@ -60,7 +60,7 @@ export class ArticleEditorComponent implements OnInit {
   }
 
   deleteImage() {
-    this.imageService.deleteImage(this.images[this.carousel.slideIndex].id!).subscribe();
+    this.imageService.deleteImage(this.images[this.carousel.selectedImageIndex].id!).subscribe();
   }
 
   onSubmit(): void {
