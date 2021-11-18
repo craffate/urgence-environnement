@@ -22,13 +22,13 @@
             <span class="mat-body-2">Quantité&nbsp;</span>:&nbsp;
             {{ article.quantity }}
           </li>
-          <li *ngIf="article.weight">
+          <li *ngIf="article.weight && article.weight_unit">
             <span class="mat-body-2">Poids&nbsp;</span>:&nbsp;
-            {{ article.weight.weight }} {{ article.weight.unit}}
+            {{ article.weight }} {{ article.weight_unit }}
           </li>
-          <li *ngIf="article.dimensions">
+          <li *ngIf="(article.length || article.width || article.height) && article.dimensions_unit">
             <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
-            {{ article.dimensions.length }} &times; {{ article.dimensions.width }} &times; {{ article.dimensions.height }} {{ article.dimensions.unit }}
+            {{ article.length }} &times; {{ article.width }} &times; {{ article.height }} {{ article.dimensions_unit }}
           </li>
         </ul>
       </div>
