@@ -1,6 +1,4 @@
 .carousel {
-  min-height: 360px;
-  min-width: 640px;
   position: relative;
 }
 
@@ -10,8 +8,8 @@
 }
 
 .slide > img {
-  max-height: 360px;
-  max-width: 640px;
+  height: 100%;
+  width: 100%;
 }
 
 .prev, .next, .delete {
