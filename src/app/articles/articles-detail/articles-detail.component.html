@@ -1,15 +1,65 @@
-<div class="content">
-  <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
-  <div class="mat-typography" *ngIf="article$ | async as article">
-    <h2 class="mat-title">{{ article.name }}</h2>
-    <h3 class="mat-small">{{ article.subtitle }}</h3>
-    <p class="mat-body">{{ article.description }}</p>
-    <p class="mat-body-strong">{{ article.price | currency }}</p>
-    <ng-container [ngTemplateOutlet]='!isInCart(article) ? addToCartButton : removeFromCartButton'
-      [ngTemplateOutletContext]='{ article: article }'>
-    </ng-container>
+<main class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="center start" *ngIf="article$ | async as article">
+    <div fxFlex="70" fxLayout="column" fxLayoutAlign="center start">
+      <h1 class="mat-display-1">{{ article.name }}</h1>
+      <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
+      <div>
+        <h2>Description du produit</h2>
+        <p class="article-description">{{ article.description }}</p>
+      </div>
+      <div>
+        <h2>Détails du produit</h2>
+        <ul>
+          <li *ngIf="article.id">
+            <span class="mat-body-2">ID&nbsp;</span>:&nbsp;
+            {{ article.id }}
+          </li>
+          <li>
+            <span class="mat-body-2">SKU&nbsp;</span>:&nbsp;
+            {{ article.sku }}
+          </li>
+          <li>
+            <span class="mat-body-2">Quantité&nbsp;</span>:&nbsp;
+            {{ article.quantity }}
+          </li>
+          <li *ngIf="article.weight">
+            <span class="mat-body-2">Poids&nbsp;</span>:&nbsp;
+            {{ article.weight.weight }} {{ article.weight.unit}}
+          </li>
+          <li *ngIf="article.dimensions">
+            <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
+            {{ article.dimensions.length }} &times; {{ article.dimensions.width }} &times; {{ article.dimensions.height }} {{ article.dimensions.unit }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div fxFlex>
+      <mat-card>
+        <mat-card-title class="price">{{ article.price | currency }}</mat-card-title>
+        <mat-card-subtitle *ngIf="article.quantity > 0; else outOfStock">En stock.</mat-card-subtitle>
+        <mat-card-content>
+          <div>
+            <p>
+              À venir chercher sur place.<br>
+              Pour plus d'informations sur la livraison, veuillez nous contacter au préalable.
+            </p>
+            <p>
+              <mat-icon>payment</mat-icon>
+              Transaction sécurisée via PayPal.
+            </p>
+          </div>
+
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <ng-container [ngTemplateOutlet]='!isInCart(article) ? addToCartButton : removeFromCartButton'
+            [ngTemplateOutletContext]='{ article: article }'>
+          </ng-container>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-</div>
+</main>
+
 
 <ng-template #addToCartButton let-article='article'>
   <button mat-raised-button (click)="addToCart(article)" [disabled]="article.quantity < 1" color="accent" type="button">
@@ -22,4 +72,8 @@
     <mat-icon>remove_shopping_cart</mat-icon>
     SUPPRIMER DU PANIER
   </button>
+</ng-template>
+
+<ng-template #outOfStock>
+  <mat-card-subtitle class="outOfStock">Article indisponible.</mat-card-subtitle>
 </ng-template>

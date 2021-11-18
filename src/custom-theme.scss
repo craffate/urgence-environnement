@@ -1,4 +1,5 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
+@use "./themes/_articles-detail-theme.scss" as articles-detail;
 
 @include mat.core();
 
@@ -44,18 +45,29 @@ $urgence-environnement-palette: (
     A700: #ffffff,
     A800: #ffffff,
     A900: #ffffff,
-  )
+  ),
 );
 
 $primary: mat.define-palette($urgence-environnement-palette, 900);
 $accent: mat.define-palette($urgence-environnement-palette, A900, A300);
+$warn: mat.define-palette(mat.$red-palette, 900, 300);
 
-$urgence-environnement-theme: mat.define-light-theme((
-  color: (
-    primary: $primary,
-    accent: $accent,
+$urgence-environnement-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+    typography: mat.define-typography-config(),
   )
-));
+);
+
+$background: purple;
+
+mat-icon {
+  vertical-align: middle;
+}
 
 @include mat.all-component-themes($urgence-environnement-theme);
-
+@include articles-detail.theme($urgence-environnement-theme);

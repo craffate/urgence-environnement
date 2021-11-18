@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color($articles-detail-theme) {
+  $color-config: mat.get-color-config($articles-detail-theme);
+  $primary-palette: map.get($color-config, "primary");
+  $accent-palette: map.get($color-config, "accent");
+  $warn-palette: map.get($color-config, "warn");
+
+  .price {
+    color: mat.get-color-from-palette($primary-palette);
+  }
+
+  .outOfStock {
+    color: mat.get-color-from-palette($warn-palette);
+  }
+}
+
+@mixin typography($articles-detail-theme) {
+  $typography-config: mat.get-typography-config($articles-detail-theme);
+
+  .outOfStock {
+    font-weight: mat.font-weight($typography-config, "body-2");
+  }
+}
+
+
+
+@mixin theme($articles-detail-theme) {
+  $color-config: mat.get-color-config($articles-detail-theme);
+  @if $color-config != null {
+    @include color($articles-detail-theme);
+  }
+
+  $typography-config: mat.get-typography-config($articles-detail-theme);
+  @if $typography-config != null {
+    @include typography($articles-detail-theme);
+  }
+}

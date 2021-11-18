@@ -9,6 +9,8 @@ export interface Article {
   description: string;
   price: number;
   quantity: number;
+  weight?: {weight: number; unit: string};
+  dimensions?: {length: number; width: number; height: number; unit: string; };
   Images?: Image[];
   Category?: Category;
 };
