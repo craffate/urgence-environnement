@@ -2,4 +2,4 @@
 
 html, body { height: 100%; }
 body { margin: 0 auto; }
-.content { width: 75%; max-width: 1080px; margin: 16px auto; }
+.content { width: 75%; height: 100%; max-width: 1080px; margin: 0 auto; }

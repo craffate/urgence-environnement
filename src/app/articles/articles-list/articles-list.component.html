@@ -1,6 +1,6 @@
-<main class="content" fxLayout="column">
+<main class="content">
   <div fxLayout="row wrap" fxLayoutAlign="space-evenly end" fxLayoutGap="16px">
-    <mat-card fxFlex="nogrow" *ngFor="let a of articles$ | async" [routerLink]="[a.id]">
+    <mat-card fxFlex="none" *ngFor="let a of articles$ | async" [routerLink]="[a.id]">
       <img *ngIf="a.Images" [src]="API + a.Images[0].path">
       <mat-card-header>
         <mat-card-title class="mat-title">{{ a.name }}</mat-card-title>
@@ -10,7 +10,7 @@
     </mat-card>
   </div>
   <mat-divider></mat-divider>
-  <div>
+  <div fxLayout="row">
     <a mat-mini-fab color="accent" [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
       [queryParams]="{ page: (pageIndex - 1) < 1 ? 1 : (pageIndex - 1)  }">
       <mat-icon>chevron_left</mat-icon>
