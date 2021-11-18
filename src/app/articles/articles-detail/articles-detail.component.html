@@ -28,7 +28,10 @@
           </li>
           <li *ngIf="(article.length || article.width || article.height) && article.dimensions_unit">
             <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
-            {{ article.length }} &times; {{ article.width }} &times; {{ article.height }} {{ article.dimensions_unit }}
+            <ng-container *ngIf="article.length">{{ article.length }}</ng-container>
+            <ng-container *ngIf="article.width"> &times; {{ article.width }}</ng-container>
+            <ng-container *ngIf="article.height"> &times; {{ article.height }}</ng-container>
+            <ng-container *ngIf="article.dimensions_unit"> {{ article.dimensions_unit }}</ng-container>
           </li>
         </ul>
       </div>
