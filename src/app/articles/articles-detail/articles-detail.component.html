@@ -2,7 +2,7 @@
   <div fxLayout="row wrap" fxLayoutAlign="center start" *ngIf="article$ | async as article">
     <div fxFlex="70" fxLayout="column" fxLayoutAlign="center start">
       <h1 class="mat-display-1">{{ article.name }}</h1>
-      <app-carousel [imagesUrl]="imagesUrl"></app-carousel>
+      <app-carousel [url]="API" [images]="article.Images"></app-carousel>
       <div>
         <h2>Description du produit</h2>
         <p class="article-description">{{ article.description }}</p>

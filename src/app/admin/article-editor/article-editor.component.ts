@@ -19,6 +19,7 @@ export class ArticleEditorComponent implements OnInit {
 
   @ViewChild(CarouselComponent) carousel!: CarouselComponent;
 
+  readonly API: string = environment.apiUrl + '/';
   formGroup: FormGroup;
   imagesUrl!: string[];
   images!: Image[];

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Image } from '@src/app/interfaces/image';
 
 @Component({
   selector: 'app-carousel',
@@ -6,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-
-  @Input() imagesUrl!: string[];
+  @Input() images!: Image[] | undefined;
+  @Input() url!: string;
   selectedImageIndex: number;
 
   constructor() {

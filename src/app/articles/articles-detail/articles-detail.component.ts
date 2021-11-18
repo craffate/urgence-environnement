@@ -19,14 +19,13 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ArticlesDetailComponent implements OnInit {
 
+  readonly API: string = environment.apiUrl + '/';
   article$!: Observable<Article>;
-  imagesUrl!: string[];
 
   constructor(
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private articlesService: ArticlesService,
-    private imageService: ImageService,
     private cartService: CartService
   ) { }
 
@@ -35,10 +34,6 @@ export class ArticlesDetailComponent implements OnInit {
     const httpParams = new HttpParams().append('articleId', id)
 
     this.article$ = this.articlesService.getArticle(id);
-    this.imageService.getImages(httpParams)
-    .subscribe((res) => {
-      this.imagesUrl = res.map((image) => `${environment.apiUrl}/${image.path}`);
-    });
   }
 
   addToCart(article: Article) {
