@@ -7,7 +7,7 @@ import { Image } from '@src/app/interfaces/image';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  @Input() images!: Image[] | undefined;
+  @Input() images!: Image[];
   @Input() url!: string;
   selectedImageIndex: number;
 
