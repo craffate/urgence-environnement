@@ -17,4 +17,5 @@ export interface Article {
   dimensions_unit: string;
   Images?: Image[];
   Category?: Category;
+  updated_at?: string;
 };

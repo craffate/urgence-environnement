@@ -33,6 +33,10 @@
             <ng-container *ngIf="article.height"> &times; {{ article.height }}</ng-container>
             <ng-container *ngIf="article.dimensions_unit"> {{ article.dimensions_unit }}</ng-container>
           </li>
+          <li *ngIf="article.updated_at">
+            <span class="mat-body-2">Date de dernière mise à jour&nbsp;</span>:&nbsp;
+            {{ article.updated_at | date: 'medium' }}
+          </li>
         </ul>
       </div>
     </div>
