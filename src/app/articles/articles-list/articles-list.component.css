@@ -1,18 +1,7 @@
-mat-card {
+app-article-card {
   width: 250px;
-  overflow: ellipsis;
-}
-
-img {
-  max-width: 100%;
 }
 
 mat-divider {
   margin: 32px 0;
-}
-
-mat-card > * {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

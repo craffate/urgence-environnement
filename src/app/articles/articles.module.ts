@@ -14,11 +14,13 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticlesDetailComponent } from './articles-detail/articles-detail.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @NgModule({
   declarations: [
     ArticlesListComponent,
-    ArticlesDetailComponent
+    ArticlesDetailComponent,
+    ArticleCardComponent
   ],
   imports: [
     CommonModule,
