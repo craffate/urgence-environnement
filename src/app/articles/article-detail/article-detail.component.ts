@@ -6,18 +6,16 @@ import { Observable } from 'rxjs';
 import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
-import { ImageService } from '@services/image.service';
 import { CartService } from '@services/cart.service';
 import { environment } from '@environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
-  selector: 'app-articles-detail',
-  templateUrl: './articles-detail.component.html',
-  styleUrls: ['./articles-detail.component.css']
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.css']
 })
-export class ArticlesDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit {
 
   readonly API: string = environment.apiUrl + '/';
   article$!: Observable<Article>;
@@ -31,7 +29,6 @@ export class ArticlesDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
-    const httpParams = new HttpParams().append('articleId', id)
 
     this.article$ = this.articlesService.getArticle(id);
   }
