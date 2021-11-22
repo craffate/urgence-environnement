@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '@environments/environment';
 import { ApiPaths } from '@src/api-paths';
-import { Article } from '@interfaces/article';
+import { Article, ArticlesWithCount } from '@interfaces/article';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class ArticlesService {
     private httpClient: HttpClient
   ) { }
 
-  getArticles(params?: HttpParams): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${environment.apiUrl}${ApiPaths.Articles}`, { params: params });
+  getArticles(params?: HttpParams): Observable<ArticlesWithCount> {
+    return this.httpClient.get<ArticlesWithCount>(`${environment.apiUrl}${ApiPaths.Articles}`, { params: params });
   }
 
   postArticle(article: Article): Observable<Article> {

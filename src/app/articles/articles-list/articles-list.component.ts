@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { environment } from '@environments/environment';
 import { Article } from '@interfaces/article';
@@ -16,7 +15,8 @@ import { HttpParams } from '@angular/common/http';
 export class ArticlesListComponent implements OnInit {
 
   readonly API: string = environment.apiUrl + '/';
-  articles$!: Observable<Article[]>;
+  articles!: Article[];
+  totalPages!: number;
   pageIndex!: number;
 
   constructor(
@@ -43,7 +43,10 @@ export class ArticlesListComponent implements OnInit {
       }
       httpParams = httpParams.append('page', this.pageIndex);
       httpParams = httpParams.append('count', 12);
-      this.articles$ = this.articlesService.getArticles(httpParams);
+      this.articlesService.getArticles(httpParams).subscribe((res) => {
+        this.articles = res.articles;
+        this.totalPages = res.totalPages;
+      });
     });
   }
 

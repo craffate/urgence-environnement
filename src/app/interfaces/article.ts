@@ -19,3 +19,8 @@ export interface Article {
   Category?: Category;
   updated_at?: string;
 };
+
+export interface ArticlesWithCount {
+  articles: Article[];
+  totalPages: number;
+}

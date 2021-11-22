@@ -1,16 +1,28 @@
 <main class="content">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="16px grid">
-      <app-article-card *ngFor="let a of articles$ | async" [article]="a"></app-article-card>
+      <app-article-card *ngFor="let a of articles" [article]="a"></app-article-card>
   </div>
   <mat-divider></mat-divider>
   <div fxLayout="row">
     <a mat-mini-fab color="accent" [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
-      [queryParams]="{ page: (pageIndex - 1) < 1 ? 1 : (pageIndex - 1)  }">
+      [queryParams]="{ page: (pageIndex - 1) < 1 ? 1 : (pageIndex - 1)  }"
+      [disabled]="(pageIndex - 1) < 1">
       <mat-icon>chevron_left</mat-icon>
     </a>
     <span fxFlex></span>
+    <div>
+      <a mat-button *ngIf="pageIndex - 1 > 0"
+      [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
+      [queryParams]="{ page: pageIndex - 1 }">{{ pageIndex - 1 }}</a>
+      <a mat-mini-fab color="primary">{{ pageIndex }}</a>
+      <a mat-button *ngIf="pageIndex + 1 <= totalPages"
+      [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
+      [queryParams]="{ page: pageIndex + 1 }">{{ pageIndex + 1 }}</a>
+    </div>
+    <span fxFlex></span>
     <a mat-mini-fab color="accent" [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
-      [queryParams]="{ page: pageIndex + 1 }">
+      [queryParams]="{ page: (pageIndex + 1) > totalPages ? totalPages : (pageIndex + 1)}"
+      [disabled]="(pageIndex + 1) > totalPages">
       <mat-icon>chevron_right</mat-icon>
     </a>
   </div>
