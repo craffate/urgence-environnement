@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { environment } from '@environments/environment';
 import { Article } from '@interfaces/article';
@@ -21,7 +21,8 @@ export class ArticlesListComponent implements OnInit {
 
   constructor(
     private articlesService: ArticlesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +49,10 @@ export class ArticlesListComponent implements OnInit {
         this.totalPages = res.totalPages;
       });
     });
+  }
+
+  search($event: string) {
+    this.router.navigate([ '/articles' ], { queryParamsHandling: 'merge', queryParams: { name: $event ? $event : undefined, page: 1 } });
   }
 
 }
