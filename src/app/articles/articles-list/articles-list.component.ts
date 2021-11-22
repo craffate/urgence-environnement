@@ -42,6 +42,7 @@ export class ArticlesListComponent implements OnInit {
         }
       }
       httpParams = httpParams.append('page', this.pageIndex);
+      httpParams = httpParams.append('count', 12);
       this.articles$ = this.articlesService.getArticles(httpParams);
     });
   }
