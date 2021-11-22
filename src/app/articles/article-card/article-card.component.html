@@ -1,5 +1,7 @@
 <mat-card [routerLink]="[article.id]">
-  <img *ngIf="article.Images" [src]="API + article.Images[0].path">
+  <div *ngIf="article.Images" class="image-container" fxLayout="column" fxLayoutAlign="center center">
+    <img [src]="API + article.Images[0].path">
+  </div>
   <mat-card-header>
     <mat-card-title>{{ article.name }}</mat-card-title>
     <mat-card-subtitle>{{ article.subtitle }}</mat-card-subtitle>

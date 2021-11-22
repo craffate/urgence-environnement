@@ -1,6 +1,6 @@
 <main class="content">
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly end" fxLayoutGap="16px">
-      <app-article-card fxFlex="none" *ngFor="let a of articles$ | async" [article]="a"></app-article-card>
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="16px grid">
+      <app-article-card *ngFor="let a of articles$ | async" [article]="a"></app-article-card>
   </div>
   <mat-divider></mat-divider>
   <div fxLayout="row">
