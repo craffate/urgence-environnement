@@ -1,0 +1,7 @@
+<mat-tab-group color="accent" backgroundColor="accent">
+  <mat-tab *ngFor="let cat of categories$ | async" [label]="cat.name">
+    <ng-template matTabContent>
+      <app-articles-table [categorySlug]="cat.slug"></app-articles-table>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
