@@ -22,3 +22,7 @@ tr.article-row:not(.expanded-row):active {
   overflow: hidden;
   display: flex;
 }
+
+mat-divider {
+  margin: 0 16px;
+}

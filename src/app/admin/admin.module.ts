@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -44,7 +45,8 @@ import { ArticleFormComponent } from './article-form/article-form.component';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule
   ]
 })
 export class AdminModule { }

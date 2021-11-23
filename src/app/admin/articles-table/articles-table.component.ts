@@ -6,6 +6,8 @@ import { Article } from '@interfaces/article';
 import { ArticlesService } from '@services/articles.service';
 import { HttpParams } from '@angular/common/http';
 
+import { environment } from '@environments/environment';
+
 @Component({
   selector: 'app-articles-table',
   templateUrl: './articles-table.component.html',
@@ -21,21 +23,7 @@ import { HttpParams } from '@angular/common/http';
 export class ArticlesTableComponent implements OnInit {
   @Input() categorySlug!: string;
 
-  readonly columnsName = [
-    'ID',
-    'SKU',
-    'Nom',
-    'Sous-titre',
-    'Prix',
-    'Quantité',
-    'Poids',
-    'Unité de poids',
-    'Longueur',
-    'Largeur',
-    'Hauteur',
-    'Unité de dimensions',
-    'Date de mise à jour'
-  ]
+  readonly API = environment.apiUrl + '/';
   readonly columnsToDisplay = [
     'id',
     'sku',
