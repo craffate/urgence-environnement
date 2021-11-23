@@ -17,7 +17,11 @@ export class ArticleFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.articleForm = new FormGroup({
+    this.articleForm = this.getArticleForm();
+  }
+
+  private getArticleForm(): FormGroup {
+    return new FormGroup({
       id: new FormControl({ value: this.article.id, disabled: true }, Validators.required),
       sku: new FormControl({ value: this.article.sku, disabled: true }),
       name: new FormControl(this.article.name, [Validators.required, Validators.minLength(3)]),
@@ -35,6 +39,11 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.articleForm.getRawValue());
+  }
+
+  onDefault(): void {
+    this.articleForm = this.getArticleForm();
   }
 
 }
