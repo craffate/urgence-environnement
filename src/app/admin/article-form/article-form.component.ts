@@ -22,6 +22,7 @@ export class ArticleFormComponent implements OnInit {
       sku: new FormControl({ value: this.article.sku, disabled: true }),
       name: new FormControl(this.article.name, [Validators.required, Validators.minLength(3)]),
       subtitle: new FormControl(this.article.subtitle),
+      description: new FormControl(this.article.description),
       price: new FormControl(this.article.price, [Validators.required, Validators.min(0.01)]),
       quantity: new FormControl(this.article.quantity, [Validators.required, Validators.min(0)]),
       weight: new FormControl(this.article.weight, Validators.min(0.01)),
