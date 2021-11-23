@@ -70,7 +70,10 @@
       <div class="article-detail" [@detailExpand]="article == expandedArticle ? 'expanded' : 'collapsed'">
         <app-article-form [article]="article"></app-article-form>
         <mat-divider vertical></mat-divider>
-        <app-carousel *ngIf="article.Images" [images]="article.Images" [url]="API"></app-carousel>
+        <div>
+          <app-carousel *ngIf="article.Images" [images]="article.Images" [url]="API"></app-carousel>
+          <app-image-form [articleId]="article.id"></app-image-form>
+        </div>
       </div>
     </td>
   </ng-container>

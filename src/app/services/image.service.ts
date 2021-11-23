@@ -18,8 +18,11 @@ export class ImageService {
     return this.httpClient.get<Image[]>(`${environment.apiUrl}${ApiPaths.Images}`, { params: params });
   }
 
-  postImage(image: FormData): Observable<Image> {
-    return this.httpClient.post<Image>(`${environment.apiUrl}${ApiPaths.Images}`, image);
+  postImages(images: FormData): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Images}`, images, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
   getImage(imageId: number): Observable<Image> {

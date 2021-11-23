@@ -1,0 +1,7 @@
+<div fxLayout="column">
+  <input #fileInput hidden (change)="fileChosen($event)" type="file" multiple>
+  <button mat-stroked-button type="button" color="primary" (click)="fileInput.click()">
+    <mat-icon>collections</mat-icon>IMPORTER
+  </button>
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+</div>

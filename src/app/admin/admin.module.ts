@@ -16,12 +16,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticlesTableComponent } from './articles-table/articles-table.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
+import { ImageFormComponent } from './image-form/image-form.component';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { ArticleFormComponent } from './article-form/article-form.component';
     DashboardComponent,
     ArticlesComponent,
     ArticlesTableComponent,
-    ArticleFormComponent
+    ArticleFormComponent,
+    ImageFormComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,9 @@ import { ArticleFormComponent } from './article-form/article-form.component';
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule,
+    MatProgressBarModule
   ]
 })
 export class AdminModule { }
