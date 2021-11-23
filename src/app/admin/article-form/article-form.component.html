@@ -1,0 +1,76 @@
+<form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>ID</mat-label>
+    <input matInput type="number" formControlName="id" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>SKU</mat-label>
+    <input matInput type="text" formControlName="sku" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input matInput type="text" formControlName="name" required>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Sous-titre</mat-label>
+    <input matInput type="text" formControlName="subtitle">
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Prix</mat-label>
+    <input matInput type="number" step="0.01" formControlName="price" placeholder="0.01" required>
+    <span matSuffix>&euro;</span>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Quantité</mat-label>
+    <input matInput type="number" step="1" formControlName="quantity" required>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Poids</mat-label>
+    <input matInput type="number" step="1" formControlName="weight">
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Unité de masse</mat-label>
+    <mat-select formControlName="weight_unit">
+      <mat-option value="t">Tonne (t)</mat-option>
+      <mat-option value="kg">Kilogramme (kg)</mat-option>
+      <mat-option value="g">Gramme (g)</mat-option>
+      <mat-option value="mg">Milligramme (mg)</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Longueur</mat-label>
+    <input matInput type="number" step="0.01" formControlName="length">
+  </mat-form-field>
+    
+  <mat-form-field appearance="outline">
+    <mat-label>Largeur</mat-label>
+    <input matInput type="number" step="0.01" formControlName="width">
+  </mat-form-field>
+    
+  <mat-form-field appearance="outline">
+    <mat-label>Hauteur</mat-label>
+    <input matInput type="number" step="0.01" formControlName="height">
+  </mat-form-field>
+    
+  <mat-form-field appearance="outline">
+    <mat-label>Unité de mesure</mat-label>
+    <mat-select formControlName="dimensions_unit">
+      <mat-option value="m">Mètre (m)</mat-option>
+      <mat-option value="dm">Décimètre (dm)</mat-option>
+      <mat-option value="cm">Centimètre (cm)</mat-option>
+      <mat-option value="mm">Milimètre (mm)</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-stroked-button type="submit" color="primary">
+    <mat-icon>done</mat-icon>VALIDER
+  </button>
+</form>
