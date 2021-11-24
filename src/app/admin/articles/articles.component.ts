@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { Category } from '@interfaces/category';
 import { CategoryService } from '@services/category.service';
 
@@ -12,15 +10,17 @@ import { CategoryService } from '@services/category.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  categories$: Observable<Category[]>;
+  categories: Category[];
 
   constructor(
     private categoryService: CategoryService
   ) {
-    this.categories$ = this.categoryService.getCategories();
+    this.categories = [];
   }
 
   ngOnInit(): void {
+    this.categoryService.getCategories()
+    .subscribe(categories => this.categories = categories);
   }
 
 }
