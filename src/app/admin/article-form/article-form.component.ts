@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Article } from '@src/app/interfaces/article';
+import { ArticlesService } from '@src/app/services/articles.service';
 
 @Component({
   selector: 'app-article-form',
@@ -14,7 +15,9 @@ export class ArticleFormComponent implements OnInit {
 
   articleForm!: FormGroup;
 
-  constructor() { }
+  constructor(
+    private articlesService: ArticlesService
+  ) { }
 
   ngOnInit(): void {
     this.articleForm = this.getArticleForm();
@@ -39,7 +42,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.articleForm.getRawValue());
+    this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
   }
 
   onDefault(): void {
