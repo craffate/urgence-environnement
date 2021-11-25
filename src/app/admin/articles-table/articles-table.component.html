@@ -67,10 +67,10 @@
 
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let article" [attr.colspan]="columnsToDisplay.length">
-      <div class="article-detail" [@detailExpand]="article == expandedArticle ? 'expanded' : 'collapsed'">
-        <app-article-form [article]="article"></app-article-form>
+      <div fxLayout="row wrap" fxLayoutAlign="center center" class="article-detail" [@detailExpand]="article == expandedArticle ? 'expanded' : 'collapsed'">
+        <app-article-form fxFlex [article]="article"></app-article-form>
         <mat-divider vertical></mat-divider>
-        <div>
+        <div fxFlex>
           <app-carousel *ngIf="article.Images" [images]="article.Images" [url]="API"></app-carousel>
           <app-image-form [articleId]="article.id"></app-image-form>
         </div>
