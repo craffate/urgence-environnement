@@ -14,10 +14,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AuthService } from './services/auth.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
-import { AdminGuard } from './guards/admin.guard';
 import { HomeComponent } from './components/home/home.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -49,8 +47,6 @@ registerLocaleData(localeFr, 'fr');
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    AuthService,
-    AdminGuard,
   ]
 })
 export class AppModule { }
