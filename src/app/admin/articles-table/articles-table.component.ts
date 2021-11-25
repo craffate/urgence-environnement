@@ -53,6 +53,7 @@ export class ArticlesTableComponent implements OnInit {
     let httpParams = new HttpParams();
 
     httpParams = httpParams.append('category', this.categorySlug);
+    httpParams = httpParams.append('count', 0);
     httpParams = httpParams.append('quantity', -1);
     this.articlesService.getArticles(httpParams).subscribe((res) => {
       this.articles = res.articles;
