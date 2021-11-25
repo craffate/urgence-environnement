@@ -36,7 +36,7 @@ export class ArticlesTableComponent implements OnInit {
     'length',
     'width',
     'height',
-    'dimension_unit',
+    'dimensions_unit',
     'updated_at'
   ]
 
