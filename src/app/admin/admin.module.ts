@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -22,7 +22,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { ArticlesTableComponent } from './articles-table/articles-table.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { ImageFormComponent } from './image-form/image-form.component';
 
@@ -31,7 +30,6 @@ import { ImageFormComponent } from './image-form/image-form.component';
   declarations: [
     DashboardComponent,
     ArticlesComponent,
-    ArticlesTableComponent,
     ArticleFormComponent,
     ImageFormComponent
   ],
