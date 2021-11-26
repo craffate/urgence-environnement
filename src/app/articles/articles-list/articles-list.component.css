@@ -1,5 +1,14 @@
+.articles-list {
+  margin: 24px auto;
+}
+
+.bottom-nav {
+  min-width: 100%;
+}
+
 app-article-card {
   width: 250px;
+  margin: 8px;
 }
 
 mat-divider {
