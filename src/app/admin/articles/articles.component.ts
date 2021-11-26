@@ -9,6 +9,7 @@ import { Article } from '@interfaces/article';
 import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '@src/environments/environment';
+import { Image } from '@src/app/interfaces/image';
 
 @Component({
   selector: 'app-articles',
@@ -27,6 +28,8 @@ export class ArticlesComponent implements OnInit {
   categories: Category[];
   articles: Article[];
   expandedArticle!: Article | null;
+
+  selectedImage!: Image;
 
   readonly API = environment.apiUrl + '/';
   readonly columnsToDisplay = [
@@ -61,6 +64,10 @@ export class ArticlesComponent implements OnInit {
       .subscribe(res => this.articles = res);
     this.categoryService.getCategories()
       .subscribe(categories => this.categories = categories);
+  }
+
+  storeSelectedImage(image: Image) {
+    this.selectedImage = image;
   }
 
 }

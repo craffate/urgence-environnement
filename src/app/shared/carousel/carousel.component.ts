@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Image } from '@src/app/interfaces/image';
 
 @Component({
@@ -9,13 +9,21 @@ import { Image } from '@src/app/interfaces/image';
 export class CarouselComponent implements OnInit {
   @Input() images!: Image[];
   @Input() url!: string;
-  selectedImageIndex: number;
+  @Output() selectedImageEvent: EventEmitter<Image>;
+  selectedImage!: Image;
 
   constructor() {
-    this.selectedImageIndex = 0;
+    this.selectedImageEvent = new EventEmitter<Image>();
   }
 
   ngOnInit(): void {
+    this.selectedImage = this.images[0];
+    this.selectedImageEvent.emit(this.selectedImage);
+  }
+
+  onImageClick(image: Image) {
+    this.selectedImage = image;
+    this.selectedImageEvent.emit(this.selectedImage);
   }
 
 }

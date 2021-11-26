@@ -1,8 +1,8 @@
 <div class="carousel" fxLayout="row" fxLayoutAlign="center start">
   <div class="carousel-picker">
-    <img *ngFor="let img of images ; let i = index" [src]="url + img.path" (click)="selectedImageIndex = i">
+    <img *ngFor="let img of images" [src]="url + img.path" (click)="onImageClick(img)">
   </div>
   <div class="carousel-selected-image">
-    <img [src]="url + images[selectedImageIndex].path">
+    <img [src]="url + selectedImage.path">
   </div>
 </div>
