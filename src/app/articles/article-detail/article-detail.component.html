@@ -57,7 +57,7 @@
           </div>
 
         </mat-card-content>
-        <mat-card-actions align="end">
+        <mat-card-actions>
           <ng-container [ngTemplateOutlet]='!isInCart(article) ? addToCartButton : removeFromCartButton'
             [ngTemplateOutletContext]='{ article: article }'>
           </ng-container>
@@ -69,13 +69,13 @@
 
 
 <ng-template #addToCartButton let-article='article'>
-  <button mat-raised-button (click)="addToCart(article)" [disabled]="article.quantity < 1" color="accent" type="button">
+  <button mat-flat-button (click)="addToCart(article)" [disabled]="article.quantity < 1" color="accent" type="button">
     <mat-icon>add_shopping_cart</mat-icon>
     AJOUTER AU PANIER
   </button>
 </ng-template>
 <ng-template #removeFromCartButton let-article="article">
-  <button mat-raised-button (click)="removeFromCart(article)" color="warn" type="button">
+  <button mat-flat-button (click)="removeFromCart(article)" color="warn" type="button">
     <mat-icon>remove_shopping_cart</mat-icon>
     SUPPRIMER DU PANIER
   </button>
