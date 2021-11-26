@@ -1,86 +1,78 @@
-<main class="content">
-  <div fxLayout="row wrap" fxLayoutAlign="center start" *ngIf="article$ | async as article">
-    <div fxFlex="70">
-      <h1 class="mat-display-1">{{ article.name }}</h1>
-      <app-carousel *ngIf="article.Images" [url]="API" [images]="article.Images"></app-carousel>
-      <div>
-        <h2>Description du produit</h2>
-        <p class="article-description">{{ article.description }}</p>
-      </div>
-      <div>
-        <h2>Détails du produit</h2>
-        <ul>
-          <li *ngIf="article.id">
-            <span class="mat-body-2">ID&nbsp;</span>:&nbsp;
-            {{ article.id }}
-          </li>
-          <li>
-            <span class="mat-body-2">SKU&nbsp;</span>:&nbsp;
-            {{ article.sku }}
-          </li>
-          <li>
-            <span class="mat-body-2">Quantité&nbsp;</span>:&nbsp;
-            {{ article.quantity }}
-          </li>
-          <li *ngIf="article.weight && article.weight_unit">
-            <span class="mat-body-2">Poids&nbsp;</span>:&nbsp;
-            {{ article.weight }} {{ article.weight_unit }}
-          </li>
-          <li *ngIf="(article.length || article.width || article.height) && article.dimensions_unit">
-            <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
-            <ng-container *ngIf="article.length">{{ article.length }}</ng-container>
-            <ng-container *ngIf="article.width"> &times; {{ article.width }}</ng-container>
-            <ng-container *ngIf="article.height"> &times; {{ article.height }}</ng-container>
-            <ng-container *ngIf="article.dimensions_unit"> {{ article.dimensions_unit }}</ng-container>
-          </li>
-          <li *ngIf="article.updated_at">
-            <span class="mat-body-2">Date de dernière mise à jour&nbsp;</span>:&nbsp;
-            {{ article.updated_at | date: 'medium' }}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div fxFlex>
-      <mat-card>
-        <mat-card-title class="price">{{ article.price | currency }}</mat-card-title>
-        <mat-card-subtitle *ngIf="article.quantity > 0; else outOfStock">En stock.</mat-card-subtitle>
-        <mat-card-content>
-          <div>
-            <p>
-              À venir chercher sur place.<br>
-              Pour plus d'informations sur la livraison, veuillez nous contacter au préalable.
-            </p>
-            <p>
-              <mat-icon>payment</mat-icon>
-              Transaction sécurisée via PayPal.
-            </p>
-          </div>
-
-        </mat-card-content>
-        <mat-card-actions>
-          <ng-container [ngTemplateOutlet]='!isInCart(article) ? addToCartButton : removeFromCartButton'
-            [ngTemplateOutletContext]='{ article: article }'>
-          </ng-container>
-        </mat-card-actions>
-      </mat-card>
+<div class="article-detail" *ngIf="article$ | async as article">
+  <h1>{{ article.name }}</h1>
+  <mat-divider></mat-divider>
+  <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+    <app-carousel fxFlex *ngIf="article.Images" [url]="API" [images]="article.Images"></app-carousel>
+    <div>
+      <h2>{{ article.price | currency }}</h2>
+      <h3 *ngIf="article.quantity > 0; else outOfStock">En stock.</h3>
+      <p>
+        À venir chercher sur place.<br>
+        Pour plus d'informations sur la livraison, veuillez nous contacter au préalable.
+      </p>
+      <p>
+        <mat-icon>payment</mat-icon>
+        Transaction sécurisée via PayPal.
+      </p>
+      <ng-container [ngTemplateOutlet]='!isInCart(article) ? addToCartButton : removeFromCartButton'
+        [ngTemplateOutletContext]='{ article: article }'>
+      </ng-container>
     </div>
   </div>
-</main>
+  <mat-divider></mat-divider>
+  <div class="article-description">
+    <h2>Description du produit</h2>
+    <p>{{ article.description }}</p>
+  </div>
+  <div>
+    <h2>Détails du produit</h2>
+    <ul>
+      <li *ngIf="article.id">
+        <span class="mat-body-2">ID&nbsp;</span>:&nbsp;
+        {{ article.id }}
+      </li>
+      <li>
+        <span class="mat-body-2">SKU&nbsp;</span>:&nbsp;
+        {{ article.sku }}
+      </li>
+      <li>
+        <span class="mat-body-2">Quantité&nbsp;</span>:&nbsp;
+        {{ article.quantity }}
+      </li>
+      <li *ngIf="article.weight && article.weight_unit">
+        <span class="mat-body-2">Poids&nbsp;</span>:&nbsp;
+        {{ article.weight }} {{ article.weight_unit }}
+      </li>
+      <li *ngIf="(article.length || article.width || article.height) && article.dimensions_unit">
+        <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
+        <ng-container *ngIf="article.length">{{ article.length }}</ng-container>
+        <ng-container *ngIf="article.width"> &times; {{ article.width }}</ng-container>
+        <ng-container *ngIf="article.height"> &times; {{ article.height }}</ng-container>
+        <ng-container *ngIf="article.dimensions_unit"> {{ article.dimensions_unit }}</ng-container>
+      </li>
+      <li *ngIf="article.updated_at">
+        <span class="mat-body-2">Date de dernière mise à jour&nbsp;</span>:&nbsp;
+        {{ article.updated_at | date: 'medium' }}
+      </li>
+    </ul>
+  </div>
+</div>
 
 
 <ng-template #addToCartButton let-article='article'>
-  <button mat-flat-button (click)="addToCart(article)" [disabled]="article.quantity < 1" color="accent" type="button">
+  <button mat-stroked-button (click)="addToCart(article)" [disabled]="article.quantity < 1" color="accent"
+    type="button">
     <mat-icon>add_shopping_cart</mat-icon>
     AJOUTER AU PANIER
   </button>
 </ng-template>
 <ng-template #removeFromCartButton let-article="article">
-  <button mat-flat-button (click)="removeFromCart(article)" color="warn" type="button">
+  <button mat-stroked-button (click)="removeFromCart(article)" color="warn" type="button">
     <mat-icon>remove_shopping_cart</mat-icon>
     SUPPRIMER DU PANIER
   </button>
 </ng-template>
 
 <ng-template #outOfStock>
-  <mat-card-subtitle class="outOfStock">Article indisponible.</mat-card-subtitle>
+  <h3 class="outOfStock">Article indisponible.</h3>
 </ng-template>
