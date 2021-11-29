@@ -89,7 +89,7 @@
   <app-article-form fxFlex [article]="article"></app-article-form>
   <mat-divider vertical></mat-divider>
   <div fxFlex>
-    <app-carousel [images]="article.Images" [url]="API" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
+    <app-carousel *ngIf="article.Images && article.Images.length > 0" [images]="article.Images" [url]="API" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
     <app-image-form [articleId]="article.id"></app-image-form>
   </div>
 </ng-template>

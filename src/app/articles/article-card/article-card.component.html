@@ -1,7 +1,8 @@
 <mat-card [routerLink]="[article.id]">
-  <div *ngIf="article.Images" class="image-container" fxLayout="column" fxLayoutAlign="center center">
-    <img [src]="API + article.Images[0].path">
+  <div class="image-container" fxLayout="column" fxLayoutAlign="center center">
+    <img *ngIf="article.Images && article.Images.length > 0; else noImages" [src]="API + article.Images[0].path">
   </div>
+
   <mat-card-header>
     <mat-card-title>{{ article.name }}</mat-card-title>
     <mat-card-subtitle>{{ article.subtitle }}</mat-card-subtitle>
@@ -12,3 +13,9 @@
     </p>
   </mat-card-content>
 </mat-card>
+
+<ng-template #noImages>
+  <div class="image-container" fxLayout="column" fxLayoutAlign="center center">
+    <h3>Aperçu indisponible.</h3>
+  </div>
+</ng-template>
