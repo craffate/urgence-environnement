@@ -41,13 +41,13 @@
       </li>
       <li *ngIf="article.weight && article.weight_unit">
         <span class="mat-body-2">Poids&nbsp;</span>:&nbsp;
-        {{ article.weight }} {{ article.weight_unit }}
+        {{ article.weight | number }} {{ article.weight_unit }}
       </li>
       <li *ngIf="(article.length || article.width || article.height) && article.dimensions_unit">
         <span class="mat-body-2">Dimensions&nbsp;</span>:&nbsp;
-        <ng-container *ngIf="article.length">{{ article.length }}</ng-container>
-        <ng-container *ngIf="article.width"> &times; {{ article.width }}</ng-container>
-        <ng-container *ngIf="article.height"> &times; {{ article.height }}</ng-container>
+        <ng-container *ngIf="article.length">{{ article.length | number }}</ng-container>
+        <ng-container *ngIf="article.width"> &times; {{ article.width | number }}</ng-container>
+        <ng-container *ngIf="article.height"> &times; {{ article.height | number }}</ng-container>
         <ng-container *ngIf="article.dimensions_unit"> {{ article.dimensions_unit }}</ng-container>
       </li>
       <li *ngIf="article.updated_at">
