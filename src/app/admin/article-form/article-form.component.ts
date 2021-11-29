@@ -17,6 +17,8 @@ export class ArticleFormComponent implements OnInit {
 
   categories: Category[] = [];
 
+  isNew: boolean = false;
+
   articleForm!: FormGroup;
 
   constructor(
@@ -27,7 +29,8 @@ export class ArticleFormComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(res => this.categories = res);
     if (!this.article) {
-      this.article = <Article>{ Category: this.categories[0] };
+      this.isNew = true;
+      this.article = <Article>{};
     }
     this.articleForm = this.getArticleForm();
   }
@@ -38,7 +41,7 @@ export class ArticleFormComponent implements OnInit {
       sku: new FormControl({ value: this.article.sku, disabled: true }),
       name: new FormControl(this.article.name, [Validators.required, Validators.minLength(3)]),
       subtitle: new FormControl(this.article.subtitle),
-      description: new FormControl(this.article.description),
+      description: new FormControl(this.article.description, [Validators.required, Validators.minLength(3)]),
       price: new FormControl(this.article.price, [Validators.required, Validators.min(0.01)]),
       quantity: new FormControl(this.article.quantity, [Validators.required, Validators.min(0)]),
       weight: new FormControl(this.article.weight, Validators.min(0.01)),
@@ -52,15 +55,23 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
+    if (this.isNew === false) {
+      this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
+    } else {
+      this.articlesService.postArticle(this.articleForm.value).subscribe();
+    }
   }
 
   onDefault(): void {
     this.articleForm = this.getArticleForm();
   }
 
-  compareCategory(o1: Category, o2: Category): boolean {
-    return (o1.id === o2.id);
+  compareCategory(o1?: Category, o2?: Category): boolean {
+    if (o1 && o2) {
+      return (o1.id === o2.id);
+    } else {
+      return false;
+    }
   }
 
 }
