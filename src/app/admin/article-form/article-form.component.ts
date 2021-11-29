@@ -20,6 +20,9 @@ export class ArticleFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.article) {
+      this.article = <Article>{};
+    }
     this.articleForm = this.getArticleForm();
   }
 
