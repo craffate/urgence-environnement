@@ -4,7 +4,7 @@
       <mat-label>ID</mat-label>
       <input matInput type="number" formControlName="id" required>
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
       <mat-label>SKU</mat-label>
       <input matInput type="text" formControlName="sku" required>
@@ -16,35 +16,44 @@
       <mat-label>Nom</mat-label>
       <input matInput type="text" formControlName="name" required>
     </mat-form-field>
-    
+
     <mat-form-field appearance="outline">
       <mat-label>Sous-titre</mat-label>
       <input matInput type="text" formControlName="subtitle">
     </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Catégorie</mat-label>
+      <mat-select [compareWith]="compareCategory" formControlName="Category" required>
+        <mat-option *ngFor="let cat of categories" [value]="cat">
+          {{ cat.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  
+
   <mat-form-field appearance="outline" fxFill>
     <mat-label>Description</mat-label>
     <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
-  
+
   <mat-form-field appearance="outline">
     <mat-label>Prix</mat-label>
     <input matInput type="number" step="0.01" formControlName="price" placeholder="0.01" required>
     <span matSuffix>&euro;</span>
   </mat-form-field>
-  
+
   <mat-form-field appearance="outline">
     <mat-label>Quantité</mat-label>
     <input matInput type="number" step="1" formControlName="quantity" required>
   </mat-form-field>
-  
+
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Poids</mat-label>
       <input matInput type="number" step="1" formControlName="weight">
     </mat-form-field>
-    
+
     <mat-form-field appearance="outline">
       <mat-label>Unité de masse</mat-label>
       <mat-select formControlName="weight_unit">
@@ -55,23 +64,23 @@
       </mat-select>
     </mat-form-field>
   </div>
-  
+
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Longueur</mat-label>
       <input matInput type="number" step="0.01" formControlName="length">
     </mat-form-field>
-      
+
     <mat-form-field appearance="outline">
       <mat-label>Largeur</mat-label>
       <input matInput type="number" step="0.01" formControlName="width">
     </mat-form-field>
-      
+
     <mat-form-field appearance="outline">
       <mat-label>Hauteur</mat-label>
       <input matInput type="number" step="0.01" formControlName="height">
     </mat-form-field>
-      
+
     <mat-form-field appearance="outline">
       <mat-label>Unité de mesure</mat-label>
       <mat-select formControlName="dimensions_unit">
@@ -87,7 +96,7 @@
     <button mat-stroked-button type="submit" color="primary" [disabled]="!articleForm.valid">
       <mat-icon>done</mat-icon>VALIDER
     </button>
-  
+
     <button mat-stroked-button type="button" color="accent" (click)="onDefault()">
       <mat-icon>restart_alt</mat-icon>RÉINITIALISER
     </button>
