@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Article } from '@interfaces/article';
 import { Category } from '@interfaces/category';
 import { ArticlesService } from '@services/articles.service';
-import { CategoryService } from '@services/category.service';
 
 @Component({
   selector: 'app-article-form',
@@ -14,8 +13,7 @@ import { CategoryService } from '@services/category.service';
 export class ArticleFormComponent implements OnInit {
 
   @Input() article?: Article;
-
-  categories: Category[] = [];
+  @Input() categories: Category[] = [];
 
   articleForm: FormGroup = new FormGroup({
     id: new FormControl({ value: null, disabled: true }, Validators.required),
@@ -35,12 +33,10 @@ export class ArticleFormComponent implements OnInit {
   });
 
   constructor(
-    private articlesService: ArticlesService,
-    private categoryService: CategoryService
+    private articlesService: ArticlesService
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(res => this.categories = res);
     this.patchDefaultValues();
   }
 

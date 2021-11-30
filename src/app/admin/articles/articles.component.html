@@ -108,8 +108,7 @@
 </div>
 
 <ng-template #expandedDetail let-article>
-  <app-article-form fxFlex [article]="article"></app-article-form>
-  <mat-divider vertical></mat-divider>
+  <app-article-form fxFlex [article]="article" [categories]="categories"></app-article-form>
   <div fxFlex>
     <app-carousel [images]="article.Images" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
     <app-image-form [articleId]="article.id"></app-image-form>

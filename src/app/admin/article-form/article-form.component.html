@@ -22,7 +22,7 @@
       <input matInput type="text" formControlName="subtitle">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field *ngIf="categories && categories.length > 0" appearance="outline">
       <mat-label>Catégorie</mat-label>
       <mat-select [compareWith]="compareCategory" formControlName="Category" required>
         <mat-option *ngFor="let cat of categories" [value]="cat">
