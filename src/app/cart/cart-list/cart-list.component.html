@@ -2,7 +2,7 @@
   <div fxFlex>
     <mat-list>
       <mat-list-item *ngFor="let a of getArticles() | async">
-        <img mat-list-avatar [src]="API + a.Images![0].path">
+        <img *ngIf="a.Images && a.Images.length > 0" mat-list-avatar [src]="API + a.Images[0].path">
         <h3 mat-line>{{ a.name }}</h3>
         <p mat-line>{{ a.sku }}</p>
         <p mat-line>{{ a.price | currency }}</p>
