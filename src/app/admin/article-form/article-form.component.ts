@@ -13,13 +13,26 @@ import { CategoryService } from '@services/category.service';
 })
 export class ArticleFormComponent implements OnInit {
 
-  @Input() article!: Article;
+  @Input() article?: Article;
 
   categories: Category[] = [];
 
-  isNew: boolean = false;
-
-  articleForm!: FormGroup;
+  articleForm: FormGroup = new FormGroup({
+    id: new FormControl({ value: null, disabled: true }, Validators.required),
+    sku: new FormControl({ value: null, disabled: true }),
+    name: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    subtitle: new FormControl(null),
+    description: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    price: new FormControl(null, [Validators.required, Validators.min(0.01)]),
+    quantity: new FormControl(null, [Validators.required, Validators.min(0)]),
+    weight: new FormControl(null, Validators.min(0.01)),
+    weight_unit: new FormControl(null),
+    length: new FormControl(null, Validators.min(0.01)),
+    width: new FormControl(null, Validators.min(0.01)),
+    height: new FormControl(null, Validators.min(0.01)),
+    dimensions_unit: new FormControl(null),
+    Category: new FormControl(null, Validators.required)
+  });
 
   constructor(
     private articlesService: ArticlesService,
@@ -28,34 +41,17 @@ export class ArticleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(res => this.categories = res);
-    if (!this.article) {
-      this.isNew = true;
-      this.article = <Article>{};
-    }
-    this.articleForm = this.getArticleForm();
+    this.patchDefaultValues();
   }
 
-  private getArticleForm(): FormGroup {
-    return new FormGroup({
-      id: new FormControl({ value: this.article.id, disabled: true }, Validators.required),
-      sku: new FormControl({ value: this.article.sku, disabled: true }),
-      name: new FormControl(this.article.name, [Validators.required, Validators.minLength(3)]),
-      subtitle: new FormControl(this.article.subtitle),
-      description: new FormControl(this.article.description, [Validators.required, Validators.minLength(3)]),
-      price: new FormControl(this.article.price, [Validators.required, Validators.min(0.01)]),
-      quantity: new FormControl(this.article.quantity, [Validators.required, Validators.min(0)]),
-      weight: new FormControl(this.article.weight, Validators.min(0.01)),
-      weight_unit: new FormControl(this.article.weight_unit),
-      length: new FormControl(this.article.length, Validators.min(0.01)),
-      width: new FormControl(this.article.width, Validators.min(0.01)),
-      height: new FormControl(this.article.height, Validators.min(0.01)),
-      dimensions_unit: new FormControl(this.article.dimensions_unit),
-      Category: new FormControl(this.article.Category, Validators.required)
-    });
+  private patchDefaultValues(): void {
+    if (this.article) {
+      this.articleForm.patchValue(this.article);
+    }
   }
 
   onSubmit(): void {
-    if (this.isNew === false) {
+    if (this.article) {
       this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
     } else {
       this.articlesService.postArticle(this.articleForm.value).subscribe();
@@ -63,7 +59,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onDefault(): void {
-    this.articleForm = this.getArticleForm();
+    this.patchDefaultValues();
   }
 
   compareCategory(o1?: Category, o2?: Category): boolean {
