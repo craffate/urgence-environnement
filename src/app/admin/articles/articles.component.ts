@@ -7,7 +7,6 @@ import { CategoryService } from '@services/category.service';
 import { ArticlesService } from '@services/articles.service';
 import { Article } from '@interfaces/article';
 import { HttpParams } from '@angular/common/http';
-import { environment } from '@src/environments/environment';
 import { Image } from '@src/app/interfaces/image';
 
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,7 +33,6 @@ export class ArticlesComponent implements OnInit {
   totalPages!: number;
 
 
-  readonly API = environment.apiUrl + '/';
   readonly columnsToDisplay = [
     'id',
     'sku',

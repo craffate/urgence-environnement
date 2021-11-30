@@ -1,8 +1,14 @@
-<div class="carousel" fxLayout="row" fxLayoutAlign="center start">
-  <div class="carousel-picker">
-    <img *ngFor="let img of images" [src]="url + img.path" (click)="onImageClick(img)">
-  </div>
-  <div class="carousel-selected-image">
-    <img [src]="url + selectedImage.path">
-  </div>
+<div class="carousel" fxLayout="row" fxLayoutAlign="start center">
+  <ng-container *ngIf="images && images.length > 0; else noImage">
+    <div class="carousel-picker">
+      <img *ngFor="let img of images" [src]="API + img.path" (click)="onImageClick(img)">
+    </div>
+    <div class="carousel-selected-image">
+      <img *ngIf="selectedImage" [src]="API + selectedImage.path">
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #noImage>
+  <h1>Aucune image n'est disponible</h1>
+</ng-template>

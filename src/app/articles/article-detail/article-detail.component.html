@@ -2,7 +2,7 @@
   <h1>{{ article.name }}</h1>
   <mat-divider></mat-divider>
   <div fxLayout="row wrap" fxLayoutAlign="start stretch">
-    <app-carousel fxFlex *ngIf="article.Images && article.Images.length > 0" [url]="API" [images]="article.Images"></app-carousel>
+    <app-carousel fxFlex [images]="article.Images"></app-carousel>
     <div>
       <h2>{{ article.price | currency }}</h2>
       <h3 *ngIf="article.quantity > 0; else outOfStock">En stock.</h3>

@@ -7,7 +7,6 @@ import { Article } from '@interfaces/article';
 
 import { ArticlesService } from '@services/articles.service';
 import { CartService } from '@services/cart.service';
-import { environment } from '@environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,7 +16,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ArticleDetailComponent implements OnInit {
 
-  readonly API: string = environment.apiUrl + '/';
   article$!: Observable<Article>;
 
   constructor(
