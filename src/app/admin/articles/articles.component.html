@@ -1,4 +1,4 @@
-<table mat-table multiTemplateDataRows [dataSource]="articles">
+<table mat-table multiTemplateDataRows [dataSource]="dataSource">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let article"> {{ article.id }} </td>
@@ -31,7 +31,7 @@
 
   <ng-container matColumnDef="weight">
     <th mat-header-cell *matHeaderCellDef> Poids </th>
-    <td mat-cell *matCellDef="let article"> {{ article.weight }} </td>
+    <td mat-cell *matCellDef="let article"> {{ article.weight | number }} </td>
   </ng-container>
 
   <ng-container matColumnDef="weight_unit">
@@ -42,17 +42,17 @@
 
   <ng-container matColumnDef="length">
     <th mat-header-cell *matHeaderCellDef> Longueur </th>
-    <td mat-cell *matCellDef="let article"> {{ article.length }} </td>
+    <td mat-cell *matCellDef="let article"> {{ article.length | number }} </td>
   </ng-container>
 
   <ng-container matColumnDef="width">
     <th mat-header-cell *matHeaderCellDef> Largeur </th>
-    <td mat-cell *matCellDef="let article"> {{ article.width }} </td>
+    <td mat-cell *matCellDef="let article"> {{ article.width | number }} </td>
   </ng-container>
 
   <ng-container matColumnDef="height">
     <th mat-header-cell *matHeaderCellDef> Hauteur </th>
-    <td mat-cell *matCellDef="let article"> {{ article.height }} </td>
+    <td mat-cell *matCellDef="let article"> {{ article.height | number }} </td>
   </ng-container>
 
   <ng-container matColumnDef="dimensions_unit">
@@ -77,19 +77,42 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
   <tr mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article-row"
     [class.expanded-row]="expandedArticle === article"
     (click)="expandedArticle = expandedArticle === article ? null : article">
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 </table>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-flat-button color="primary" [disabled]="(pageIndex - 1) < 1"
+    (click)="pageIndex = pageIndex - 1;fetchPage(pageIndex)">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <!-- Might be implemented later
+
+  <mat-form-field appearance="outline" fxFill>
+    <mat-label>Page</mat-label>
+    <input matInput type="number" step="1" [(ngModel)]="pageIndex" (ngModelChange)="fetchPage(pageIndex)">
+    <mat-hint>La page se rafraîchira à chaque changement</mat-hint>
+    <span matSuffix>/ {{ totalPages }}</span>
+  </mat-form-field>
+  -->
+  <div>
+    <pre>{{ pageIndex }} / {{ totalPages }}</pre>
+  </div>
+  <button mat-flat-button color="primary" [disabled]="(pageIndex + 1) > totalPages"
+    (click)="pageIndex = pageIndex + 1;fetchPage(pageIndex)">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>
 
 <ng-template #expandedDetail let-article>
   <app-article-form fxFlex [article]="article"></app-article-form>
   <mat-divider vertical></mat-divider>
   <div fxFlex>
-    <app-carousel *ngIf="article.Images && article.Images.length > 0" [images]="article.Images" [url]="API" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
+    <app-carousel *ngIf="article.Images && article.Images.length > 0" [images]="article.Images" [url]="API"
+      (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
     <app-image-form [articleId]="article.id"></app-image-form>
   </div>
 </ng-template>

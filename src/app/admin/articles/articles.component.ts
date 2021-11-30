@@ -7,9 +7,10 @@ import { CategoryService } from '@services/category.service';
 import { ArticlesService } from '@services/articles.service';
 import { Article } from '@interfaces/article';
 import { HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { environment } from '@src/environments/environment';
 import { Image } from '@src/app/interfaces/image';
+
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-articles',
@@ -25,11 +26,13 @@ import { Image } from '@src/app/interfaces/image';
 })
 export class ArticlesComponent implements OnInit {
 
+  dataSource: MatTableDataSource<Article>;
   categories: Category[];
-  articles: Article[];
   expandedArticle!: Article | null;
-
   selectedImage!: Image;
+  pageIndex!: number;
+  totalPages!: number;
+
 
   readonly API = environment.apiUrl + '/';
   readonly columnsToDisplay = [
@@ -52,22 +55,31 @@ export class ArticlesComponent implements OnInit {
     private articlesService: ArticlesService,
     private categoryService: CategoryService
   ) {
-    this.articles = [];
     this.categories = [];
+    this.dataSource = new MatTableDataSource<Article>();
   }
 
   ngOnInit(): void {
-    const httpParams = new HttpParams().set('quantity', -1).append('count', 0);
-
-    this.articlesService.getArticles(httpParams)
-      .pipe(map(res => res.articles))
-      .subscribe(res => this.articles = res);
+    this.pageIndex = 1;
     this.categoryService.getCategories()
       .subscribe(categories => this.categories = categories);
+    this.fetchPage(this.pageIndex);
   }
 
-  storeSelectedImage(image: Image) {
+  storeSelectedImage(image: Image): void {
     this.selectedImage = image;
+  }
+
+  fetchPage(pageIndex: number): void {
+    let httpParams = new HttpParams().set('quantity', -1).append('count', 25);
+
+    httpParams = httpParams.set('page', pageIndex);
+
+    this.articlesService.getArticles(httpParams)
+      .subscribe(res => {
+        this.dataSource.data = res.articles;
+        this.totalPages = res.totalPages;
+      });
   }
 
 }
