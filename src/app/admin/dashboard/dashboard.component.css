@@ -1,0 +1,12 @@
+.admin-dashboard {
+  padding: 16px 0;
+}
+
+.admin-card {
+  height: 100px;
+  margin: 16px;
+}
+
+mat-divider {
+  margin: 16px 0;
+}
