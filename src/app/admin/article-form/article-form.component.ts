@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Article } from '@interfaces/article';
 import { Category } from '@interfaces/category';
 import { ArticlesService } from '@services/articles.service';
@@ -35,7 +36,8 @@ export class ArticleFormComponent implements OnInit {
 
   constructor(
     private articlesService: ArticlesService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    @Optional() public dialogRef: MatDialogRef<ArticleFormComponent>
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +61,9 @@ export class ArticleFormComponent implements OnInit {
       this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
     } else {
       this.articlesService.postArticle(this.articleForm.value).subscribe();
+    }
+    if (this.dialogRef) {
+      this.dialogRef.close();
     }
   }
 
