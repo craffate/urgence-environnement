@@ -14,3 +14,7 @@ app-article-card {
 mat-divider {
   margin: 32px 0;
 }
+
+.articles-list-empty {
+  margin: 24px auto;
+}
