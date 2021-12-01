@@ -18,15 +18,10 @@ tr.article-row:not(.expanded-row):active {
   border-bottom-width: 0;
 }
 
-.article-detail {
-  overflow: hidden;
-  display: flex;
-}
-
 .admin-actions {
   margin: 24px auto;
 }
 
 mat-divider {
-  margin: 16px auto;
+  margin: 16px;
 }

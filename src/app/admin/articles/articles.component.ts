@@ -12,6 +12,7 @@ import { Image } from '@src/app/interfaces/image';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleFormComponent } from '../article-form/article-form.component';
+import { ImageService } from '@src/app/services/image.service';
 
 @Component({
   selector: 'app-articles',
@@ -54,6 +55,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articlesService: ArticlesService,
     private categoryService: CategoryService,
+    private imageService: ImageService,
     public dialog: MatDialog
   ) {
     this.categories = [];
@@ -69,6 +71,10 @@ export class ArticlesComponent implements OnInit {
 
   storeSelectedImage(image: Image): void {
     this.selectedImage = image;
+  }
+
+  deleteSelectedImage(): void {
+    this.imageService.deleteImage(this.selectedImage.id!).subscribe();
   }
 
   fetchPage(pageIndex: number): void {

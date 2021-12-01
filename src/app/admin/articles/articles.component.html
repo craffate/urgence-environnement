@@ -78,8 +78,7 @@
 
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let article" [attr.colspan]="columnsToDisplay.length">
-      <div fxLayout="row wrap" fxLayoutAlign="center center" class="article-detail"
-        [@detailExpand]="article == expandedArticle ? 'expanded' : 'collapsed'">
+      <div [@detailExpand]="article == expandedArticle ? 'expanded' : 'collapsed'">
         <ng-container
           *ngTemplateOutlet='article == expandedArticle ? expandedDetail : null; context: { $implicit: article }'>
         </ng-container>
@@ -118,9 +117,17 @@
 </div>
 
 <ng-template #expandedDetail let-article>
-  <app-article-form fxFlex [article]="article" [categories]="categories"></app-article-form>
-  <div fxFlex>
-    <app-carousel [images]="article.Images" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
-    <app-image-form [articleId]="article.id"></app-image-form>
+  <div fxLayout="column">
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+      <app-carousel [images]="article.Images" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
+      <div class="carousel-actions">
+        <app-image-form [articleId]="article.id"></app-image-form>
+        <button mat-flat-button type="button" color="warn" (click)="deleteSelectedImage()">
+          <mat-icon>delete</mat-icon>SUPPRIMER
+        </button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <app-article-form fxFlex [article]="article" [categories]="categories"></app-article-form>
   </div>
 </ng-template>
