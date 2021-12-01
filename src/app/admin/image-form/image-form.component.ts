@@ -35,14 +35,16 @@ export class ImageFormComponent implements OnInit {
   }
 
   private sendImages(): void {
-    this.progress = 0;
     this.imageService.postImages(this.imageForm).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.UploadProgress:
           this.progress = Math.round(event.loaded / event.total! * 100);
           break;
+        case HttpEventType.Response:
+          this.progress = 0;
+          this.imageForm = new FormData();
+          break;
       }
-      this.imageForm = new FormData();
     });
   }
 

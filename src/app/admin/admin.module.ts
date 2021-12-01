@@ -17,8 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -51,7 +51,7 @@ import { ImageFormComponent } from './image-form/image-form.component';
     MatButtonModule,
     MatDividerModule,
     MatSnackBarModule,
-    MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatDialogModule
   ]
 })
