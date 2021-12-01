@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Article } from '@interfaces/article';
 import { Category } from '@interfaces/category';
 import { ArticlesService } from '@services/articles.service';
+import { CategoryService } from '@services/category.service';
 
 @Component({
   selector: 'app-article-form',
@@ -33,17 +34,24 @@ export class ArticleFormComponent implements OnInit {
   });
 
   constructor(
-    private articlesService: ArticlesService
+    private articlesService: ArticlesService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
+    if (this.categories.length === 0) {
+      this.categoryService.getCategories().subscribe(res => this.categories = res);
+    }
     this.patchDefaultValues();
   }
 
   private patchDefaultValues(): void {
     if (this.article) {
       this.articleForm.patchValue(this.article);
+    } else {
+      this.articleForm.reset();
     }
+    this.articleForm.markAsPristine();
   }
 
   onSubmit(): void {
