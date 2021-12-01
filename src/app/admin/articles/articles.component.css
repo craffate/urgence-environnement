@@ -23,6 +23,10 @@ tr.article-row:not(.expanded-row):active {
   display: flex;
 }
 
+.admin-actions {
+  margin: 24px auto;
+}
+
 mat-divider {
-  margin: 0 16px;
+  margin: 16px auto;
 }

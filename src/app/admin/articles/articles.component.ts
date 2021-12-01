@@ -10,6 +10,8 @@ import { HttpParams } from '@angular/common/http';
 import { Image } from '@src/app/interfaces/image';
 
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ArticleFormComponent } from '../article-form/article-form.component';
 
 @Component({
   selector: 'app-articles',
@@ -51,7 +53,8 @@ export class ArticlesComponent implements OnInit {
 
   constructor(
     private articlesService: ArticlesService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    public dialog: MatDialog
   ) {
     this.categories = [];
     this.dataSource = new MatTableDataSource<Article>();
@@ -78,6 +81,10 @@ export class ArticlesComponent implements OnInit {
         this.dataSource.data = res.articles;
         this.totalPages = res.totalPages;
       });
+  }
+
+  openArticleFormDialog(): void {
+    const dialogRef = this.dialog.open(ArticleFormComponent);
   }
 
 }
