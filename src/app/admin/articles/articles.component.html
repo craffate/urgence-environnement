@@ -1,6 +1,10 @@
-<div class="admin-actions">
+<div class="admin-actions" fxLayout="row">
   <button mat-button type="button" color="primary" (click)="openArticleFormDialog()">
     <mat-icon>add</mat-icon>AJOUTER
+  </button>
+  <span fxFlex></span>
+  <button mat-button type="button" color="accent" (click)="fetchPage(pageIndex)">
+    <mat-icon>refresh</mat-icon>RAFRAîCHIR
   </button>
 </div>
 <mat-divider></mat-divider>
