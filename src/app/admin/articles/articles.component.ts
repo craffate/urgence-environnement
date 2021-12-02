@@ -3,16 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { Category } from '@interfaces/category';
-import { CategoryService } from '@services/category.service';
-import { ArticlesService } from '@services/articles.service';
 import { Article } from '@interfaces/article';
-import { HttpParams } from '@angular/common/http';
 import { Image } from '@src/app/interfaces/image';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleFormComponent } from '../article-form/article-form.component';
 import { ImageService } from '@src/app/services/image.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-articles',
@@ -28,13 +26,12 @@ import { ImageService } from '@src/app/services/image.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  dataSource: MatTableDataSource<Article>;
-  categories: Category[];
+  dataSource = new MatTableDataSource<Article>();
+  categories: Category[] = [];
   expandedArticle!: Article | null;
   selectedImage!: Image;
   pageIndex!: number;
   totalPages!: number;
-
 
   readonly columnsToDisplay = [
     'id',
@@ -53,20 +50,18 @@ export class ArticlesComponent implements OnInit {
   ]
 
   constructor(
-    private articlesService: ArticlesService,
-    private categoryService: CategoryService,
+    private route: ActivatedRoute,
     private imageService: ImageService,
     public dialog: MatDialog
-  ) {
-    this.categories = [];
-    this.dataSource = new MatTableDataSource<Article>();
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.pageIndex = 1;
-    this.categoryService.getCategories()
-      .subscribe(categories => this.categories = categories);
-    this.fetchPage(this.pageIndex);
+    this.route.data.subscribe(data => {
+      this.dataSource = data.articlesWithCount.articles;
+      this.totalPages = data.articlesWithCount.totalPages;
+      this.categories = data.categories;
+    });
+    this.route.queryParams.subscribe(params => this.pageIndex = parseInt(params['page'] || 1));
   }
 
   storeSelectedImage(image: Image): void {
@@ -75,18 +70,6 @@ export class ArticlesComponent implements OnInit {
 
   deleteSelectedImage(): void {
     this.imageService.deleteImage(this.selectedImage.id!).subscribe();
-  }
-
-  fetchPage(pageIndex: number): void {
-    let httpParams = new HttpParams().set('quantity', -1).append('count', 25);
-
-    httpParams = httpParams.set('page', pageIndex);
-
-    this.articlesService.getArticles(httpParams)
-      .subscribe(res => {
-        this.dataSource.data = res.articles;
-        this.totalPages = res.totalPages;
-      });
   }
 
   openArticleFormDialog(): void {
