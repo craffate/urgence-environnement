@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { environment } from '@environments/environment';
@@ -11,12 +13,15 @@ import { Article } from '@interfaces/article';
 })
 export class ArticlesListComponent implements OnInit {
 
+  readonly titlePrefix = environment.titlePrefix;
   readonly API: string = environment.apiUrl + '/';
   articles!: Article[];
   totalPages!: number;
   pageIndex!: number;
 
   constructor(
+    private titleService: Title,
+    private titleCasePipe: TitleCasePipe,
     private route: ActivatedRoute
   ) { }
 
@@ -25,7 +30,10 @@ export class ArticlesListComponent implements OnInit {
       this.articles = data.articlesWithCount.articles;
       this.totalPages = data.articlesWithCount.totalPages;
     });
-    this.route.queryParams.subscribe(params => this.pageIndex = parseInt(params['page'] || 1));
+    this.route.queryParams.subscribe(params => {
+      this.titleService.setTitle(this.titlePrefix + this.titleCasePipe.transform(params['category']));
+      this.pageIndex = parseInt(params['page'] || 1)
+    });
   }
 
 }

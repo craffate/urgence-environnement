@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ArticleFormComponent } from '../article-form/article-form.component';
 import { ImageService } from '@src/app/services/image.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-articles',
@@ -25,6 +27,8 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class ArticlesComponent implements OnInit {
+
+  readonly titlePrefix = environment.titlePrefix;
 
   dataSource = new MatTableDataSource<Article>();
   categories: Category[] = [];
@@ -50,12 +54,14 @@ export class ArticlesComponent implements OnInit {
   ]
 
   constructor(
+    private titleService: Title,
     private route: ActivatedRoute,
     private imageService: ImageService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.titlePrefix + 'Administration (Articles)');
     this.route.data.subscribe(data => {
       this.dataSource = data.articlesWithCount.articles;
       this.totalPages = data.articlesWithCount.totalPages;

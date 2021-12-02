@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -32,6 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     MatSnackBarModule,
     MatDividerModule,
     ArticlesRoutingModule
-  ]
+  ],
+  providers: [ TitleCasePipe ]
 })
 export class ArticlesModule { }

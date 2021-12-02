@@ -8,6 +8,8 @@ import { Article } from '@interfaces/article';
 import { ArticlesService } from '@services/articles.service';
 import { CartService } from '@services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-article-detail',
@@ -16,9 +18,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ArticleDetailComponent implements OnInit {
 
-  article$!: Observable<Article>;
+  readonly titlePrefix = environment.titlePrefix;
+  article!: Article;
 
   constructor(
+    private titleService: Title,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private articlesService: ArticlesService,
@@ -28,7 +32,10 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
 
-    this.article$ = this.articlesService.getArticle(id);
+    this.articlesService.getArticle(id).subscribe(res => {
+      this.titleService.setTitle(this.titlePrefix + res.name);
+      this.article = res
+    });
   }
 
   addToCart(article: Article) {

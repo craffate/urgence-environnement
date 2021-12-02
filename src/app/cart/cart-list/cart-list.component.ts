@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '@services/cart.service';
 import { Article } from '@interfaces/article';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 import { environment } from '@environments/environment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,18 +13,19 @@ import { environment } from '@environments/environment';
 })
 export class CartListComponent implements OnInit {
 
+  readonly titlePrefix = environment.titlePrefix;
   readonly API: string = environment.apiUrl + '/';
-  cartTotal$: BehaviorSubject<number>;
+  cartTotal$!: BehaviorSubject<number>;
 
   constructor(
+    private titleService: Title,
     private cartService: CartService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) {
-    this.cartTotal$ = this.cartService.cartTotal$;
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.titlePrefix + 'Panier');
+    this.cartTotal$ = this.cartService.cartTotal$;
   }
 
   getArticles(): BehaviorSubject<Article[]> {
