@@ -24,6 +24,9 @@ export class ArticleResolver implements Resolve<ArticlesWithCount | Article> {
     if (route.queryParamMap.has('name')) {
       httpParams = httpParams.append('name', route.queryParamMap.get('name')!);
     }
+    if (route.queryParamMap.has('quantity')) {
+      httpParams = httpParams.append('quantity', route.queryParamMap.get('quantity')!);
+    }
     httpParams = httpParams.append('page', route.queryParamMap.get('page') || 1);
     httpParams = httpParams.append('count', route.queryParamMap.get('count') || 12);
 
