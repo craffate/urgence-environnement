@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -37,6 +38,7 @@ registerLocaleData(localeFr, 'fr');
     MatTabsModule,
     MatIconModule,
     MatSnackBarModule,
+    MatProgressBarModule,
     MatButtonModule,
     MatBadgeModule,
     AppRoutingModule

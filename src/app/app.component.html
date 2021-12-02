@@ -1,4 +1,5 @@
 <app-toolbar [title]="title"></app-toolbar>
+<mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
 <main class="content">
   <router-outlet></router-outlet>
 </main>
