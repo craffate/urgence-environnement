@@ -1,6 +1,6 @@
-<div class="articles-list" *ngIf="articles && articles.length > 0; else noArticles">
+<div class="articles-list">
   <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="center center">
-    <app-article-card *ngFor="let a of articles" [article]="a"></app-article-card>
+    <app-article-card *ngFor="let a of articles" [article]="a" [routerLink]="[ a.id ]"></app-article-card>
   </div>
   <mat-divider></mat-divider>
   <div fxLayout="row" fxLayoutAlign="space-between center">

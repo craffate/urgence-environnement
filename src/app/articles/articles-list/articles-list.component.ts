@@ -4,9 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '@environments/environment';
 import { Article } from '@interfaces/article';
 
-import { ArticlesService } from '@services/articles.service';
-import { HttpParams } from '@angular/common/http';
-
 @Component({
   selector: 'app-articles-list',
   templateUrl: './articles-list.component.html',
@@ -20,39 +17,15 @@ export class ArticlesListComponent implements OnInit {
   pageIndex!: number;
 
   constructor(
-    private articlesService: ArticlesService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.pageIndex = 1;
-    this.route.queryParams.subscribe((params) => {
-      let httpParams = new HttpParams();
-
-      if (params['category']) {
-        httpParams = httpParams.append('category', params['category']);
-      }
-      if (params['name']) {
-        httpParams = httpParams.append('name', params['name']);
-      }
-      if (params['page']) {
-        this.pageIndex = parseInt(params['page']);
-        if (this.pageIndex < 1) {
-          this.pageIndex = 1;
-        }
-      }
-      httpParams = httpParams.append('page', this.pageIndex);
-      httpParams = httpParams.append('count', 12);
-      this.articlesService.getArticles(httpParams).subscribe((res) => {
-        this.articles = res.articles;
-        this.totalPages = res.totalPages;
-      });
+    this.route.data.subscribe(data => {
+      this.articles = data.articlesWithCount.articles;
+      this.totalPages = data.articlesWithCount.totalPages;
     });
-  }
-
-  search($event: string) {
-    this.router.navigate([ '/articles' ], { queryParamsHandling: 'merge', queryParams: { name: $event ? $event : undefined, page: 1 } });
+    this.route.queryParams.subscribe(params => this.pageIndex = parseInt(params['page'] || 1));
   }
 
 }

@@ -3,11 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleResolver } from '../resolvers/article.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: ArticlesListComponent
+    component: ArticlesListComponent,
+    resolve: { articlesWithCount: ArticleResolver },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
     path: ':id',

@@ -1,4 +1,4 @@
-<mat-card [routerLink]="[article.id]">
+<mat-card>
   <div class="image-container" fxLayout="column" fxLayoutAlign="center center">
     <img *ngIf="article.Images && article.Images.length > 0; else noImages" [src]="API + article.Images[0].path">
   </div>
