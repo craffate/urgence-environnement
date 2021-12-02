@@ -1,5 +1,7 @@
 .articles-list {
   margin: 24px auto;
+  width: 90%;
+  max-width: 1920px;
 }
 
 .bottom-nav {
