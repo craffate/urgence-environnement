@@ -1,32 +1,31 @@
-<div class="content" *ngIf="(cartTotal$ | async); else emptyCart" fxLayout="row" fxLayoutAlign="center start">
-  <div fxFlex>
-    <mat-list>
-      <mat-list-item *ngFor="let a of getArticles() | async">
-        <img *ngIf="a.Images && a.Images.length > 0" mat-list-avatar [src]="API + a.Images[0].path">
-        <h3 mat-line>{{ a.name }}</h3>
-        <p mat-line>{{ a.sku }}</p>
-        <p mat-line>{{ a.price | currency }}</p>
-        <mat-action-list>
-          <button mat-flat-button color="warn" (click)="removeFromCart(a)">
-            <mat-icon>remove_shopping_cart</mat-icon>
-            SUPPRIMER DU PANIER
-          </button>
-        </mat-action-list>
-      </mat-list-item>
-    </mat-list>
-  </div>
-  <mat-card fxFlex="25%" fxFlexAlign="start">
-    <mat-card-content>
-      <p>Total: {{ (cartTotal$ | async) | currency }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <app-paypal (transactionStatus)="transactionSnackbar($event)"></app-paypal>
-    </mat-card-actions>
-  </mat-card>
+<div class="cart-list" *ngIf="(cartTotal$ | async); else emptyCart">
+  <mat-list>
+    <mat-list-item *ngFor="let a of (cart$ | async); last as last">
+      <img *ngIf="a.Images && a.Images.length > 0" mat-list-avatar [src]="API + a.Images[0].path">
+      <h3 matLine>{{ a.name }}</h3>
+      <p matLine>
+        <span class="mat-body-2">{{ a.price | currency }}</span>
+      </p>
+      <mat-action-list>
+        <button mat-flat-button color="warn" (click)="removeFromCart(a)">
+          <mat-icon>remove_shopping_cart</mat-icon>SUPPRIMER
+        </button>
+      </mat-action-list>
+      <mat-divider inset *ngIf="!last"></mat-divider>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <p matLine>
+        Total&nbsp;:&nbsp;<span class="mat-body-2">{{ (cartTotal$ | async) | currency }}</span>
+      </p>
+      <mat-action-list>
+        <app-paypal (transactionStatus)="transactionSnackbar($event)"></app-paypal>
+      </mat-action-list>
+    </mat-list-item>
+  </mat-list>
 </div>
-
 <ng-template #emptyCart>
-  <div class="content" fxLayout="row" fxLayoutAlign="center center">
+  <div class="cart-list-empty">
     <h1 class="mat-display-2">Votre panier est vide !</h1>
   </div>
 </ng-template>

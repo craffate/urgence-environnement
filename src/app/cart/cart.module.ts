@@ -5,11 +5,11 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartListComponent } from './cart-list/cart-list.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
 import { PaypalComponent } from './paypal/paypal.component';
 
 
@@ -21,11 +21,11 @@ import { PaypalComponent } from './paypal/paypal.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MatCardModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDividerModule,
     CartRoutingModule
   ]
 })

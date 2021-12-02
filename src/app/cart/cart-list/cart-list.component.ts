@@ -15,6 +15,7 @@ export class CartListComponent implements OnInit {
 
   readonly titlePrefix = environment.titlePrefix;
   readonly API: string = environment.apiUrl + '/';
+  cart$!: BehaviorSubject<Article[]>;
   cartTotal$!: BehaviorSubject<number>;
 
   constructor(
@@ -25,6 +26,7 @@ export class CartListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(this.titlePrefix + 'Panier');
+    this.cart$ = this.cartService.cart$;
     this.cartTotal$ = this.cartService.cartTotal$;
   }
 
