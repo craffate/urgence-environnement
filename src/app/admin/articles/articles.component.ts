@@ -10,9 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleFormComponent } from '../article-form/article-form.component';
 import { ImageService } from '@src/app/services/image.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { environment } from '@environments/environment';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-articles',
@@ -34,8 +35,10 @@ export class ArticlesComponent implements OnInit {
   categories: Category[] = [];
   expandedArticle!: Article | null;
   selectedImage!: Image;
-  pageIndex!: number;
+  pageIndex: number = 1;
   totalPages!: number;
+  quantity: number = 0;
+  count: number = 10;
 
   readonly columnsToDisplay = [
     'id',
@@ -56,6 +59,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private titleService: Title,
     private route: ActivatedRoute,
+    private router: Router,
     private imageService: ImageService,
     public dialog: MatDialog
   ) { }
@@ -67,7 +71,11 @@ export class ArticlesComponent implements OnInit {
       this.totalPages = data.articlesWithCount.totalPages;
       this.categories = data.categories;
     });
-    this.route.queryParams.subscribe(params => this.pageIndex = parseInt(params['page'] || 1));
+    this.route.queryParams.subscribe(params => {
+      this.pageIndex = parseInt(params['page'] || 1);
+      this.quantity = parseInt(params['quantity'] || this.quantity);
+      this.count = parseInt(params['count'] || this.count);
+    });
   }
 
   storeSelectedImage(image: Image): void {
@@ -80,6 +88,20 @@ export class ArticlesComponent implements OnInit {
 
   openArticleFormDialog(): void {
     const dialogRef = this.dialog.open(ArticleFormComponent);
+  }
+
+  onQuantityChange(event: MatSliderChange) {
+    this.router.navigate([], {
+      queryParams: { quantity: event.value, page: 1 },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  onCountChange(event: MatSliderChange) {
+    this.router.navigate([], {
+      queryParams: { count: event.value, page: 1 },
+      queryParamsHandling: 'merge'
+    });
   }
 
 }
