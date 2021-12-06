@@ -31,7 +31,11 @@ export class ArticlesListComponent implements OnInit {
       this.totalPages = data.articlesWithCount.totalPages;
     });
     this.route.queryParams.subscribe(params => {
-      this.titleService.setTitle(this.titlePrefix + this.titleCasePipe.transform(params['category']));
+      if (params['category']) {
+        this.titleService.setTitle(this.titlePrefix + this.titleCasePipe.transform(params['category']));
+      } else {
+        this.titleService.setTitle(this.titlePrefix + 'Articles');
+      }
       this.pageIndex = parseInt(params['page'] || 1)
     });
   }
