@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { Category } from './interfaces/category';
+import { CartService } from './services/cart.service';
+import { CategoryService } from './services/category.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +12,15 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'Urgence Environnement';
+  readonly title: string = 'Urgence Environnement';
   loading: boolean = false;
+  categories: Category[] = [];
+  activeLink: string = 'Accueil';
 
   constructor(
     private titleService: Title,
+    private categoryService: CategoryService,
+    private cartService: CartService,
     private router: Router
   ) {
     this.setTitle(this.title);
@@ -23,10 +31,15 @@ export class AppComponent {
         this.loading = false;
       }
     });
+    this.categoryService.getCategories().subscribe(res => this.categories = res);
   }
 
   public setTitle(title: string) {
     this.titleService.setTitle(title);
+  }
+
+  public getCartQuantity(): BehaviorSubject<number> {
+    return this.cartService.cartQuantity$;
   }
 
 }

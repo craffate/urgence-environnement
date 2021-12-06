@@ -15,7 +15,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppRoutingModule } from './app-routing.module';
 
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GlobalErrorHandler } from './classes/global-error-handler';
 import { HomeComponent } from './components/home/home.component';
 import { registerLocaleData } from '@angular/common';
@@ -26,7 +25,6 @@ registerLocaleData(localeFr, 'fr');
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
     HomeComponent
   ],
   imports: [

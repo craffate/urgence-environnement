@@ -1,4 +1,22 @@
-<app-toolbar [title]="title"></app-toolbar>
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <a mat-button routerLink="/" (click)="activeLink = 'Accueil'">
+        <h1>{{ title }}</h1>
+      </a>
+      <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
+        <a mat-tab-link *ngFor="let cat of categories" (click)="activeLink = cat.name" [active]="activeLink == cat.name"
+          [routerLink]="[ '/articles' ]" [queryParams]="{ category: cat.slug, page: 1 }">
+          {{ cat.name }}
+        </a>
+      </nav>
+      <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'"
+        [matBadge]="getCartQuantity() | async" matBadgeColor="accent">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
 <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
 <main class="content">
   <router-outlet></router-outlet>
