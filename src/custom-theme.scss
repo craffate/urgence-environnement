@@ -63,10 +63,13 @@ $urgence-environnement-theme: mat.define-light-theme(
   )
 );
 
-$background: purple;
-
 mat-icon {
   vertical-align: middle;
+}
+
+.footer {
+  color: #ffffff;
+  background-color: mat.get-color-from-palette($primary, 900);
 }
 
 @include mat.all-component-themes($urgence-environnement-theme);
