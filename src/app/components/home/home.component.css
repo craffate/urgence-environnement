@@ -7,3 +7,9 @@
   height: 300px;
   object-fit: cover;
 }
+
+.home {
+  margin: 24px auto;
+  width: 90%;
+  max-width: 1920px;
+}
