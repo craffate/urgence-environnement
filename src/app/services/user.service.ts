@@ -18,16 +18,16 @@ export class UserService {
     return this.httpClient.get<User[]>(`${environment.apiUrl}${ApiPaths.Users}`);
   }
 
-  postUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${environment.apiUrl}${ApiPaths.Users}`, user);
+  postUser(user: User): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Users}`, user);
   }
 
   getUser(userId: number): Observable<User> {
     return this.httpClient.get<User>(`${environment.apiUrl}${ApiPaths.Users}/${userId}`);
   }
 
-  patchUser(userId: number, user: User): Observable<User> {
-    return this.httpClient.patch<User>(`${environment.apiUrl}${ApiPaths.Users}/${userId}`, user);
+  patchUser(userId: number, user: User): Observable<any> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Users}/${userId}`, user);
   }
 
   deleteUser(userId: number): Observable<any> {

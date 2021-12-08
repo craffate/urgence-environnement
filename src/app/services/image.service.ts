@@ -29,8 +29,8 @@ export class ImageService {
     return this.httpClient.get<Image>(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`);
   }
 
-  patchImage(imageId: number, image: FormData): Observable<Image> {
-    return this.httpClient.patch<Image>(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`, image)
+  patchImage(imageId: number, image: FormData): Observable<any> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`, image)
   }
 
   deleteImage(imageId: number): Observable<any> {

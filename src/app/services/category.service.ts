@@ -19,16 +19,16 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}${ApiPaths.Categories}`, { params: params });
   }
 
-  postCategory(category: Category): Observable<Category> {
-    return this.httpClient.post<Category>(`${environment.apiUrl}${ApiPaths.Articles}`, category);
+  postCategory(category: Category): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}`, category);
   }
 
   getCategory(categoryId: number): Observable<Category> {
     return this.httpClient.get<Category>(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`);
   }
 
-  patchCategory(categoryId: number, category: Category): Observable<Category> {
-    return this.httpClient.patch<Category>(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, category);
+  patchCategory(categoryId: number, category: Category): Observable<any> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, category);
   }
 
   deleteCategory(categoryId: number): Observable<any> {

@@ -21,16 +21,16 @@ export class ArticlesService {
     return this.httpClient.get<ArticlesWithCount>(`${environment.apiUrl}${ApiPaths.Articles}`, { params: params });
   }
 
-  postArticle(article: Article): Observable<Article> {
-    return this.httpClient.post<Article>(`${environment.apiUrl}${ApiPaths.Articles}`, article);
+  postArticle(article: Article): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}`, article);
   }
 
   getArticle(articleId: number): Observable<Article> {
     return this.httpClient.get<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`);
   }
 
-  patchArticle(articleId: number, article: Article): Observable<Article> {
-    return this.httpClient.patch<Article>(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`, article);
+  patchArticle(articleId: number, article: Article): Observable<any> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Articles}/${articleId}`, article);
   }
 
   deleteArticle(articleId: number): Observable<any> {
