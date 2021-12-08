@@ -13,3 +13,11 @@
   width: 90%;
   max-width: 1920px;
 }
+
+.headlines {
+  text-align: center;
+}
+
+mat-divider {
+  margin: 24px auto;
+}

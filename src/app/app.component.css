@@ -12,3 +12,7 @@ mat-progress-bar {
 .footer p, address {
   opacity: .6;
 }
+
+a {
+  color: inherit;
+}

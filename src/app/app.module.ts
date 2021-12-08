@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 import { AppRoutingModule } from './app-routing.module';
 
 import { GlobalErrorHandler } from './classes/global-error-handler';
@@ -39,6 +40,7 @@ registerLocaleData(localeFr, 'fr');
     MatProgressBarModule,
     MatButtonModule,
     MatBadgeModule,
+    MatDividerModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
