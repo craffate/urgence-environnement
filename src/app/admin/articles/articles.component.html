@@ -117,11 +117,11 @@
 
 <ng-template #expandedDetail let-article>
   <div fxLayout="column">
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
       <app-carousel [images]="article.Images" (selectedImageEvent)="storeSelectedImage($event)"></app-carousel>
-      <div class="carousel-actions">
+      <div class="carousel-actions" fxLayout="row">
         <app-image-form [articleId]="article.id"></app-image-form>
-        <button mat-flat-button type="button" color="warn" (click)="deleteSelectedImage()">
+        <button mat-stroked-button type="button" color="warn" (click)="deleteSelectedImage()">
           <mat-icon>delete</mat-icon>SUPPRIMER
         </button>
       </div>
