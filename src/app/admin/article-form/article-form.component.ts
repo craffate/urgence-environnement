@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Optional } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Article } from '@interfaces/article';
 import { Category } from '@interfaces/category';
 import { ArticlesService } from '@services/articles.service';
@@ -37,6 +38,7 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     private articlesService: ArticlesService,
     private categoryService: CategoryService,
+    public snackBar: MatSnackBar,
     @Optional() public dialogRef: MatDialogRef<ArticleFormComponent>
   ) { }
 
@@ -58,9 +60,17 @@ export class ArticleFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.article) {
-      this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe();
+      this.articlesService.patchArticle(this.article.id!, this.articleForm.getRawValue()).subscribe(res => {
+        if (res.status === 200) {
+          this.snackBar.open('Article mis à jour avec succès.', undefined, { duration: 3000 });
+        }
+      });
     } else {
-      this.articlesService.postArticle(this.articleForm.value).subscribe();
+      this.articlesService.postArticle(this.articleForm.value).subscribe(res => {
+        if (res.status === 200) {
+          this.snackBar.open('Article ajouté avec succès.', undefined, { duration: 3000 });
+        }
+      });
     }
     if (this.dialogRef) {
       this.dialogRef.close();

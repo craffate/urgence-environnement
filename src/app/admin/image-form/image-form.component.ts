@@ -18,7 +18,7 @@ export class ImageFormComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
-    private _snackBar: MatSnackBar
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +41,7 @@ export class ImageFormComponent implements OnInit {
           this.progress = Math.round(event.loaded / event.total! * 100);
           break;
         case HttpEventType.Response:
+          this.snackBar.open('Images importées avec succès.', undefined, { duration: 3000 });
           this.progress = 0;
           this.imageForm = new FormData();
           break;

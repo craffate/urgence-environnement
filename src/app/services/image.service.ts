@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Image } from '@interfaces/image';
 import { environment } from '@src/environments/environment';
 import { ApiPaths } from '@src/api-paths';
@@ -29,11 +29,11 @@ export class ImageService {
     return this.httpClient.get<Image>(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`);
   }
 
-  patchImage(imageId: number, image: FormData): Observable<any> {
-    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`, image)
+  patchImage(imageId: number, image: FormData): Observable<HttpResponse<any>> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`, image, {observe: 'response'});
   }
 
-  deleteImage(imageId: number): Observable<any> {
-    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`);
+  deleteImage(imageId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Images}/${imageId}`, {observe: 'response'});
   }
 }

@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { environment } from '@environments/environment';
 import { MatSliderChange } from '@angular/material/slider';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-articles',
@@ -61,6 +62,7 @@ export class ArticlesComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private imageService: ImageService,
+    public snackBar: MatSnackBar,
     public dialog: MatDialog
   ) { }
 
@@ -83,7 +85,11 @@ export class ArticlesComponent implements OnInit {
   }
 
   deleteSelectedImage(): void {
-    this.imageService.deleteImage(this.selectedImage.id!).subscribe();
+    this.imageService.deleteImage(this.selectedImage.id!).subscribe(res => {
+      if (res.status === 200) {
+        this.snackBar.open('Image supprimée avec succès.', undefined, { duration: 3000 });
+      }
+    });
   }
 
   openArticleFormDialog(): void {

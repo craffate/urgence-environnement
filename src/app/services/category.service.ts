@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '@interfaces/category';
@@ -19,20 +19,20 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}${ApiPaths.Categories}`, { params: params });
   }
 
-  postCategory(category: Category): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}`, category);
+  postCategory(category: Category): Observable<HttpResponse<any>> {
+    return this.httpClient.post(`${environment.apiUrl}${ApiPaths.Articles}`, category, { observe: 'response' });
   }
 
   getCategory(categoryId: number): Observable<Category> {
     return this.httpClient.get<Category>(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`);
   }
 
-  patchCategory(categoryId: number, category: Category): Observable<any> {
-    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, category);
+  patchCategory(categoryId: number, category: Category): Observable<HttpResponse<any>> {
+    return this.httpClient.patch(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, category, { observe: 'response' });
   }
 
-  deleteCategory(categoryId: number): Observable<any> {
-    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`);
+  deleteCategory(categoryId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.delete(`${environment.apiUrl}${ApiPaths.Articles}/${categoryId}`, { observe: 'response' });
   }
 
 }
