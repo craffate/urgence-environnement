@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -40,6 +41,10 @@ export class AppComponent {
 
   public getCartQuantity(): BehaviorSubject<number> {
     return this.cartService.cartQuantity$;
+  }
+
+  public onSearch(s: NgForm): void {
+    this.router.navigate([ '/articles' ], { queryParams: { name: s.value.search } });
   }
 
 }

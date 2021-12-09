@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule } from '@angular/forms';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -32,6 +34,7 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     MatToolbarModule,
     MatTabsModule,

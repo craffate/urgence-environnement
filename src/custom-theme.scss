@@ -67,6 +67,10 @@ mat-icon {
   vertical-align: middle;
 }
 
+.search-input {
+  outline: 1px solid mat.get-color-from-palette($accent, A900) ;
+}
+
 .footer {
   color: #ffffff;
   background-color: mat.get-color-from-palette($primary, 900);

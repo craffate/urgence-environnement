@@ -1,19 +1,28 @@
 <header>
   <mat-toolbar color="primary">
-    <mat-toolbar-row>
+    <mat-toolbar-row fxLayout="row">
       <a mat-button routerLink="/" (click)="activeLink = 'Accueil'">
-        <h1>{{ title }}</h1>
+        <h1 fxShow fxHide.lt-sm>{{ title }}</h1>
+        <mat-icon fxHide fxShow.lt-sm>home</mat-icon>
       </a>
+      <form fxFlex fxLayout="row" class="search-form" #s="ngForm" (ngSubmit)="onSearch(s)" novalidate>
+        <input fxFlex class="search-input" name="search" ngModel type="search" placeholder="Rechercher">
+        <button mat-raised-button type="submit" color="accent">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+      <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'"
+        [matBadge]="getCartQuantity() | async" matBadgeSize="small" matBadgeColor="accent">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
       <nav fxFlex mat-tab-nav-bar backgroundColor="primary">
         <a mat-tab-link *ngFor="let cat of categories" (click)="activeLink = cat.name" [active]="activeLink == cat.name"
           [routerLink]="[ '/articles' ]" [queryParams]="{ category: cat.slug, page: 1 }">
           {{ cat.name }}
         </a>
       </nav>
-      <button mat-icon-button routerLink="/panier" (click)="activeLink = 'Panier'"
-        [matBadge]="getCartQuantity() | async" matBadgeColor="accent">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
     </mat-toolbar-row>
   </mat-toolbar>
 </header>
