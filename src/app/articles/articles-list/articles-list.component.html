@@ -1,9 +1,9 @@
 <div class="articles-list">
-  <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="center center">
+  <div *ngIf="articles.length > 0; else noArticles" class="cards-container" fxLayout="row wrap" fxLayoutAlign="center center">
     <app-article-card *ngFor="let a of articles" [article]="a" [routerLink]="[ a.id ]"></app-article-card>
   </div>
   <mat-divider></mat-divider>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="totalPages > 0">
     <a mat-icon-button color="accent" [routerLink]="[ '/articles' ]" queryParamsHandling="merge"
       [queryParams]="{ page: (pageIndex - 1) < 1 ? 1 : (pageIndex - 1)  }" [disabled]="(pageIndex - 1) < 1">
       <mat-icon>chevron_left</mat-icon>
@@ -25,6 +25,6 @@
 
 <ng-template #noArticles>
   <div class="articles-list-empty" fxLayout="column" fxLayoutAlign="center center">
-    <h1 class="mat-display-2">Aucun article disponible pour cette catégorie</h1>
+    <h1 class="mat-display-2">Aucun article disponible pour cette catégorie.</h1>
   </div>
 </ng-template>
