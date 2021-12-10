@@ -1,12 +1,23 @@
 .carousel-picker {
-  width: 64px;
+  width: 90px;
+  max-height: 320px;
   margin-right: 16px;
+  overflow-y: auto;
 }
 
 .carousel-picker img {
   width: 100%;
+  max-width: 64px;
   height: 64px;
-  object-fit: cover;
+  object-fit: contain;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 1px;
+}
+
+.carousel-picker-selected {
+  border-width: 2px;
+  border-style: solid;
 }
 
 .carousel-selected-image {

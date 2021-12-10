@@ -1,7 +1,7 @@
 <div class="carousel" fxLayout="row" fxLayoutAlign="start center">
   <ng-container *ngIf="images && images.length > 0; else noImage">
     <div class="carousel-picker">
-      <img *ngFor="let img of images" [src]="API + img.path" (click)="onImageClick(img)">
+      <img *ngFor="let img of images" [src]="API + img.path" (click)="onImageClick(img)" [class.carousel-picker-selected]="selectedImage === img">
     </div>
     <div class="carousel-selected-image">
       <img *ngIf="selectedImage" [src]="API + selectedImage.path">

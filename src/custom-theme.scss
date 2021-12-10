@@ -76,5 +76,9 @@ mat-icon {
   background-color: mat.get-color-from-palette($primary, 900);
 }
 
+.carousel-picker-selected {
+  border-color: mat.get-color-from-palette($primary, 900);
+}
+
 @include mat.all-component-themes($urgence-environnement-theme);
 @include articles-detail.theme($urgence-environnement-theme);
