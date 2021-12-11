@@ -2,8 +2,10 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
       <a mat-button routerLink="/" (click)="activeLink = 'Accueil'">
-        <h1 fxShow fxHide.lt-sm class="title">{{ title }}</h1>
-        <mat-icon fxHide fxShow.lt-sm>home</mat-icon>
+        <div fxLayout="row" fxLayoutGap="8px">
+          <img src="/assets/logo.png" class="logo">
+          <h1 fxShow fxHide.lt-sm class="title">{{ title }}</h1>
+        </div>
       </a>
       <form fxFlex fxLayout="row" class="search-form" #s="ngForm" (ngSubmit)="onSearch(s)" novalidate>
         <input fxFlex class="search-input" name="search" ngModel type="search" placeholder="Rechercher">
@@ -43,7 +45,8 @@
     <h3>Nous contacter</h3>
     <address>
       Du lundi au vendredi de 8h à 12h et de 14h à 19h.<br>
-      <mat-icon>email</mat-icon>&nbsp;<a href="mailto:urgence.environnement@free.fr">urgence.environnement@free.fr</a><br>
+      <mat-icon>email</mat-icon>&nbsp;<a
+        href="mailto:urgence.environnement@free.fr">urgence.environnement@free.fr</a><br>
       <mat-icon>phone</mat-icon>&nbsp;04&nbsp;79&nbsp;544&nbsp;262
     </address>
   </div>

@@ -9,6 +9,10 @@ mat-progress-bar {
   font-family: 'Stencil'
 }
 
+.logo {
+  height: 32px;
+}
+
 .footer {
   padding: 24px;
 }
