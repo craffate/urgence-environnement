@@ -3,3 +3,8 @@
 html, body { height: 100%; }
 body { margin: 0 auto; }
 .content { margin: 0 auto; min-height: 100%; }
+
+@font-face {
+  font-family: 'Stencil';
+  src: url(assets/stencil.ttf) format("truetype");
+}

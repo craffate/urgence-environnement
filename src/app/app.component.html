@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
       <a mat-button routerLink="/" (click)="activeLink = 'Accueil'">
-        <h1 fxShow fxHide.lt-sm>{{ title }}</h1>
+        <h1 fxShow fxHide.lt-sm class="title">{{ title }}</h1>
         <mat-icon fxHide fxShow.lt-sm>home</mat-icon>
       </a>
       <form fxFlex fxLayout="row" class="search-form" #s="ngForm" (ngSubmit)="onSearch(s)" novalidate>

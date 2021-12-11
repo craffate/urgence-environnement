@@ -5,6 +5,10 @@ mat-progress-bar {
   z-index: 10;
 }
 
+.title {
+  font-family: 'Stencil'
+}
+
 .footer {
   padding: 24px;
 }
