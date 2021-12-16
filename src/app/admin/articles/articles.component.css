@@ -19,9 +19,9 @@ tr.article-row:not(.expanded-row):active {
 }
 
 .admin-actions {
-  margin: 24px auto;
+  margin: 24px;
 }
 
 mat-divider {
-  margin: 16px;
+  margin: 16px auto;
 }
